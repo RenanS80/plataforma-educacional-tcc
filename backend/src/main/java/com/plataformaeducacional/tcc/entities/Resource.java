@@ -4,15 +4,31 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.plataformaeducacional.tcc.stringlist.StringListConverter;
+
+@Entity
+@Table(name = "tb_resource")
 public class Resource implements Serializable { 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
 	private String description;
 	private String link;
 	private String image;
+	
+	@Convert(converter = StringListConverter.class)
 	private List<String> tag = new ArrayList<>();
+	
 	
 	public Resource() {
 	}

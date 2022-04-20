@@ -2,12 +2,20 @@ package com.plataformaeducacional.tcc.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_user_collection_progress")
 public class Progress implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@EmbeddedId
 	private ProgressPK id = new ProgressPK();
 	private Double scoreValue;
 	private CollectionStatus status;
+	
 	
 	public Progress() {
 	}
