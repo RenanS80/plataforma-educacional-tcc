@@ -1,7 +1,6 @@
 package com.plataformaeducacional.tcc.entities;
 
 import java.time.Instant;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,8 +21,8 @@ public class Course extends Collection {
 	}
 
 	public Course(Long id, String title, String description, String link, String platform, String image, Double score,
-			Integer count, List<String> tag, Instant registrationDate) {
-		super(id, title, description, link, platform, image, score, count, tag);
+			Integer count, Instant registrationDate) {
+		super(id, title, description, link, platform, image, score, count);
 		this.registrationDate = registrationDate;
 	}
 

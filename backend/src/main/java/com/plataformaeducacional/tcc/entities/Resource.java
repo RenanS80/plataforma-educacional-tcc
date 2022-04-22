@@ -1,17 +1,19 @@
 package com.plataformaeducacional.tcc.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Convert;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import com.plataformaeducacional.tcc.stringlist.StringListConverter;
 
 @Entity
 @Table(name = "tb_resource")
@@ -21,25 +23,33 @@ public class Resource implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length = 1024)
 	private String title;
+	
+	@Column(length = 4096)
 	private String description;
 	private String link;
-	private String image;
 	
-	@Convert(converter = StringListConverter.class)
-	private List<String> tag = new ArrayList<>();
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant registrationDate;
+	
+	@ManyToMany
+	@JoinTable(name = "tb_resource_tag",
+			joinColumns = @JoinColumn(name = "resource_id"),
+			inverseJoinColumns = @JoinColumn(name = "tag_id"))
+	private Set<Tag> tags = new HashSet<>();
 	
 	
 	public Resource() {
 	}
 
-	public Resource(Long id, String title, String description, String link, String image, List<String> tag) {
+	public Resource(Long id, String title, String description, String link, Instant registrationDate) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.link = link;
-		this.image = image;
-		this.tag = tag;
+		this.registrationDate = registrationDate;
 	}
 
 	public Long getId() {
@@ -74,19 +84,15 @@ public class Resource implements Serializable {
 		this.link = link;
 	}
 
-	public String getImage() {
-		return image;
+	public Instant getRegistrationDate() {
+		return registrationDate;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setRegistrationDate(Instant registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 
-	public List<String> getTag() {
-		return tag;
-	}
-
-	public void setTag(List<String> tag) {
-		this.tag = tag;
+	public Set<Tag> getTags() {
+		return tags;
 	}
 }

@@ -1,12 +1,10 @@
 package com.plataformaeducacional.tcc.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Convert;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +16,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.plataformaeducacional.tcc.stringlist.StringListConverter;
-
 @Entity
 @Table(name = "tb_collection")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -29,16 +25,25 @@ public abstract class Collection implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length = 1024)
 	private String title;
+	
+	@Column(length = 4096)
 	private String description;
+	
+	@Column(length = 1024)
 	private String link;
 	private String platform;
 	private String image;
 	private Double score;
 	private Integer count;
 	
-	@Convert(converter = StringListConverter.class)
-	private List<String> tag = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name = "tb_collection_tag",
+			joinColumns = @JoinColumn(name = "collection_id"),
+			inverseJoinColumns = @JoinColumn(name = "tag_id"))
+	private Set<Tag> tags = new HashSet<>();
 	
 	@ManyToMany
 	@JoinTable(name = "tb_collection_resource",
@@ -51,7 +56,7 @@ public abstract class Collection implements Serializable {
 	}
 
 	public Collection(Long id, String title, String description, String link, String platform, String image,
-			Double score, Integer count, List<String> tag) {
+			Double score, Integer count) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -61,7 +66,6 @@ public abstract class Collection implements Serializable {
 		this.image = image;
 		this.score = score;
 		this.count = count;
-		this.tag = tag;
 	}
 
 	public Long getId() {
@@ -128,12 +132,8 @@ public abstract class Collection implements Serializable {
 		this.count = count;
 	}
 
-	public List<String> getTag() {
-		return tag;
-	}
-
-	public void setTag(List<String> tag) {
-		this.tag = tag;
+	public Set<Tag> getTags() {
+		return tags;
 	}
 
 	public Set<Resource> getResources() {

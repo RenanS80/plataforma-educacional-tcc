@@ -31,13 +31,7 @@ public class User implements Serializable {
 			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
-	
-	/*@ManyToMany
-	@JoinTable(name = "tb_user_collection",
-			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "collection_id"))
-	private Set<Collection> collections = new HashSet<>();*/
-	
+		
 	
 	public User() {
 	}
@@ -94,10 +88,6 @@ public class User implements Serializable {
 		return roles;
 	}
 	
-	/*public Set<Collection> getCollections() {
-		return collections;
-	}*/
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,10 +1,15 @@
 package com.plataformaeducacional.tcc.entities;
 
 import java.time.Instant;
-import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
+@Entity
+@PrimaryKeyJoinColumn(name = "id")
+@Table(name = "tb_event")
 public class Event extends Collection {
 	private static final long serialVersionUID = 1L;
 	
@@ -19,8 +24,8 @@ public class Event extends Collection {
 	}
 
 	public Event(Long id, String title, String description, String link, String platform, String image, Double score,
-			Integer count, List<String> tag, Instant startDate, Instant endDate) {
-		super(id, title, description, link, platform, image, score, count, tag);
+			Integer count, Instant startDate, Instant endDate) {
+		super(id, title, description, link, platform, image, score, count);
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
