@@ -29,6 +29,8 @@ public class Resource implements Serializable {
 	
 	@Column(length = 4096)
 	private String description;
+	
+	@Column(length = 1024)
 	private String link;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")

@@ -35,6 +35,8 @@ public abstract class Collection implements Serializable {
 	@Column(length = 1024)
 	private String link;
 	private String platform;
+	
+	@Column(length = 1024)
 	private String image;
 	private Double score;
 	private Integer count;
@@ -57,7 +59,6 @@ public abstract class Collection implements Serializable {
 
 	public Collection(Long id, String title, String description, String link, String platform, String image,
 			Double score, Integer count) {
-		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
