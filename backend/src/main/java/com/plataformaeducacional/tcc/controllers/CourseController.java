@@ -8,25 +8,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.plataformaeducacional.tcc.dto.CollectionDTO;
-import com.plataformaeducacional.tcc.services.CollectionService;
+import com.plataformaeducacional.tcc.dto.CourseDTO;
+import com.plataformaeducacional.tcc.services.CourseService;
 
 @RestController
-@RequestMapping(value = "/collections")
-public class CollectionController {
+@RequestMapping(value = "/courses")
+public class CourseController {
 	
 	@Autowired
-	private CollectionService service;
+	private CourseService service;
 	
-	// Recupera todas as coleções
+	// Recupera todos os cursos
 	@GetMapping
-	public Page<CollectionDTO> findAll(Pageable pageable){
+	public Page<CourseDTO> findAll(Pageable pageable){
 		return service.findAll(pageable);
 	}
 	
-	// Recupera uma coleção por id 
+	// Recupera um curso por id 
 	@GetMapping(value = "/{id}")
-	public CollectionDTO findById(@PathVariable Long id){
+	public CourseDTO findById(@PathVariable Long id){
 		return service.findById(id);
 	}
 }

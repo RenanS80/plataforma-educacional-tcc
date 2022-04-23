@@ -7,14 +7,14 @@ import com.plataformaeducacional.tcc.entities.Collection;
 public class CollectionDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;
-	private String title;
-	private String description;
-	private String link;
-	private String platform;
-	private String image;
-	private Double score;
-	private Integer count;
+	protected  Long id;
+	protected  String title;
+	protected  String description;
+	protected  String link;
+	protected  String platform;
+	protected  String image;
+	protected  Double score;
+	protected  Integer count;
 	
 	public CollectionDTO() {
 	}
@@ -32,15 +32,15 @@ public class CollectionDTO implements Serializable {
 	}
 	
 	// Para facilitar a cópia dos objetos do Collection para o DTO
-	public CollectionDTO(Collection collection) {
-		id = collection.getId();
-		title = collection.getTitle();
-		description = collection.getDescription();
-		link = collection.getDescription();
-		platform = collection.getPlatform();
-		image = collection.getImage();
-		score = collection.getScore();
-		count = collection.getCount();
+	public CollectionDTO(Collection entity) {
+		id = entity.getId();
+		title = entity.getTitle();
+		description = entity.getDescription();
+		link = entity.getDescription();
+		platform = entity.getPlatform();
+		image = entity.getImage();
+		score = entity.getScore();
+		count = entity.getCount();
 	}
 
 	public Long getId() {

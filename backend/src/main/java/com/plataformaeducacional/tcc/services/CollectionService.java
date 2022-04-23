@@ -13,7 +13,6 @@ import com.plataformaeducacional.tcc.repositories.CollectionRepository;
 @Service
 public class CollectionService {
 	
-	// Injeção de dependência
 	@Autowired
 	private CollectionRepository repository;
 	
