@@ -14,6 +14,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -40,6 +41,9 @@ public abstract class Collection implements Serializable {
 	private String image;
 	private Double score;
 	private Integer count;
+	
+	@OneToMany(mappedBy = "id.collection")
+	private Set<Progress> progresses = new HashSet<>();
 	
 	@ManyToMany
 	@JoinTable(name = "tb_collection_tag",
@@ -131,6 +135,10 @@ public abstract class Collection implements Serializable {
 
 	public void setCount(Integer count) {
 		this.count = count;
+	}
+	
+	public Set<Progress> getProgresses() {
+		return progresses;
 	}
 
 	public Set<Tag> getTags() {

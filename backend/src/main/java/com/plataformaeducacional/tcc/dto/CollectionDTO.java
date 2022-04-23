@@ -7,14 +7,14 @@ import com.plataformaeducacional.tcc.entities.Collection;
 public class CollectionDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	protected  Long id;
-	protected  String title;
-	protected  String description;
-	protected  String link;
-	protected  String platform;
-	protected  String image;
-	protected  Double score;
-	protected  Integer count;
+	protected Long id;
+	protected String title;
+	protected String description;
+	protected String link;
+	protected String platform;
+	protected String image;
+	protected Double score;
+	protected Integer count;
 	
 	public CollectionDTO() {
 	}

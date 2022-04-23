@@ -13,7 +13,7 @@ public class Progress implements Serializable {
 	
 	@EmbeddedId
 	private ProgressPK id = new ProgressPK();
-	private Double scoreValue;
+	private Double score;
 	private CollectionStatus status;
 	
 	
@@ -38,12 +38,12 @@ public class Progress implements Serializable {
 		this.id = id;
 	}
 
-	public Double getScoreValue() {
-		return scoreValue;
+	public Double getScore() {
+		return score;
 	}
 
-	public void setScoreValue(Double scoreValue) {
-		this.scoreValue = scoreValue;
+	public void setScore(Double score) {
+		this.score = score;
 	}
 
 	public CollectionStatus getStatus() {
