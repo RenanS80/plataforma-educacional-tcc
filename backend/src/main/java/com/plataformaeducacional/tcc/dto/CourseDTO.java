@@ -1,8 +1,11 @@
 package com.plataformaeducacional.tcc.dto;
 
 import java.time.Instant;
+import java.util.Set;
 
 import com.plataformaeducacional.tcc.entities.Course;
+import com.plataformaeducacional.tcc.entities.Resource;
+import com.plataformaeducacional.tcc.entities.Tag;
 
 public class CourseDTO extends CollectionDTO {
 	private static final long serialVersionUID = 1L;
@@ -29,6 +32,13 @@ public class CourseDTO extends CollectionDTO {
 		score = entity.getScore();
 		count = entity.getCount();
 		registrationDate = entity.getRegistrationDate();
+	}
+	
+	// Para recuperar a lista de Tags associadas a uma Collection
+	public CourseDTO(Course entity, Set<Tag> tags, Set<Resource> resources) {
+		this(entity);
+		tags.forEach(x -> this.tags.add(new TagDTO(x)));
+		resources.forEach(x -> this.resources.add(new ResourceDTO(x)));
 	}
 
 	public Instant getRegistrationDate() {

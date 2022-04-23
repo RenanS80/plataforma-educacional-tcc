@@ -1,5 +1,9 @@
 package com.plataformaeducacional.tcc.services;
 
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,10 +31,8 @@ public class CourseService {
 	
 	@Transactional(readOnly = true)
 	public CourseDTO findById(Long id){
-		Course result = repository.findById(id).get();
-		
-		// Converte Course para CourseDTO
-		CourseDTO dto = new CourseDTO(result);
-		return dto;
+		Optional<Course> obj = repository.findById(id);
+		Course entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
+		return new CourseDTO(entity, entity.getTags(), entity.getResources());
 	}
 }

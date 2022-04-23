@@ -1,8 +1,12 @@
 package com.plataformaeducacional.tcc.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.plataformaeducacional.tcc.entities.Collection;
+import com.plataformaeducacional.tcc.entities.Resource;
+import com.plataformaeducacional.tcc.entities.Tag;
 
 public class CollectionDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -15,6 +19,9 @@ public class CollectionDTO implements Serializable {
 	protected String image;
 	protected Double score;
 	protected Integer count;
+	
+	protected Set<TagDTO> tags = new HashSet<>();
+	protected Set<ResourceDTO> resources = new HashSet<>();
 	
 	public CollectionDTO() {
 	}
@@ -42,7 +49,14 @@ public class CollectionDTO implements Serializable {
 		score = entity.getScore();
 		count = entity.getCount();
 	}
-
+	
+	// Para recuperar a lista de Tags associadas a uma Collection
+	public CollectionDTO(Collection entity, Set<Tag> tags, Set<Resource> resources) {
+		this(entity);
+		tags.forEach(x -> this.tags.add(new TagDTO(x)));
+		resources.forEach(x -> this.resources.add(new ResourceDTO(x)));
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -105,5 +119,13 @@ public class CollectionDTO implements Serializable {
 
 	public void setCount(Integer count) {
 		this.count = count;
-	}	
+	}
+
+	public Set<TagDTO> getTags() {
+		return tags;
+	}
+
+	public Set<ResourceDTO> getResources() {
+		return resources;
+	}
 }

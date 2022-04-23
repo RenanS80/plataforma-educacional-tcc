@@ -1,8 +1,11 @@
 package com.plataformaeducacional.tcc.dto;
 
 import java.time.Instant;
+import java.util.Set;
 
 import com.plataformaeducacional.tcc.entities.Event;
+import com.plataformaeducacional.tcc.entities.Resource;
+import com.plataformaeducacional.tcc.entities.Tag;
 
 public class EventDTO extends CollectionDTO {
 	private static final long serialVersionUID = 1L;
@@ -32,6 +35,13 @@ public class EventDTO extends CollectionDTO {
 		count = entity.getCount();
 		startDate = entity.getStartDate();
 		endDate = entity.getEndDate();
+	}
+	
+	// Para recuperar a lista de Tags associadas a uma Collection
+	public EventDTO(Event entity, Set<Tag> tags, Set<Resource> resources) {
+		this(entity);
+		tags.forEach(x -> this.tags.add(new TagDTO(x)));
+		resources.forEach(x -> this.resources.add(new ResourceDTO(x)));
 	}
 
 	public Instant getStartDate() {

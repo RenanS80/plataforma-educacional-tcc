@@ -3,6 +3,7 @@ package com.plataformaeducacional.tcc.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +25,10 @@ public class CourseController {
 		return service.findAll(pageable);
 	}
 	
-	// Recupera um curso por id 
+	// Recupera curso por id com a lista dos respectivos recursos e tags
 	@GetMapping(value = "/{id}")
-	public CourseDTO findById(@PathVariable Long id){
-		return service.findById(id);
+	public ResponseEntity<CourseDTO> findById(@PathVariable Long id){
+		CourseDTO dto = service.findById(id);
+		return ResponseEntity.ok().body(dto);
 	}
 }

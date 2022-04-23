@@ -99,6 +99,13 @@ INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (8, 16);
 INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (8, 15);
 INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (9, 16);
 INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (9, 17);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (11, 1);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (11, 2);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (11, 3);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (11, 4);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (11, 5);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (11, 6);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (11, 7);
 
 INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (1, 1);
 INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (1, 3);

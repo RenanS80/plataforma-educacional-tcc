@@ -3,6 +3,7 @@ package com.plataformaeducacional.tcc.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +25,10 @@ public class CollectionController {
 		return service.findAll(pageable);
 	}
 	
-	// Recupera uma coleção por id 
+	// Recupera coleção por id com a lista das respectivas tags e recursos
 	@GetMapping(value = "/{id}")
-	public CollectionDTO findById(@PathVariable Long id){
-		return service.findById(id);
+	public ResponseEntity<CollectionDTO> findById(@PathVariable Long id){
+		CollectionDTO dto = service.findById(id);
+		return ResponseEntity.ok().body(dto);
 	}
 }
