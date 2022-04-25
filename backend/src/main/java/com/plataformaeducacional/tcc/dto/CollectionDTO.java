@@ -50,7 +50,7 @@ public class CollectionDTO implements Serializable {
 		count = entity.getCount();
 	}
 	
-	// Para recuperar a lista de Tags associadas a uma Collection
+	// Para recuperar a lista de Tags e Resources associados a uma Collection
 	public CollectionDTO(Collection entity, Set<Tag> tags, Set<Resource> resources) {
 		this(entity);
 		tags.forEach(x -> this.tags.add(new TagDTO(x)));
