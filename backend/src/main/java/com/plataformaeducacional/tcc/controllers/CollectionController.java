@@ -19,7 +19,7 @@ public class CollectionController {
 	@Autowired
 	private CollectionService service;
 	
-	// Recupera todas as coleções
+	// Lista todas as coleções paginadas
 	@GetMapping
 	public Page<CollectionDTO> findAll(Pageable pageable){
 		return service.findAll(pageable);

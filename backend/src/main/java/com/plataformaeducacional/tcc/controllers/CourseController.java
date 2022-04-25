@@ -19,7 +19,7 @@ public class CourseController {
 	@Autowired
 	private CourseService service;
 	
-	// Recupera todos os cursos
+	// Lista todos os cursos paginados
 	@GetMapping
 	public Page<CourseDTO> findAll(Pageable pageable){
 		return service.findAll(pageable);

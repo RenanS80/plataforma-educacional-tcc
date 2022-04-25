@@ -19,7 +19,7 @@ public class EventController {
 	@Autowired
 	private EventService service;
 	
-	// Recupera todos os eventos
+	// Lista todos os eventos paginados
 	@GetMapping
 	public Page<EventDTO> findAll(Pageable pageable){
 		return service.findAll(pageable);

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.plataformaeducacional.tcc.entities.Role;
 import com.plataformaeducacional.tcc.entities.User;
 
 public class UserDTO implements Serializable {
@@ -14,19 +13,17 @@ public class UserDTO implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String password;
 
 	private Set<RoleDTO> roles = new HashSet<>();
 	
 	public UserDTO() {
 	}
 	
-	public UserDTO(Long id, String firstName, String lastName, String email, String password) {
+	public UserDTO(Long id, String firstName, String lastName, String email) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.password = password;
 	}
 	
 	// Para facilitar a cópia dos objetos do User para o DTO
@@ -35,15 +32,9 @@ public class UserDTO implements Serializable {
 		firstName = entity.getFirstName();
 		lastName = entity.getLastName();
 		email = entity.getEmail();
-		password = entity.getPassword();
+		entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
 	}
 	
-	// Para recuperar a lista de Roles associadas a um User
-	public UserDTO(User entity, Set<Role> roles) {
-		this(entity);
-		roles.forEach(x -> this.roles.add(new RoleDTO(x)));
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -74,14 +65,6 @@ public class UserDTO implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public Set<RoleDTO> getRoles() {

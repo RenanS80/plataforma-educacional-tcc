@@ -1,6 +1,6 @@
-INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Renan', 'Soares', 'renan@email.com', '1234');
-INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Lucas', 'Lopes', 'lucas@email.com', '0000');
-INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Maria', 'Andrade', 'maria@email.com', '1111');
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Renan', 'Soares', 'renan@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Lucas', 'Lopes', 'lucas@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Maria', 'Andrade', 'maria@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
 INSERT INTO tb_role (authority) VALUES ('ROLE_STUDENT');
