@@ -40,7 +40,7 @@ public class UserController {
 		return ResponseEntity.ok().body(dto);
 	}
 	
-	// Insere novo usuário
+	// Insere um novo usuário
 	@PostMapping
 	public ResponseEntity<UserDTO> insert(@RequestBody UserInsertDTO dto){
 		UserDTO newDto = service.insert(dto);
