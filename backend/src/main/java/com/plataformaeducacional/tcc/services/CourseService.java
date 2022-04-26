@@ -5,6 +5,8 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ import com.plataformaeducacional.tcc.entities.User;
 import com.plataformaeducacional.tcc.repositories.CourseRepository;
 import com.plataformaeducacional.tcc.repositories.ResourceRepository;
 import com.plataformaeducacional.tcc.repositories.TagRepository;
+import com.plataformaeducacional.tcc.services.exceptions.DatabaseException;
 import com.plataformaeducacional.tcc.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -70,6 +73,18 @@ public class CourseService {
 		}
 		catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id não encontrado " +id);
+		}
+	}
+	
+	public void delete(Long id) {
+		try {
+			repository.deleteById(id);
+		}
+		catch(EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException("Id não encontrado " +id);
+		}
+		catch(DataIntegrityViolationException e) {
+			throw new DatabaseException("Violação de integridade");
 		}
 	}
 	

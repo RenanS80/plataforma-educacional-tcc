@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,7 +43,7 @@ public abstract class Collection implements Serializable {
 	private Double score;
 	private Integer count;
 	
-	@OneToMany(mappedBy = "id.collection")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "id.collection")
 	private Set<Progress> progresses = new HashSet<>();
 	
 	@ManyToMany
