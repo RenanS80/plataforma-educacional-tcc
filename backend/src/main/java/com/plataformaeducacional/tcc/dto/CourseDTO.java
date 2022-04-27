@@ -34,7 +34,7 @@ public class CourseDTO extends CollectionDTO {
 		registrationDate = entity.getRegistrationDate();
 	}
 	
-	// Para recuperar a lista de Tags associadas a uma Collection
+	// Para recuperar a lista de Tags e Resources associadas a um Course
 	public CourseDTO(Course entity, Set<Tag> tags, Set<Resource> resources) {
 		this(entity);
 		tags.forEach(x -> this.tags.add(new TagDTO(x)));

@@ -2,8 +2,11 @@ package com.plataformaeducacional.tcc.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.plataformaeducacional.tcc.entities.Resource;
+import com.plataformaeducacional.tcc.entities.Tag;
 
 public class ResourceDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -13,6 +16,8 @@ public class ResourceDTO implements Serializable {
 	private String description;
 	private String link;
 	private Instant registrationDate;
+	
+	private Set<TagDTO> tags = new HashSet<>();
 	
 	public ResourceDTO() {
 	}
@@ -32,6 +37,12 @@ public class ResourceDTO implements Serializable {
 		description = entity.getDescription();
 		link = entity.getLink();
 		registrationDate = entity.getRegistrationDate();
+	}
+	
+	// Para recuperar a lista de Tags associadas a uma Collection
+	public ResourceDTO(Resource entity, Set<Tag> tags) {
+		this(entity);
+		tags.forEach(x -> this.tags.add(new TagDTO(x)));
 	}
 
 	public Long getId() {
@@ -72,5 +83,9 @@ public class ResourceDTO implements Serializable {
 
 	public void setRegistrationDate(Instant registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+
+	public Set<TagDTO> getTags() {
+		return tags;
 	}
 }
