@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.plataformaeducacional.tcc.dto.TagDTO;
-import com.plataformaeducacional.tcc.services.TagService;
+import com.plataformaeducacional.tcc.dto.CategoryDTO;
+import com.plataformaeducacional.tcc.services.CategoryService;
 
 @RestController
-@RequestMapping(value = "/tags")
-public class TagController {
+@RequestMapping(value = "/categories")
+public class CategoryController {
 	
 	@Autowired
-	private TagService service;
+	private CategoryService service;
 	
-	// Lista todos as tags 
+	// Lista todas as categorias
 	@GetMapping
-	public ResponseEntity<List<TagDTO>> findAll(){
-		List<TagDTO> list = service.findAll();
+	public ResponseEntity<List<CategoryDTO>> findAll(){
+		List<CategoryDTO> list = service.findAll();
 		return ResponseEntity.ok(list);
 	}
 	
-	// Recupera tag por id
+	// Recupera categoria por id
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<TagDTO> findById(@PathVariable Long id){
-		TagDTO dto = service.findById(id);
+	public ResponseEntity<CategoryDTO> findById(@PathVariable Long id){
+		CategoryDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 }

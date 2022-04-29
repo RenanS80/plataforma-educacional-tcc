@@ -12,14 +12,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.plataformaeducacional.tcc.dto.CourseDTO;
 import com.plataformaeducacional.tcc.dto.EventDTO;
 import com.plataformaeducacional.tcc.dto.ResourceDTO;
 import com.plataformaeducacional.tcc.dto.TagDTO;
-import com.plataformaeducacional.tcc.entities.Course;
+import com.plataformaeducacional.tcc.entities.Category;
 import com.plataformaeducacional.tcc.entities.Event;
 import com.plataformaeducacional.tcc.entities.Resource;
 import com.plataformaeducacional.tcc.entities.Tag;
+import com.plataformaeducacional.tcc.repositories.CategoryRepository;
 import com.plataformaeducacional.tcc.repositories.EventRepository;
 import com.plataformaeducacional.tcc.repositories.ResourceRepository;
 import com.plataformaeducacional.tcc.repositories.TagRepository;
@@ -31,6 +31,9 @@ public class EventService {
 	
 	@Autowired
 	private EventRepository repository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	@Autowired
 	private TagRepository tagRepository;
@@ -52,6 +55,15 @@ public class EventService {
 		Optional<Event> obj = repository.findById(id);
 		Event entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
 		return new EventDTO(entity, entity.getTags(), entity.getResources());
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<EventDTO> findAllEventsByCategoryId(Pageable pageable, Long id){
+		Page<Event> result = repository.findAllEventsByCategoryId(pageable, id);
+		
+		// Converte Event para EventDTO
+		Page<EventDTO> page = result.map(x -> new EventDTO(x));
+		return page;
 	}
 	
 	@Transactional
@@ -95,6 +107,8 @@ public class EventService {
 		entity.setLink(dto.getLink());
 		entity.setPlatform(dto.getPlatform());
 		entity.setImage(dto.getImage());
+		Category cat = categoryRepository.getOne(dto.getCategory().getId());
+		entity.setCategory(cat); 
 		entity.setStartDate(dto.getStartDate());
 		entity.setEndDate(dto.getEndDate());
 		
@@ -127,6 +141,8 @@ public class EventService {
 		entity.setLink(dto.getLink());
 		entity.setPlatform(dto.getPlatform());
 		entity.setImage(dto.getImage());
+		Category cat = categoryRepository.getOne(dto.getCategory().getId());
+		entity.setCategory(cat); 
 		entity.setStartDate(dto.getStartDate());
 		entity.setEndDate(dto.getEndDate());
 		

@@ -33,6 +33,7 @@ public class EventDTO extends CollectionDTO {
 		image = entity.getImage();
 		score = entity.getScore();
 		count = entity.getCount();
+		category = new CategoryDTO(entity.getCategory());
 		startDate = entity.getStartDate();
 		endDate = entity.getEndDate();
 	}

@@ -39,6 +39,12 @@ public class CourseController {
 		CourseDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
+	
+	// Recupera todos os cursos paginados de uma categoria
+	@GetMapping(value = "/category")
+	public Page<CourseDTO> findAllCoursesByCategoryId(Pageable pageable, Long id){
+		return service.findAllCoursesByCategoryId(pageable, id);
+	}
 		
 	// Insere um novo curso
 	@PostMapping

@@ -17,9 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.plataformaeducacional.tcc.dto.CourseDTO;
 import com.plataformaeducacional.tcc.dto.ResourceDTO;
 import com.plataformaeducacional.tcc.dto.TagDTO;
+import com.plataformaeducacional.tcc.entities.Category;
 import com.plataformaeducacional.tcc.entities.Course;
 import com.plataformaeducacional.tcc.entities.Resource;
 import com.plataformaeducacional.tcc.entities.Tag;
+import com.plataformaeducacional.tcc.repositories.CategoryRepository;
 import com.plataformaeducacional.tcc.repositories.CourseRepository;
 import com.plataformaeducacional.tcc.repositories.ResourceRepository;
 import com.plataformaeducacional.tcc.repositories.TagRepository;
@@ -31,6 +33,9 @@ public class CourseService {
 	
 	@Autowired
 	private CourseRepository repository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	@Autowired
 	private TagRepository tagRepository;
@@ -53,7 +58,16 @@ public class CourseService {
 		Course entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
 		return new CourseDTO(entity, entity.getTags(), entity.getResources());
 	}
+	
+	@Transactional(readOnly = true)
+	public Page<CourseDTO> findAllCoursesByCategoryId(Pageable pageable, Long id){
+		Page<Course> result = repository.findAllCoursesByCategoryId(pageable, id);
 		
+		// Converte Course para CourseDTO
+		Page<CourseDTO> page = result.map(x -> new CourseDTO(x));
+		return page;
+	}
+			
 	@Transactional
 	public CourseDTO insert(CourseDTO dto) {
 		Course entity = new Course();
@@ -62,7 +76,7 @@ public class CourseService {
 		entity = repository.save(entity);
 		return new CourseDTO(entity);
 	}
-	
+		
 	@Transactional
 	public CourseDTO update(Long id, CourseDTO dto) {
 		try {
@@ -95,8 +109,10 @@ public class CourseService {
 		entity.setLink(dto.getLink());
 		entity.setPlatform(dto.getPlatform());
 		entity.setImage(dto.getImage());
+		Category cat = categoryRepository.getOne(dto.getCategory().getId());
+		entity.setCategory(cat); 
 		entity.setRegistrationDate(dto.getRegistrationDate());
-		
+				
 		entity.getTags().clear();
 		for(TagDTO tagDto : dto.getTags()){
 			Tag tag = tagRepository.getOne(tagDto.getId());
@@ -126,6 +142,8 @@ public class CourseService {
 		entity.setLink(dto.getLink());
 		entity.setPlatform(dto.getPlatform());
 		entity.setImage(dto.getImage());
+		Category cat = categoryRepository.getOne(dto.getCategory().getId());
+		entity.setCategory(cat); 
 		entity.setRegistrationDate(dto.getRegistrationDate());
 		
 		entity.getTags().clear();

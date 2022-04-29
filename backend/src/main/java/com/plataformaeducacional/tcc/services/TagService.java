@@ -1,12 +1,12 @@
 package com.plataformaeducacional.tcc.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,13 +20,9 @@ public class TagService {
 	@Autowired
 	private TagRepository repository;
 		
-	@Transactional(readOnly = true)
-	public Page<TagDTO> findAll(Pageable pageable){
-		Page<Tag> result = repository.findAll(pageable);
-		
-		// Converte Tag para TagDTO
-		Page<TagDTO> page = result.map(x -> new TagDTO(x));
-		return page;
+	public List<TagDTO> findAll(){
+		List<Tag> result = repository.findAll();
+		return result.stream().map(x -> new TagDTO(x)).collect(Collectors.toList());
 	}
 	
 	@Transactional(readOnly = true)

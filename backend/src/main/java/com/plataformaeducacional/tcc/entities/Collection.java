@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_collection")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Collection implements Serializable {
+public abstract class Collection implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -44,7 +44,7 @@ public class Collection implements Serializable {
 	private Double score;
 	private Integer count;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "category_id")
 	private Category category;
 	

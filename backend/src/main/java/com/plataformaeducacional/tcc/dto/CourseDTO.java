@@ -31,6 +31,7 @@ public class CourseDTO extends CollectionDTO {
 		image = entity.getImage();
 		score = entity.getScore();
 		count = entity.getCount();
+		category = new CategoryDTO(entity.getCategory());
 		registrationDate = entity.getRegistrationDate();
 	}
 	

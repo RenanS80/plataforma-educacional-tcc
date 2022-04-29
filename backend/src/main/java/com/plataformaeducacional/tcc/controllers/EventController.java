@@ -1,6 +1,7 @@
 package com.plataformaeducacional.tcc.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,6 +41,12 @@ public class EventController {
 		return ResponseEntity.ok().body(dto);
 	}
 	
+	// Recupera todos os eventos paginados de uma categoria
+	@GetMapping(value = "/category")
+	public Page<EventDTO> findAllEventsByCategoryId(Pageable pageable, Long id){
+		return service.findAllEventsByCategoryId(pageable, id);
+	}
+	
 	// Insere um novo evento
 	@PostMapping
 	public ResponseEntity<EventDTO> insert(@RequestBody EventDTO dto){
@@ -47,7 +54,7 @@ public class EventController {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
-	
+		
 	// Atualiza um evento
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<EventDTO> update(@PathVariable Long id, @RequestBody EventDTO dto){
