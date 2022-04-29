@@ -1,5 +1,7 @@
 package com.plataformaeducacional.tcc.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,5 +32,12 @@ public class CollectionController {
 	public ResponseEntity<CollectionDTO> findById(@PathVariable Long id){
 		CollectionDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
+	}
+	
+	// Recupera todos os recursos de uma colecao
+	@GetMapping(value = "/findByCategory")
+	public ResponseEntity<List<CollectionDTO>> findAllCollectionsByCategoryId(Long id){
+		List<CollectionDTO> list = service.findAllCollectionsByCategoryId(id);
+		return ResponseEntity.ok().body(list);
 	}
 }

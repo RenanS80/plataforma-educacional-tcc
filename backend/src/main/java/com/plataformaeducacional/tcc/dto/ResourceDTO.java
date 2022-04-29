@@ -1,7 +1,7 @@
 package com.plataformaeducacional.tcc.dto;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,14 +15,14 @@ public class ResourceDTO implements Serializable {
 	private String title;
 	private String description;
 	private String link;
-	private Instant registrationDate;
+	private LocalDate registrationDate;
 	
 	private Set<TagDTO> tags = new HashSet<>();
 	
 	public ResourceDTO() {
 	}
 
-	public ResourceDTO(Long id, String title, String description, String link, Instant registrationDate) {
+	public ResourceDTO(Long id, String title, String description, String link, LocalDate registrationDate) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -77,11 +77,11 @@ public class ResourceDTO implements Serializable {
 		this.link = link;
 	}
 
-	public Instant getRegistrationDate() {
+	public LocalDate getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Instant registrationDate) {
+	public void setRegistrationDate(LocalDate registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 

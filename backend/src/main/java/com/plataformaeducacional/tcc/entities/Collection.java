@@ -15,13 +15,14 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_collection")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Collection implements Serializable {
+public class Collection implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -43,6 +44,10 @@ public abstract class Collection implements Serializable {
 	private Double score;
 	private Integer count;
 	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
+	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "id.collection")
 	private Set<Progress> progresses = new HashSet<>();
 	
@@ -63,7 +68,7 @@ public abstract class Collection implements Serializable {
 	}
 
 	public Collection(Long id, String title, String description, String link, String platform, String image,
-			Double score, Integer count) {
+			Double score, Integer count, Category category) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -72,6 +77,7 @@ public abstract class Collection implements Serializable {
 		this.image = image;
 		this.score = score;
 		this.count = count;
+		this.category = category;
 	}
 
 	public Long getId() {
@@ -138,6 +144,14 @@ public abstract class Collection implements Serializable {
 		this.count = count;
 	}
 	
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	public Set<Progress> getProgresses() {
 		return progresses;
 	}

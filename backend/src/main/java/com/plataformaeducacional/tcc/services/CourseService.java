@@ -1,6 +1,8 @@
 package com.plataformaeducacional.tcc.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -15,11 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.plataformaeducacional.tcc.dto.CourseDTO;
 import com.plataformaeducacional.tcc.dto.ResourceDTO;
 import com.plataformaeducacional.tcc.dto.TagDTO;
-import com.plataformaeducacional.tcc.dto.UserDTO;
 import com.plataformaeducacional.tcc.entities.Course;
 import com.plataformaeducacional.tcc.entities.Resource;
 import com.plataformaeducacional.tcc.entities.Tag;
-import com.plataformaeducacional.tcc.entities.User;
 import com.plataformaeducacional.tcc.repositories.CourseRepository;
 import com.plataformaeducacional.tcc.repositories.ResourceRepository;
 import com.plataformaeducacional.tcc.repositories.TagRepository;
@@ -53,7 +53,7 @@ public class CourseService {
 		Course entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
 		return new CourseDTO(entity, entity.getTags(), entity.getResources());
 	}
-	
+		
 	@Transactional
 	public CourseDTO insert(CourseDTO dto) {
 		Course entity = new Course();

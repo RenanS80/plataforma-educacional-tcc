@@ -1,6 +1,8 @@
 package com.plataformaeducacional.tcc.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -34,5 +36,11 @@ public class CollectionService {
 		Optional<Collection> obj = repository.findById(id);
 		Collection entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
 		return new CollectionDTO(entity, entity.getTags(), entity.getResources());
+	}
+	
+	@Transactional(readOnly = true)
+	public List<CollectionDTO> findAllCollectionsByCategoryId(Long id){
+		List<Collection> result = repository.findAllCollectionsByCategoryId(id);
+		return result.stream().map(x -> new CollectionDTO(x)).collect(Collectors.toList());
 	}
 }

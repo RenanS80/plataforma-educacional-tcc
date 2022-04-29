@@ -1,6 +1,7 @@
 package com.plataformaeducacional.tcc.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.plataformaeducacional.tcc.dto.CourseDTO;
-import com.plataformaeducacional.tcc.dto.UserDTO;
 import com.plataformaeducacional.tcc.services.CourseService;
 
 @RestController
@@ -39,7 +39,7 @@ public class CourseController {
 		CourseDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
-	
+		
 	// Insere um novo curso
 	@PostMapping
 	public ResponseEntity<CourseDTO> insert(@RequestBody CourseDTO dto){

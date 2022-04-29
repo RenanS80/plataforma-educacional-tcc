@@ -1,6 +1,6 @@
 package com.plataformaeducacional.tcc.dto;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Set;
 
 import com.plataformaeducacional.tcc.entities.Event;
@@ -10,19 +10,19 @@ import com.plataformaeducacional.tcc.entities.Tag;
 public class EventDTO extends CollectionDTO {
 	private static final long serialVersionUID = 1L;
 	
-	private Instant startDate;
-	private Instant endDate;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	
 	public EventDTO() {
 	}
-
+	
 	public EventDTO(Long id, String title, String description, String link, String platform, String image, Double score,
-			Integer count, Instant startDate, Instant endDate) {
-		super(id, title, description, link, platform, image, score, count);
+			Integer count, CategoryDTO category, LocalDate startDate, LocalDate endDate) {
+		super(id, title, description, link, platform, image, score, count, category);
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
-	
+
 	// Para facilitar a cópia dos objetos do Event para o DTO
 	public EventDTO(Event entity) {
 		id = entity.getId();
@@ -44,19 +44,19 @@ public class EventDTO extends CollectionDTO {
 		resources.forEach(x -> this.resources.add(new ResourceDTO(x)));
 	}
 
-	public Instant getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Instant startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Instant getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Instant endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 }

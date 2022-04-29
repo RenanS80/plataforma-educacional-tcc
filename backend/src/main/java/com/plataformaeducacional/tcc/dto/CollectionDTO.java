@@ -20,6 +20,7 @@ public class CollectionDTO implements Serializable {
 	protected Double score;
 	protected Integer count;
 	
+	protected CategoryDTO category;
 	protected Set<TagDTO> tags = new HashSet<>();
 	protected Set<ResourceDTO> resources = new HashSet<>();
 	
@@ -27,7 +28,7 @@ public class CollectionDTO implements Serializable {
 	}
 
 	public CollectionDTO(Long id, String title, String description, String link, String platform, String image,
-			Double score, Integer count) {
+			Double score, Integer count, CategoryDTO category) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -36,6 +37,7 @@ public class CollectionDTO implements Serializable {
 		this.image = image;
 		this.score = score;
 		this.count = count;
+		this.category = category;
 	}
 	
 	// Para facilitar a cópia dos objetos do Collection para o DTO
@@ -48,6 +50,7 @@ public class CollectionDTO implements Serializable {
 		image = entity.getImage();
 		score = entity.getScore();
 		count = entity.getCount();
+		category = new CategoryDTO(entity.getCategory());	
 	}
 	
 	// Para recuperar a lista de Tags e Resources associados a uma Collection
@@ -119,6 +122,14 @@ public class CollectionDTO implements Serializable {
 
 	public void setCount(Integer count) {
 		this.count = count;
+	}
+
+	public CategoryDTO getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryDTO category) {
+		this.category = category;
 	}
 
 	public Set<TagDTO> getTags() {

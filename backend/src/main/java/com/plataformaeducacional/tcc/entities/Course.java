@@ -1,6 +1,6 @@
 package com.plataformaeducacional.tcc.entities;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,23 +14,23 @@ public class Course extends Collection {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private Instant registrationDate;
+	private LocalDate registrationDate;
 	
 	
 	public Course() {
 	}
 
 	public Course(Long id, String title, String description, String link, String platform, String image, Double score,
-			Integer count, Instant registrationDate) {
-		super(id, title, description, link, platform, image, score, count);
+			Integer count, Category category, LocalDate registrationDate) {
+		super(id, title, description, link, platform, image, score, count, category);
 		this.registrationDate = registrationDate;
 	}
 
-	public Instant getRegistrationDate() {
+	public LocalDate getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Instant registrationDate) {
+	public void setRegistrationDate(LocalDate registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 }
