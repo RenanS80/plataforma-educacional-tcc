@@ -1,12 +1,12 @@
 package com.plataformaeducacional.tcc.services;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +20,13 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository repository;
 		
-	public List<CategoryDTO> findAll(){
-		List<Category> result = repository.findAll();
-		return result.stream().map(x -> new CategoryDTO(x)).collect(Collectors.toList());
+	@Transactional(readOnly = true)
+	public Page<CategoryDTO> findAll(Pageable pageable){
+		Page<Category> result = repository.findAll(pageable);
+		
+		// Converte Category para CategoryDTO
+		Page<CategoryDTO> page = result.map(x -> new CategoryDTO(x));
+		return page;
 	}
 	
 	@Transactional(readOnly = true)

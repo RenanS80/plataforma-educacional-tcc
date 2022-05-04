@@ -2,21 +2,29 @@
 
 :root {
     --purple: #6255A4;
+    /* usei */
     --purple-light: #8B80BE;
     --purple-dark: #483E7D;
     --yellow: #FFBD3D;
     --yellow-light: #FFD06C;
     --yellow-dark: #DFA632;
+    --white-bg: #FFF;
+    /* usei */
     --white: #F4F2F7;
+    /* usei */
     --white-light: #FBFAFC;
+    /* usei */
     --white-dark: #EDEBF0;
     --black: #17151A;
+    /* usei */
     --black-light: #232126;
     --black-dark: #0B0B0D;
     --gray-1: #4E5050;
     --gray-2: #6D6F70;
+    /* usei */
     --gray-3: #989898;
     --gray-4: #9E9E9E;
+    --gray-5: #C4C4C4;
 }
 
 *,
@@ -31,4 +39,37 @@
 body, html {
     background-color: var(--white);
     color: var(--black);
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 116%;
+    letter-spacing: -0.025em;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 115%;
+    letter-spacing: -0.025em;
+}
+
+h4 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 33px;
+    letter-spacing: -0.015em;
+}
+
+h5 {
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
 }

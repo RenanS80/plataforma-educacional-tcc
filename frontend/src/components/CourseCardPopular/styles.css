@@ -1,0 +1,65 @@
+.popular-course-card {
+    width: 300px;
+    height: 410px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    background-color: var(--white-bg);
+}
+
+.popular-course-card p {
+    margin: 0;
+}
+
+.popular-course-image {
+    width: 250px;
+    height: 175px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.popular-course-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.popular-course-info {
+    padding: 0px 27px;
+    margin-top: 15px;
+}
+
+.popular-course-info p:first-child {
+    color: var(--purple);
+    letter-spacing: -0.025em;
+}
+
+.popular-course-info p:last-child {
+    padding-top: 12px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: -0.025em;
+    color: var(--black);
+}
+
+.popular-course-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.popular-course-score .score {
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 15px;
+    color: var(--yellow);
+}
+
+.popular-course-score .count-score {
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--gray-2);
+}

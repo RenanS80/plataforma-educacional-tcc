@@ -1,6 +1,7 @@
 import Logo from 'assets/img/logo.png';
 
 import 'bootstrap/js/src/collapse.js';
+import RegisterButton from 'components/RegisterButton';
 import './styles.css';
 
 function Navbar() {
@@ -41,7 +42,7 @@ function Navbar() {
                     
                     <div className="group-buttons">
                         <a href="#login" role="button" className="btn-login">Login</a>
-                        <a href="#register" role="button" className="btn-register">Cadastre-se</a>
+                        <RegisterButton />
                     </div>
                 </div>
             </div>

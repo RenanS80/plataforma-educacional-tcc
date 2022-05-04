@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,15 +22,19 @@ public class Category implements Serializable {
 	private Long id;
 	private String name;
 	
+	@Column(length = 1024)
+	private String image;
+	
 	@OneToMany(mappedBy = "category")
 	private List<Collection> collections = new ArrayList<>();
 	
 	public Category() {
 	}
 
-	public Category(Long id, String name) {
+	public Category(Long id, String name, String image) {
 		this.id = id;
 		this.name = name;
+		this.image = image;
 	}
 
 	public Long getId() {
@@ -48,6 +53,14 @@ public class Category implements Serializable {
 		this.name = name;
 	}
 	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public List<Collection> getCollections() {
 		return collections;
 	}

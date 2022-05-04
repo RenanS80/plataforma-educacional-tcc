@@ -1,0 +1,15 @@
+.btn-register {
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: all .5s ease;
+    background: var(--purple);
+    border-radius: 10px;
+    padding: 17px 24px;
+    color: var(--white);
+}
+
+.btn-register:hover {
+    color: var(--white);
+    opacity: .92;
+}
