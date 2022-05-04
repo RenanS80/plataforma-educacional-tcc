@@ -1,10 +1,10 @@
 import HeroImg from 'assets/img/vector-study.svg';
 
-import CourseCardPopular from 'components/CourseCardPopular';
-import Footer from 'components/Footer';
-import MainCategories from 'components/MainCategories';
 import Navbar from 'components/Navbar';
 import RegisterButton from 'components/RegisterButton';
+import MainCategoryCard from 'components/MainCategoryCard';
+import CourseCard from 'components/CourseCard';
+import Footer from 'components/Footer';
 
 import './styles.css';
 
@@ -30,7 +30,25 @@ function Home() {
                 </div>
             </section>
 
-            <MainCategories />
+            <main className="main-categories">
+                <div className="container">
+                    <div className="categories-title">
+                        <h5>Navegue pelos cursos de cada área</h5>
+                        <h2>Principais categorias</h2>
+                    </div>
+
+                    <div className="categories-card-container">
+                        <MainCategoryCard />
+                        <MainCategoryCard />
+                        <MainCategoryCard />
+                        <MainCategoryCard />
+                        <MainCategoryCard />
+                        <MainCategoryCard />
+                        <MainCategoryCard />
+                        <MainCategoryCard />
+                    </div>
+                </div>
+            </main>
 
             <section className="popular-courses">
                 <div className="container">
@@ -40,16 +58,15 @@ function Home() {
                     </div>
 
                     <div className="popular-courses-container">
-                            <CourseCardPopular />
-                            <CourseCardPopular />
-                            <CourseCardPopular />
-                            <CourseCardPopular />
-                            <CourseCardPopular />
-                            <CourseCardPopular />
-                            <CourseCardPopular />
-                            <CourseCardPopular />
+                        <CourseCard />
+                        <CourseCard />
+                        <CourseCard />
+                        <CourseCard />
+                        <CourseCard />
+                        <CourseCard />
+                        <CourseCard />
+                        <CourseCard />
                     </div>
-
                 </div>
             </section>
 

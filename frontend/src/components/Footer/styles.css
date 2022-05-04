@@ -23,6 +23,17 @@ footer .container {
     gap: 32px;
 }
 
+.footer-icons .github,
+.footer-icons .linkedin {
+    font-size: 26px;
+    color: var(--black);
+}
+
+.footer-icons .github:hover,
+.footer-icons .linkedin:hover {
+    color: var(--purple);
+}
+
 
 /* Media Queries */
 @media (max-width: 768px) {

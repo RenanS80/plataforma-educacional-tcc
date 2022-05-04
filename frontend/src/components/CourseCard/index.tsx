@@ -2,7 +2,7 @@ import Star from 'assets/img/star.svg';
 
 import './styles.css';
 
-function CourseCardPopular() {
+function CourseCard() {
     return (
         <div className="popular-course-card">
             <div className="popular-course-image">
@@ -29,4 +29,4 @@ function CourseCardPopular() {
     );
 }
 
-export default CourseCardPopular;
+export default CourseCard;

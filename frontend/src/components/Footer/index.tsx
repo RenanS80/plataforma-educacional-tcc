@@ -1,6 +1,7 @@
 import Logo from 'assets/img/logo.png';
-import Github from 'assets/img/github.svg';
-import Linkedin from 'assets/img/linkedin.svg';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 import './styles.css';
 
@@ -15,8 +16,12 @@ function Footer() {
                 </div>
 
                 <div className="footer-icons">
-                    <img src={Github} alt="Github" />
-                    <img src={Linkedin} alt="Linkedin" />
+                    <a href="https://github.com/RenanS80" target="_blank" rel="noreferrer">
+                        <FontAwesomeIcon icon={faGithub} className="github" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/renansoaresf/" target="_blank" rel="noreferrer">
+                        <FontAwesomeIcon icon={faLinkedinIn} className="linkedin" />
+                    </a>
                 </div>
             </div>
         </footer>
