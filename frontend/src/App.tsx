@@ -1,9 +1,9 @@
-import CourseCatalog from 'pages/CourseCatalog';
+import EventCatalog from 'pages/EventCatalog';
 import './App.css';
 
 function App() {
   return (
-    <CourseCatalog />
+    <EventCatalog />
   );
 }
 
