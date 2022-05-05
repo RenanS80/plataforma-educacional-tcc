@@ -1,9 +1,10 @@
-import ResourceCatalog from 'pages/ResourceCatalog';
+import EventDetails from 'pages/EventDetails';
+
 import './App.css';
 
 function App() {
   return (
-    <ResourceCatalog />
+    <EventDetails />
   );
 }
 

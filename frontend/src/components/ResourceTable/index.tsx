@@ -14,6 +14,7 @@ function ResourceTable() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
                         </span>
                         <input
+                            className="" 
                             type="text"
                             placeholder="Pesquisar recursos"
                         />
