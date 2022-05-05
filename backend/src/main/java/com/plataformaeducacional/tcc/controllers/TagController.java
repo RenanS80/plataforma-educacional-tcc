@@ -19,7 +19,7 @@ public class TagController {
 	@Autowired
 	private TagService service;
 	
-	// Lista todos as tags 
+	// Lista todas as tags 
 	@GetMapping
 	public ResponseEntity<List<TagDTO>> findAll(){
 		List<TagDTO> list = service.findAll();

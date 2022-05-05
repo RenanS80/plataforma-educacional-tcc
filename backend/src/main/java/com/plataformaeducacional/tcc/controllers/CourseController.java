@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.plataformaeducacional.tcc.dto.CourseDTO;
+import com.plataformaeducacional.tcc.dto.TagDTO;
 import com.plataformaeducacional.tcc.services.CourseService;
 
 @RestController
@@ -44,6 +45,13 @@ public class CourseController {
 	@GetMapping(value = "/category")
 	public Page<CourseDTO> findAllCoursesByCategoryId(Pageable pageable, Long id){
 		return service.findAllCoursesByCategoryId(pageable, id);
+	}
+	
+	// Lista os melhores cursos
+	@GetMapping(value = "/best")
+	public ResponseEntity<List<CourseDTO>> findBestCourses(){
+		List<CourseDTO> list = service.findBestCourses();
+		return ResponseEntity.ok(list);
 	}
 		
 	// Insere um novo curso

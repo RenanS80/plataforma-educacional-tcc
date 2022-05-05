@@ -1,6 +1,8 @@
 package com.plataformaeducacional.tcc.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -11,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.plataformaeducacional.tcc.dto.CategoryDTO;
+import com.plataformaeducacional.tcc.dto.CourseDTO;
 import com.plataformaeducacional.tcc.entities.Category;
+import com.plataformaeducacional.tcc.entities.Course;
 import com.plataformaeducacional.tcc.repositories.CategoryRepository;
 
 @Service
@@ -34,5 +38,11 @@ public class CategoryService {
 		Optional<Category> obj = repository.findById(id);
 		Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
 		return new CategoryDTO(entity);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<CategoryDTO> findMainCategories(){
+		List<Category> result = repository.findMainCategories();
+		return result.stream().map(x -> new CategoryDTO(x)).collect(Collectors.toList());
 	}
 }
