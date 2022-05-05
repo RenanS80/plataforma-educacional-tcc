@@ -1,10 +1,10 @@
-import EventDetails from 'pages/EventDetails';
+import Signup from 'pages/Signup';
 
 import './App.css';
 
 function App() {
   return (
-    <EventDetails />
+    <Signup />
   );
 }
 

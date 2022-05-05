@@ -1,0 +1,131 @@
+.main-login {
+    height: 100vh;
+    display: flex;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.login-image-container,
+.login-form-container {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-image-container {
+    background-color: var(--purple);
+}
+
+.login-image-box {
+    width: 556px;
+    height: 476px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.login-image {
+    width: 100%;
+}
+
+.login-form-box {
+    width: 350px;
+    padding: 15px;
+}
+
+.login-form-title p {
+    margin-bottom: 10px;
+}
+
+.login-form-container form {
+    margin-top: 60px;
+}
+
+.login-form-container input {
+    width: 100%;
+    display: block;
+    border: 2px solid #EEE;
+    padding: 5px 10px 5px 50px;
+    outline: 0;
+    border-radius: 5px;
+    font-size: 17px;
+    line-height: 30px;
+}
+
+.login-form-container input:focus {
+    border: 2px solid var(--purple);
+}
+
+.login-form-email,
+.login-form-password {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.email-login-icon,
+.password-login-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 13px;
+    left: 15px;
+    font-size: 17px;
+    color: var(--black);
+}
+
+.recover-password {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    color: var(--purple);
+}
+
+.login-form-btn {
+    width: 100%;
+    margin-top: 30px;
+    padding: 16px 0px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    line-height: 19px;
+    background: var(--purple);
+    color: var(--white-bg);
+    transition: all .4s ease;
+}
+
+.login-form-btn:hover {
+    opacity: .9;
+}
+
+.login-link-register {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.login-link-register a {
+    padding-left: 5px;
+}
+
+
+/* Media Queries */
+@media (max-width: 767px) {
+    .main-login {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-image-container {
+        display: none;
+    }
+
+    .login-form-container {
+        width: 100vw;
+    }   
+}
