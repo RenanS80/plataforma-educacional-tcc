@@ -1,0 +1,37 @@
+.resource-catalog {
+    background-color: var(--white);
+}
+
+.resource-catalog-title {
+    text-align: center;
+    padding-top: 75px;
+}
+
+.resource-catalog-title h5 {
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    color: var(--purple);
+}
+
+.resource-catalog h2 {
+    color: var(--black);
+}
+
+.resource-catalog-table {
+    margin-top: 60px;
+}
+
+
+.resource-pagination-container {
+    margin-top: 60px;
+    padding-bottom: 60px;
+}
+
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .course-catalog-container {
+        justify-content: space-around;
+    }
+}
