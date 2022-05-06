@@ -1,8 +1,10 @@
+import { NavLink } from 'react-router-dom';
+
 import './styles.css';
 
 function RegisterButton() {
     return (
-        <a href="#register" role="button" className="btn-register">Cadastre-se</a>
+        <NavLink to="/signup" role="button" className="btn-register">Cadastre-se</NavLink>
     );
 }
 

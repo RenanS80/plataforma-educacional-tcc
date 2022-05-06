@@ -8,7 +8,7 @@ import './styles.css';
 function Login() {
 
     return (
-
+        
         <main className="main-login">
             <div className="login-image-container">
                 <div className="login-image-box">

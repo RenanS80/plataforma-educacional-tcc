@@ -2,15 +2,16 @@ import Logo from 'assets/img/logo.png';
 
 import 'bootstrap/js/src/collapse.js';
 import RegisterButton from 'components/RegisterButton';
+import { NavLink } from 'react-router-dom';
 import './styles.css';
 
 function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light pt-4 pb-4 main-nav">
             <div className="container">
-                <a href="/" className="nav-logo-text">
+                <NavLink to="/" className="nav-logo-text">
                     <img src={Logo} alt="Learn Logo" />
-                </a>
+                </NavLink>
 
                 <button
                     className="navbar-toggler"
@@ -27,21 +28,21 @@ function Navbar() {
                 <div id="learn-navbar" className="collapse navbar-collapse nav-items">
                     <ul className="navbar-nav main-menu">
                         <li>
-                            <a href="/" className="active">Home</a>
+                            <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>Home</NavLink>
                         </li>
                         <li>
-                            <a href="/produtos">Cursos</a>
+                            <NavLink to="/courses" className={({ isActive }) => isActive ? "active" : ""}>Cursos</NavLink>
                         </li>
                         <li>
-                            <a href="/eventos">Eventos</a>
+                            <NavLink to="/events" className={({ isActive }) => isActive ? "active" : ""}>Eventos</NavLink>
                         </li>
                         <li>
-                            <a href="/recursos">Recursos</a>
+                            <NavLink to="/resources" className={({ isActive }) => isActive ? "active" : ""}>Recursos</NavLink>
                         </li>
                     </ul>
                     
                     <div className="group-buttons">
-                        <a href="#login" role="button" className="btn-login">Login</a>
+                        <NavLink to="/login" role="button" className="btn-login">Login</NavLink>
                         <RegisterButton />
                     </div>
                 </div>
