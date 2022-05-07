@@ -3,6 +3,7 @@ import { faUser, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
 
 import './styles.css';
+import { Link } from 'react-router-dom';
 
 function Signup() {
 
@@ -61,7 +62,7 @@ function Signup() {
                         </form>
 
                         <p className="register-link-login">Já tem uma conta?
-                            <a href="#link">Login</a>
+                            <Link to="/login">Login</Link>
                         </p>
                     </div>
                 </div>

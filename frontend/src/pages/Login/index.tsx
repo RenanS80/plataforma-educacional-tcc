@@ -4,6 +4,7 @@ import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
 
 import './styles.css';
+import { Link } from 'react-router-dom';
 
 function Login() {
 
@@ -47,7 +48,7 @@ function Login() {
                     </form>
 
                     <p className="login-link-register">Não tem uma conta?
-                        <a href="#link">Cadastre-se</a>
+                        <Link to="/signup">Cadastre-se</Link>
                     </p>
                 </div>
             </div>

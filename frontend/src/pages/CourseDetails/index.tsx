@@ -1,13 +1,36 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, } from '@fortawesome/free-solid-svg-icons';
-import Star from 'assets/img/star.svg';
+
+
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 import Navbar from 'components/Navbar';
+import Score from 'components/Score';
+import Footer from 'components/Footer';
+import { Course } from 'types/Course';
+import { BASE_URL } from 'utils/requests';
 
 import './styles.css';
-import Footer from 'components/Footer';
+
+type UrlParams = {
+    courseId: string;
+}
+
 
 function CourseDetails() {
+
+    const { courseId } = useParams<UrlParams>();
+
+    const [course, setCourse] = useState<Course>();
+
+    useEffect(() => {
+        axios.get(`${BASE_URL}/courses/${courseId}`)
+            .then(response => {
+                setCourse(response.data);
+            })
+    }, [courseId])
 
     return (
         <>
@@ -17,70 +40,76 @@ function CourseDetails() {
                 <div className="container">
                     <div className="course-details-card">
                         <div className="course-details-card-top">
-                            <div className="goback-button">
-                                <FontAwesomeIcon icon={faChevronLeft} className="arrow-back" />
-                                <p>VOLTAR</p>
-                            </div>
-                            <div className="course-title-score-container">
-                                <h3>Desenvolvimento Web Completo 2022 - 20 cursos + 20 projetos</h3>
-                                <div className="score-info">
-                                    <p className="score">5.0</p>
-                                    <div className="group-stars">
-                                        <img src={Star} alt="Full star" />
-                                        <img src={Star} alt="Full star" />
-                                        <img src={Star} alt="Full star" />
-                                        <img src={Star} alt="Full star" />
-                                        <img src={Star} alt="Full star" />
-                                    </div>
-                                    <p className="count-score">(95 avaliações)</p>
+                            <Link to="/courses">
+                                <div className="goback-button">
+                                    <FontAwesomeIcon icon={faChevronLeft} className="arrow-back" />
+                                    <p>VOLTAR</p>
                                 </div>
+                            </Link>
+
+                            <div className="course-title-score-container">
+                                <h3>{course?.title}</h3>
+                                <Score count={course?.count!} score={course?.score!} />
+
                             </div>
                         </div>
 
                         <div className="course-details-card-bottom">
                             <div className="course-details-image">
-                                <img src="https://ik.imagekit.io/zqxyh6u3ylz/TCC/Cursos/front-end_tzOXv2QUo.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651612517369" alt="Curso" className="img-responsive" />
+                                <img src={course?.image} alt={course?.title} className="img-responsive" />
                             </div>
 
                             <div className="course-details-platform-link">
                                 <div>
                                     <h4>Plataforma</h4>
-                                    <p>Udemy</p>
+                                    <p>{course?.platform}</p>
                                 </div>
 
                                 <div className="course-details-link">
                                     <h4>Link</h4>
-                                    <a href="https://www.udemy.com/course/web-completo/" target="_blank" rel="noreferrer" className="link-desktop">https://www.udemy.com/course/web-completo/</a>
-                                    <a href="https://www.udemy.com/course/web-completo/" target="_blank" rel="noreferrer" className="link-mobile">Clique aqui</a>
+                                    <a href={course?.link} target="_blank" rel="noreferrer">Clique aqui</a>
                                 </div>
                             </div>
 
                             <div className="course-details-info">
                                 <div className="course-details-info-description">
                                     <h4>Descrição do Curso</h4>
-                                    <p>Domine Web - 20 Cursos - HTML5, CSS3, SASS, Bootstrap, JS, ES6, PHP 7, OO, MySQL, JQuery, MVC, APIs, IONIC e muito mais.</p>
+                                    <p>{course?.description}</p>
+                                </div>
+
+                                <div>
+                                    <h4>Categoria</h4>
+                                    <p>{course?.category.name}</p>
                                 </div>
 
                                 <div>
                                     <h4>Data</h4>
-                                    <p>01/01/2022</p>
+                                    <p>{course?.registrationDate}</p>
                                 </div>
 
-                                <div>
-                                    <h4>Recursos Educacionais</h4>
-                                    <ul>
-                                        <li>
-                                            <a href="#link">Caelum Estruturação de Páginas Usando HTML e CSS</a>
-                                        </li>
-                                        <li>
-                                            <a href="#link">Playlist de aulas HTML5 e CSS3</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                {course?.resources.length! > 0 &&
+                                    <div>
+                                        <h4>Recursos Educacionais</h4>
+                                        <ul>
+
+                                            {course?.resources.map((resource, key) => (
+                                                <li key={key}>
+                                                    <a href={resource.link}>{resource.title}</a>
+                                                </li>
+                                            ))}
+
+                                        </ul>
+                                    </div>
+                                }
+
 
                                 <div>
                                     <h4>Tags</h4>
-                                    <p>#html #css #bootstrap #php</p>
+
+                                    {course?.tags.map((tag, key) => (
+                                        <p key={key} className="course-details-tags">{`#${tag.name}`}</p>
+                                    ))}
+
                                 </div>
                             </div>
                         </div>

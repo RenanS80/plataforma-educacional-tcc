@@ -1,21 +1,26 @@
-import Star from 'assets/img/star.svg';
+import Star from 'assets/img/star-full.svg';
+import { Course } from 'types/Course';
 
 import './styles.css';
 
-function CourseCard() {
+type Props = {
+    course: Course;
+}
+
+function CourseCard({ course } : Props) {
     return (
         <div className="popular-course-card">
             <div className="popular-course-image">
-                <img src="https://ik.imagekit.io/zqxyh6u3ylz/TCC/Cursos/front-end_tzOXv2QUo.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651612517369" alt="Curso" />
+                <img src={course.image} alt={course.title} />
             </div>
 
             <div className="popular-course-info">
-                <p>Front-end</p>
-                <p>Desenvolvimento Web Completo 2022 - 20 cursos + 20 projetos</p>
+                <p>{course.category.name}</p>
+                <p>{course.title}</p>
             </div>
 
             <div className="popular-course-score">
-                <p className="score">5.0</p>
+                <p className="score">{course.score}</p>
                 <div className="group-stars">
                     <img src={Star} alt="Full star" />
                     <img src={Star} alt="Full star" />
@@ -23,7 +28,7 @@ function CourseCard() {
                     <img src={Star} alt="Full star" />
                     <img src={Star} alt="Full star" />
                 </div>
-                <p className="count-score">95 avaliações</p>
+                <p className="count-score">{`${course.count} avaliações`}</p>
             </div>
         </div>
     );

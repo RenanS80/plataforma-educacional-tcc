@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, } from '@fortawesome/free-solid-svg-icons';
-import Star from 'assets/img/star.svg';
+import Star from 'assets/img/star-full.svg';
 
 import Navbar from 'components/Navbar';
 
 import './styles.css';
 import Footer from 'components/Footer';
+import { Link } from 'react-router-dom';
 
 function EventDetails() {
 
@@ -17,10 +18,13 @@ function EventDetails() {
                 <div className="container">
                     <div className="event-details-card">
                         <div className="event-details-card-top">
-                            <div className="goback-button">
-                                <FontAwesomeIcon icon={faChevronLeft} className="arrow-back" />
-                                <p>VOLTAR</p>
-                            </div>
+                            <Link to="/events">
+                                <div className="goback-button">
+                                    <FontAwesomeIcon icon={faChevronLeft} className="arrow-back" />
+                                    <p>VOLTAR</p>
+                                </div>
+                            </Link>
+
                             <div className="event-title-score-container">
                                 <h3>IBM Think 2022</h3>
                                 <div className="score-info">
@@ -50,8 +54,7 @@ function EventDetails() {
 
                                 <div className="event-details-link">
                                     <h4>Link</h4>
-                                    <a href="https://www.ibm.com/events/think/" target="_blank" rel="noreferrer" className="link-desktop">https://www.ibm.com/events/think/</a>
-                                    <a href="https://www.ibm.com/events/think/" target="_blank" rel="noreferrer" className="link-mobile">Clique aqui</a>
+                                    <a href="https://www.ibm.com/events/think/" target="_blank" rel="noreferrer">Clique aqui</a>
                                 </div>
                             </div>
 
@@ -59,6 +62,11 @@ function EventDetails() {
                                 <div className="event-details-info-description">
                                     <h4>Descrição do Evento</h4>
                                     <p>Think 2022 é uma conferência da IBM dedicada a tecnologia, soluções e software, como IA, nuvem, dados e segurança.</p>
+                                </div>
+
+                                <div>
+                                    <h4>Categoria</h4>
+                                    <p>IA</p>
                                 </div>
 
                                 <div className="event-details-date">
@@ -70,7 +78,6 @@ function EventDetails() {
                                         <h4>Fim</h4>
                                         <p>13/05/2022 </p>
                                     </div>
-
                                 </div>
 
                                 <div>
