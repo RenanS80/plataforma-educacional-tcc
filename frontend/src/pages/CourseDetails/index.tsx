@@ -18,7 +18,6 @@ type UrlParams = {
     courseId: string;
 }
 
-
 function CourseDetails() {
 
     const { courseId } = useParams<UrlParams>();
@@ -50,7 +49,6 @@ function CourseDetails() {
                             <div className="course-title-score-container">
                                 <h3>{course?.title}</h3>
                                 <Score count={course?.count!} score={course?.score!} />
-
                             </div>
                         </div>
 
@@ -107,7 +105,7 @@ function CourseDetails() {
                                     <h4>Tags</h4>
 
                                     {course?.tags.map((tag, key) => (
-                                        <p key={key} className="course-details-tags">{`#${tag.name}`}</p>
+                                        <p key={key} className="course-details-tags">{`#${tag.name.replace(/\s+/g, '')}`}</p>   /* Remover os espaços em branco da tag */
                                     ))}
 
                                 </div>

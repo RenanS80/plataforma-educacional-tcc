@@ -73,6 +73,7 @@
 
 .event-title-score-container .count-score {
     margin: 0;
+    font-weight: 400;
     padding-top: 5px;
     font-size: 14px;
     line-height: 19px;
@@ -147,6 +148,13 @@
 
 .event-details-info ul {
     color: var(--gray-4);
+}
+
+.event-details-tags {
+    display: inline-block;
+    padding-right: 10px;
+    text-transform: lowercase;
+    margin-bottom: 5px;
 }
 
 
