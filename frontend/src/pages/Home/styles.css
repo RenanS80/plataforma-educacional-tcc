@@ -35,6 +35,10 @@
     flex-direction: column;
 }
 
+.popular-courses-container a {
+    text-decoration: none;
+}
+
 .categories-title {
     text-align: center;
     margin-top: 75px;

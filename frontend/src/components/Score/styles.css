@@ -1,10 +1,10 @@
-.course-title-score-container .score-info {
+.details-score-info {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.course-title-score-container .score {
+.score {
     margin: 0;
     padding-top: 5px;
     font-weight: 700;
@@ -12,7 +12,7 @@
     color: var(--yellow);
 }
 
-.course-details-card-top .count-score {
+.count-score {
     margin: 0;
     font-weight: 400;
     padding-top: 5px;
@@ -20,3 +20,13 @@
     line-height: 19px;
     color: var(--gray-4);
 }
+
+.catalog-score-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+
+

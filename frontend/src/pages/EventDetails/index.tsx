@@ -46,7 +46,7 @@ function EventDetails() {
 
                             <div className="event-title-score-container">
                                 <h3>{event?.title}</h3>
-                                <Score count={event?.count!} score={event?.score!} />
+                                <Score count={event?.count!} score={event?.score!}  origin="details" />
                             </div>
                         </div>
 

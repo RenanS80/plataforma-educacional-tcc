@@ -12,7 +12,8 @@ type StarProps = {
     fill: number;
 }
 
-// getFills(3.5) => [1, 1, 1, 0.5, 0]     getFills(4.1) => [1, 1, 1, 1, 0.5]
+/* Realiza a lógica de exibição das estrelas com base na nota recebida
+EX: getFills(3.5) => [1, 1, 1, 0.5, 0]     getFills(4.1) => [1, 1, 1, 1, 0.5] */
 function getFills(score: number) {
 
     const fills = [0, 0, 0, 0, 0];
@@ -31,7 +32,7 @@ function getFills(score: number) {
     return fills;
 }
 
-// Componente auxiliar para verificar qual estrela deve ser renderizada, com base no fill passado
+// Função auxiliar para verificar qual estrela deve ser renderizada, com base no fill passado
 function Star({ fill } : StarProps) {
     if(fill === 0) {
         return <StarEmpty />
@@ -44,9 +45,7 @@ function Star({ fill } : StarProps) {
     }
 }
 
-
-
-
+// Componente principal para passagem de estrelas à função auxiliar
 function Stars({ score } : Props) {
 
     const fills = getFills(score);

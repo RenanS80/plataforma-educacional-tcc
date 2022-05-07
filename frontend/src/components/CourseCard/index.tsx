@@ -1,4 +1,4 @@
-import Star from 'assets/img/star-full.svg';
+import Score from 'components/Score';
 import { Course } from 'types/Course';
 
 import './styles.css';
@@ -7,7 +7,7 @@ type Props = {
     course: Course;
 }
 
-function CourseCard({ course } : Props) {
+function CourseCard({ course }: Props) {
     return (
         <div className="popular-course-card">
             <div className="popular-course-image">
@@ -20,15 +20,7 @@ function CourseCard({ course } : Props) {
             </div>
 
             <div className="popular-course-score">
-                <p className="score">{course.score}</p>
-                <div className="group-stars">
-                    <img src={Star} alt="Full star" />
-                    <img src={Star} alt="Full star" />
-                    <img src={Star} alt="Full star" />
-                    <img src={Star} alt="Full star" />
-                    <img src={Star} alt="Full star" />
-                </div>
-                <p className="count-score">{`${course.count} avaliações`}</p>
+                <Score count={course?.count!} score={course?.score!} origin="catalog" />
             </div>
         </div>
     );

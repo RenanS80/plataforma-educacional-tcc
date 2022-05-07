@@ -1,16 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, } from '@fortawesome/free-solid-svg-icons';
 
-
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
+import { Course } from 'types/Course';
+import { BASE_URL } from 'utils/requests';
 import Navbar from 'components/Navbar';
 import Score from 'components/Score';
 import Footer from 'components/Footer';
-import { Course } from 'types/Course';
-import { BASE_URL } from 'utils/requests';
 
 import './styles.css';
 
@@ -20,10 +19,13 @@ type UrlParams = {
 
 function CourseDetails() {
 
+    // Hook para pegar o id de cada curso e passá-lo na URL
     const { courseId } = useParams<UrlParams>();
 
+    // Hook para manipular o estado do curso
     const [course, setCourse] = useState<Course>();
 
+    // Hook para amarrar a requisição ao ciclo de vida do componente, executando-o apenas uma vez
     useEffect(() => {
         axios.get(`${BASE_URL}/courses/${courseId}`)
             .then(response => {
@@ -48,7 +50,7 @@ function CourseDetails() {
 
                             <div className="course-title-score-container">
                                 <h3>{course?.title}</h3>
-                                <Score count={course?.count!} score={course?.score!} />
+                                <Score count={course?.count!} score={course?.score!} origin="details" />
                             </div>
                         </div>
 
@@ -99,7 +101,6 @@ function CourseDetails() {
                                         </ul>
                                     </div>
                                 }
-
 
                                 <div>
                                     <h4>Tags</h4>

@@ -1,8 +1,6 @@
 package com.plataformaeducacional.tcc.services;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -67,13 +65,7 @@ public class CourseService {
 		Page<CourseDTO> page = result.map(x -> new CourseDTO(x));
 		return page;
 	}
-	
-	@Transactional(readOnly = true)
-	public List<CourseDTO> findBestCourses(){
-		List<Course> result = repository.findBestCourses();
-		return result.stream().map(x -> new CourseDTO(x)).collect(Collectors.toList());
-	}
-			
+				
 	@Transactional
 	public CourseDTO insert(CourseDTO dto) {
 		Course entity = new Course();

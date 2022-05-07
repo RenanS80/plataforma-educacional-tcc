@@ -34,6 +34,14 @@
     letter-spacing: -0.015em;
 }
 
+.course-details-card-top p:nth-child(3) {
+    font-weight: 400;
+    padding-top: 5px;
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--gray-4);
+}
+
 .goback-button {
     width: 120px;
     display: flex;

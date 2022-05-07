@@ -1,7 +1,7 @@
-import Footer from 'components/Footer';
 import Navbar from 'components/Navbar';
-import Pagination from 'components/Pagination';
 import ResourceTable from 'components/ResourceTable';
+import Pagination from 'components/Pagination';
+import Footer from 'components/Footer';
 
 import './styles.css';
 

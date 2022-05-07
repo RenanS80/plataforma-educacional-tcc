@@ -2,22 +2,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
+import { Event } from 'types/Event';
 
-function EventCard() {
+type Props = {
+    event: Event;
+}
+
+function EventCard({ event } : Props) {
     return (
         <div className="event-card">
             <div className="event-card-image">
-                <img src="https://ik.imagekit.io/zqxyh6u3ylz/TCC/Eventos/IBM_GR1Q5mGq0.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651007560030" alt="Evento" />
+                <img src={event.image} alt={event.title} />
             </div>
 
             <div className="event-card-info">
-                <p>Automação</p>
-                <p>IBM Think 2022</p>
+                <p>{event.category.name}</p>
+                <p>{event.title}</p>
             </div>
 
             <div className="event-start-date">
                 <FontAwesomeIcon icon={faCalendarDays} className="calendar-icon" />
-                <p>09/05/2022</p>
+                <p>{event.startDate}</p>
             </div>
         </div>
     );

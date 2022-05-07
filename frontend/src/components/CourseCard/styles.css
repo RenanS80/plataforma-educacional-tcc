@@ -1,6 +1,8 @@
 .popular-course-card {
     width: 300px;
     height: 410px;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 50px;
     border-radius: 10px;
     background-color: var(--white-bg);
@@ -13,21 +15,23 @@
 .popular-course-image {
     width: 250px;
     height: 175px;
-    margin-top: 20px;
     border-radius: 10px;
     margin: 0 auto;
-    padding-top: 20px;
+    margin-top: 15px;
 }
 
 .popular-course-image img {
     width: 100%;
+    height: 100%;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 .popular-course-info {
     padding: 0px 27px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
+
 
 .popular-course-info p:first-child {
     color: var(--purple);

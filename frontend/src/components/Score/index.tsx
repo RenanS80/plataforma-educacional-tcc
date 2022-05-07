@@ -4,18 +4,19 @@ import './styles.css';
 type Props = {
     score: number;
     count: number;
+    origin: string;
 }
 
-function Score({ score, count }: Props) {
+function Score({ score, count, origin }: Props) {
 
     return (
 
-        <div className="score-info">
-            <p className="score">{score > 0 ? score.toFixed(1) : '-'}</p>
-            <div className="group-stars">
+        <div className={origin === 'catalog' ? 'catalog-score-info' : 'details-score-info'}>
+            <p className="score">{score > 0 ? score.toFixed(1) : '-'}</p>  
+            <div className={origin === 'catalog' ? 'asasa' : 'asa'} >
                 <Stars score={score} />
             </div>
-            <p className="count-score">{count === 1 ? `(${count} avaliação)` : `(${count} avaliações)`}</p>
+            <p className="count-score">{count === 1 ? `${count} avaliação` : `${count} avaliações`}</p>
         </div>
 
     );

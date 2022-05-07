@@ -3,8 +3,34 @@ import { faMagnifyingGlass, faEye } from '@fortawesome/free-solid-svg-icons';
 
 
 import './styles.css';
+import { useEffect, useState } from 'react';
+import { SpringPage } from 'types/Vendor/spring';
+import { Resource } from 'types/Resource';
+import { AxiosParams } from 'types/Vendor/axios';
+import { BASE_URL } from 'utils/requests';
+import axios from 'axios';
 
 function ResourceTable() {
+
+    const [page, setPage] = useState<SpringPage<Resource>>();
+
+    useEffect(() => {
+
+        const params: AxiosParams = {
+            method: 'GET',
+            url: `${BASE_URL}/resources`,
+            params: {
+                page: 0,
+                size: 8
+            }
+        }
+
+        axios(params)
+            .then(response => {
+                setPage(response.data);
+            })
+    }, [])
+
     return (
         <div className="resource-table-container">
             <div className="resource-table-search">
@@ -14,7 +40,7 @@ function ResourceTable() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
                         </span>
                         <input
-                            className="" 
+                            className=""
                             type="text"
                             placeholder="Pesquisar recursos"
                         />
@@ -30,108 +56,27 @@ function ResourceTable() {
                             <th>Título</th>
                             <th>Data</th>
                             <th>Link</th>
-                            <th>Tags</th>
                             <th>Descrição</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>#1</td>
-                            <td>Caelum Estruturação de Páginas Usando HTML e CSS</td>
-                            <td>01/01/2022</td>
-                            <td>
-                                <a href="#link" target="_blank">Clique aqui</a>
-                            </td>
-                            <td>#html #css</td>
-                            <td>
-                                <FontAwesomeIcon icon={faEye} className="search-icon" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#2</td>
-                            <td>Playlist de aulas HTML5 e CSS3</td>
-                            <td>10/08/2021</td>
-                            <td>
-                                <a href="#link" target="_blank">Clique aqui</a>
-                            </td>
-                            <td>#html #css</td>
-                            <td>
-                                <FontAwesomeIcon icon={faEye} className="search-icon" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#3</td>
-                            <td>Ebook Python Eficiente</td>
-                            <td>01/01/2022</td>
-                            <td>
-                                <a href="#link" target="_blank">Clique aqui</a>
-                            </td>
-                            <td>#python</td>
-                            <td>
-                                <FontAwesomeIcon icon={faEye} className="search-icon" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#4</td>
-                            <td>Documentação SAP</td>
-                            <td>10/08/2021</td>
-                            <td>
-                                <a href="#link" target="_blank">Clique aqui</a>
-                            </td>
-                            <td>#sap</td>
-                            <td>
-                                <FontAwesomeIcon icon={faEye} className="search-icon" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#5</td>
-                            <td>Caelum Estruturação de Páginas Usando HTML e CSS</td>
-                            <td>10/08/2021</td>
-                            <td>
-                                <a href="#link" target="_blank">Clique aqui</a>
-                            </td>
-                            <td>#html #css</td>
-                            <td>
-                                <FontAwesomeIcon icon={faEye} className="search-icon" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#6</td>
-                            <td>Caelum Estruturação de Páginas Usando HTML e CSS</td>
-                            <td>10/08/2021</td>
-                            <td>
-                                <a href="#link" target="_blank">Clique aqui</a>
-                            </td>
-                            <td>#html #css</td>
-                            <td>
-                                <FontAwesomeIcon icon={faEye} className="search-icon" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#7</td>
-                            <td>Playlist de aulas HTML5 e CSS3</td>
-                            <td>10/08/2021</td>
-                            <td>
-                                <a href="#link" target="_blank">Clique aqui</a>
-                            </td>
-                            <td>#html #css</td>
-                            <td>
-                                <FontAwesomeIcon icon={faEye} className="search-icon" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#8</td>
-                            <td>Playlist de aulas HTML5 e CSS3</td>
-                            <td>10/08/2021</td>
-                            <td>
-                                <a href="#link" target="_blank">Clique aqui</a>
-                            </td>
-                            <td>#html #css</td>
-                            <td>
-                                <FontAwesomeIcon icon={faEye} className="search-icon" />
-                            </td>
-                        </tr>
+
+                        {page?.content.map((resource) => (
+                            <tr key={resource.id}>
+                                <td>{`#${resource.id}`}</td>
+                                <td>{resource.title}</td>
+                                <td>{resource.registrationDate}</td>
+                                <td>
+                                    <a href={resource.link} target="_blank" rel="noreferrer">Clique aqui</a>
+                                </td>
+
+                                <td>
+                                    <FontAwesomeIcon icon={faEye} className="search-icon" />
+                                </td>
+                            </tr>
+                        ))}
+
                     </tbody>
                 </table>
             </div>

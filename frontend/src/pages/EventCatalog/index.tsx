@@ -1,12 +1,39 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+import { Event } from 'types/Event';
+import { AxiosParams } from 'types/Vendor/axios';
+import { SpringPage } from 'types/Vendor/spring';
+import { BASE_URL } from 'utils/requests';
+import Navbar from 'components/Navbar';
 import CourseFilter from 'components/CourseFilter';
 import EventCard from 'components/EventCard';
-import Footer from 'components/Footer';
-import Navbar from 'components/Navbar';
 import Pagination from 'components/Pagination';
+import Footer from 'components/Footer';
 
 import './styles.css';
+import { Link } from 'react-router-dom';
 
 function EventCatalog() {
+
+    const [page, setPage] = useState<SpringPage<Event>>();
+
+    useEffect(() => {
+
+        const params: AxiosParams = {
+            method: 'GET',
+            url: `${BASE_URL}/events`,
+            params: {
+                page: 0,
+                size: 12
+            }
+        }
+
+        axios(params)
+            .then(response => {
+                setPage(response.data);
+            })
+    }, [])
 
     return (
         <>
@@ -25,14 +52,13 @@ function EventCatalog() {
 
 
                     <div className="course-catalog-container">
-                        <EventCard />
-                        <EventCard />
-                        <EventCard />
-                        <EventCard />
-                        <EventCard />
-                        <EventCard />
-                        <EventCard />
-                        <EventCard />
+                    {page?.content.map((event) => (
+                            <div key={event.id}>
+                                <Link to="/events/28">
+                                    <EventCard event={event} />
+                                </Link>
+                            </div>
+                        ))}
                     </div>
 
                     <div className="course-pagination-container">
