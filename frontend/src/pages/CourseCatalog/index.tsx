@@ -19,22 +19,23 @@ function CourseCatalog() {
     const [page, setPage] = useState<SpringPage<Course>>();
 
     useEffect(() => {
+        getCourses(0);
+    }, [])
 
+    const getCourses = (pageNumber: number) => {
         const params: AxiosParams = {
             method: 'GET',
             url: `${BASE_URL}/courses`,
             params: {
-                page: 0,
+                page: pageNumber,
                 size: 12
             }
         }
-
         axios(params)
             .then(response => {
                 setPage(response.data);
             })
-    }, [])
-
+    }
 
     return (
         <>
@@ -65,7 +66,11 @@ function CourseCatalog() {
                     </div>
 
                     <div className="course-pagination-container">
-                        <Pagination />
+                        <Pagination
+                            pageCount={(page) ? page.totalPages : 0}
+                            range={3}
+                            onChange={getCourses}
+                        />
                     </div>
                 </div>
             </section>

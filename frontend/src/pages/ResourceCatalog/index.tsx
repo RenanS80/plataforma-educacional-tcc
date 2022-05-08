@@ -1,11 +1,41 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faEye } from '@fortawesome/free-solid-svg-icons';
+
+import { SpringPage } from 'types/Vendor/spring';
+import { Resource } from 'types/Resource';
+import { AxiosParams } from 'types/Vendor/axios';
+import { BASE_URL } from 'utils/requests';
 import Navbar from 'components/Navbar';
-import ResourceTable from 'components/ResourceTable';
 import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';
 
 import './styles.css';
 
 function ResourceCatalog() {
+
+
+    const [page, setPage] = useState<SpringPage<Resource>>();
+
+    useEffect(() => {
+        getResources(0);
+    }, [])
+
+    const getResources = (pageNumber: number) => {
+        const params: AxiosParams = {
+            method: 'GET',
+            url: `${BASE_URL}/resources`,
+            params: {
+                page: pageNumber,
+                size: 8
+            }
+        }
+        axios(params)
+            .then(response => {
+                setPage(response.data);
+            })
+    }
 
     return (
         <>
@@ -19,11 +49,62 @@ function ResourceCatalog() {
                     </div>
 
                     <div className="resource-catalog-table">
-                        <ResourceTable />
+                        <div className="resource-table-container">
+                            <div className="resource-table-search">
+                                <form action="">
+                                    <div className="form-input">
+                                        <span className="icon">
+                                            <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
+                                        </span>
+                                        <input
+                                            type="text"
+                                            placeholder="Pesquisar recursos"
+                                        />
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div className="resource-table">
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Título</th>
+                                            <th>Data</th>
+                                            <th>Link</th>
+                                            <th>Descrição</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        {page?.content.map((resource) => (
+                                            <tr key={resource.id}>
+                                                <td>{`#${resource.id}`}</td>
+                                                <td>{resource.title}</td>
+                                                <td>{resource.registrationDate}</td>
+                                                <td>
+                                                    <a href={resource.link} target="_blank" rel="noreferrer">Clique aqui</a>
+                                                </td>
+
+                                                <td>
+                                                    <FontAwesomeIcon icon={faEye} className="search-icon" />
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="resource-pagination-container">
-                        <Pagination />
+                        <Pagination
+                            pageCount={(page) ? page.totalPages : 0}
+                            range={3}
+                            onChange={getResources}
+                        />
                     </div>
                 </div>
             </section>

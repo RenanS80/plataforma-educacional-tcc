@@ -36,10 +36,14 @@
     color: var(--white);
 }
 
-.arrow-active,
-.arrow-inactive {
+.pagination-link-active {
+    background-color: var(--purple);
+    color: var(--white);
+}
+.arrow-pagination {
     font-size: 23px;
     cursor: pointer;
+    color: var(--purple);
 }
 
 .arrow-active {
@@ -50,6 +54,25 @@
     color: var(--gray-5);
 }
 
+.arrow-previous {
+    transform: rotate(180deg);
+    margin-right: 13px;
+}
+
 .arrow-next {
+    color: var(--purple);
     margin-left: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li a {
+    text-decoration: none;
+}
+
+.pagination-arrow-container {
+    display: flex;
+    align-items: center;
 }

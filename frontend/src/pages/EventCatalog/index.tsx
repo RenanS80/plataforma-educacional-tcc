@@ -19,21 +19,23 @@ function EventCatalog() {
     const [page, setPage] = useState<SpringPage<Event>>();
 
     useEffect(() => {
+        getEvents(0);
+    }, [])
 
+    const getEvents = (pageNumber: number) => {
         const params: AxiosParams = {
             method: 'GET',
             url: `${BASE_URL}/events`,
             params: {
-                page: 0,
+                page: pageNumber,
                 size: 12
             }
         }
-
         axios(params)
             .then(response => {
                 setPage(response.data);
             })
-    }, [])
+    }
 
     return (
         <>
@@ -52,7 +54,7 @@ function EventCatalog() {
 
 
                     <div className="course-catalog-container">
-                    {page?.content.map((event) => (
+                        {page?.content.map((event) => (
                             <div key={event.id}>
                                 <Link to="/events/28">
                                     <EventCard event={event} />
@@ -62,7 +64,11 @@ function EventCatalog() {
                     </div>
 
                     <div className="course-pagination-container">
-                        <Pagination />
+                        <Pagination
+                            pageCount={(page) ? page.totalPages : 0}
+                            range={3}
+                            onChange={getEvents}
+                        />
                     </div>
                 </div>
             </section>
