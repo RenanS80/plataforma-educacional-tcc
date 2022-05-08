@@ -5,7 +5,6 @@ import { Event } from 'types/Event';
 import { AxiosParams } from 'types/Vendor/axios';
 import { SpringPage } from 'types/Vendor/spring';
 import { BASE_URL } from 'utils/requests';
-import Navbar from 'components/Navbar';
 import CourseFilter from 'components/CourseFilter';
 import EventCard from 'components/EventCard';
 import Pagination from 'components/Pagination';
@@ -39,8 +38,6 @@ function EventCatalog() {
 
     return (
         <>
-            <Navbar />
-
             <section className="event-catalog">
                 <div className="container">
                     <div className="event-catalog-title">

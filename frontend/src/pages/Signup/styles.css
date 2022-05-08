@@ -1,8 +1,6 @@
 .main-register {
-    height: 100vh;
+    height: calc(100vh - 90px);   /* 100vh - altura do Navbar */ 
     display: flex;
-/*      align-items: center;
-    justify-content: center;  */
     background-color: var(--white);
     color: var(--black);
 }

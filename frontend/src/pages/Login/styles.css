@@ -1,8 +1,9 @@
 .main-login {
-    height: 100vh;
+    height: calc(100vh - 90px);   /* 100vh - altura do Navbar */ 
     display: flex;
     background-color: var(--white);
     color: var(--black);
+    overflow: hidden;
 }
 
 .login-image-container,

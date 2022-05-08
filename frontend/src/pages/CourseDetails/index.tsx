@@ -7,7 +7,6 @@ import axios from 'axios';
 
 import { Course } from 'types/Course';
 import { BASE_URL } from 'utils/requests';
-import Navbar from 'components/Navbar';
 import Score from 'components/Score';
 import Footer from 'components/Footer';
 
@@ -35,8 +34,6 @@ function CourseDetails() {
 
     return (
         <>
-            <Navbar />
-
             <section className="course-details-section">
                 <div className="container">
                     <div className="course-details-card">

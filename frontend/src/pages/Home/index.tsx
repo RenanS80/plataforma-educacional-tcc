@@ -1,23 +1,22 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 import HeroImg from 'assets/img/vector-study.svg';
 
-import Navbar from 'components/Navbar';
+import { SpringPage } from 'types/Vendor/spring';
+import { Course } from 'types/Course';
+import { Category } from 'types/Category';
+import { AxiosParams } from 'types/Vendor/axios';
+import { BASE_URL } from 'utils/requests';
 import RegisterButton from 'components/RegisterButton';
 import MainCategoryCard from 'components/MainCategoryCard';
 import CourseCard from 'components/CourseCard';
 import Footer from 'components/Footer';
 
 import './styles.css';
-import { Course } from 'types/Course';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { BASE_URL } from 'utils/requests';
-import { Link } from 'react-router-dom';
-import { AxiosParams } from 'types/Vendor/axios';
-import { SpringPage } from 'types/Vendor/spring';
-import { Category } from 'types/Category';
 
 function Home() {
-
 
     const [coursePage, setCoursePage] = useState<SpringPage<Course>>();
     const [categoryPage, setCategoryPage] = useState<SpringPage<Category>>();
@@ -60,8 +59,6 @@ function Home() {
 
     return (
         <>
-            <Navbar />
-
             <section className="hero-bg">
                 <div className="container hero">
                     <div className="hero-title">

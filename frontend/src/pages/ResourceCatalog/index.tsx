@@ -7,7 +7,6 @@ import { SpringPage } from 'types/Vendor/spring';
 import { Resource } from 'types/Resource';
 import { AxiosParams } from 'types/Vendor/axios';
 import { BASE_URL } from 'utils/requests';
-import Navbar from 'components/Navbar';
 import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';
 
@@ -39,8 +38,6 @@ function ResourceCatalog() {
 
     return (
         <>
-            <Navbar />
-
             <section className="resource-catalog">
                 <div className="container">
                     <div className="resource-catalog-title">

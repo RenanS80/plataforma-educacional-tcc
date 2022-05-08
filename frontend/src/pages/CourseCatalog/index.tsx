@@ -6,7 +6,6 @@ import { Course } from 'types/Course';
 import { SpringPage } from 'types/Vendor/spring';
 import { AxiosParams } from 'types/Vendor/axios';
 import { BASE_URL } from 'utils/requests';
-import Navbar from 'components/Navbar';
 import CourseFilter from 'components/CourseFilter';
 import CourseCard from 'components/CourseCard';
 import Pagination from 'components/Pagination';
@@ -39,8 +38,6 @@ function CourseCatalog() {
 
     return (
         <>
-            <Navbar />
-
             <section className="course-catalog">
                 <div className="container">
                     <div className="course-catalog-title">

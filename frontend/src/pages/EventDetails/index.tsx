@@ -1,16 +1,15 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, } from '@fortawesome/free-solid-svg-icons';
-
-import Navbar from 'components/Navbar';
-
-import './styles.css';
-import Footer from 'components/Footer';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+
 import { BASE_URL } from 'utils/requests';
 import { Event } from 'types/Event';
 import Score from 'components/Score';
+import Footer from 'components/Footer';
+
+import './styles.css';
 
 type UrlParams = {
     eventId: string;
@@ -31,8 +30,6 @@ function EventDetails() {
 
     return (
         <>
-            <Navbar />
-
             <section className="event-details-section">
                 <div className="container">
                     <div className="event-details-card">
