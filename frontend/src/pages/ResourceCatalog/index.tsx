@@ -11,6 +11,7 @@ import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';
 
 import './styles.css';
+import { formatLocalDate } from 'utils/format';
 
 function ResourceCatalog() {
 
@@ -79,7 +80,7 @@ function ResourceCatalog() {
                                             <tr key={resource.id}>
                                                 <td>{`#${resource.id}`}</td>
                                                 <td>{resource.title}</td>
-                                                <td>{resource.registrationDate}</td>
+                                                <td>{formatLocalDate(resource.registrationDate, "dd/MM/yyyy")}</td>
                                                 <td>
                                                     <a href={resource.link} target="_blank" rel="noreferrer">Clique aqui</a>
                                                 </td>

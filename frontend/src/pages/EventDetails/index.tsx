@@ -10,6 +10,7 @@ import Score from 'components/Score';
 import Footer from 'components/Footer';
 
 import './styles.css';
+import { formatLocalDate } from 'utils/format';
 
 type UrlParams = {
     eventId: string;
@@ -78,18 +79,18 @@ function EventDetails() {
                                 <div className="event-details-date">
                                     <div>
                                         <h4>Início</h4>
-                                        <p>{event?.startDate}</p>
+                                        {event?.startDate !== undefined ? <p>{formatLocalDate(event.startDate, "dd/MM/yyyy")}</p> : ""}
                                     </div>
                                     <div>
                                         <h4>Fim</h4>
-                                        <p>{event?.endDate}</p>
+                                        {event?.endDate !== undefined ? <p>{formatLocalDate(event.endDate, "dd/MM/yyyy")}</p> : ""}
                                     </div>
                                 </div>
 
                                 {event?.resources.length! > 0 &&
                                     <div>
                                         <h4>Recursos Educacionais</h4>
-                                        <ul>
+                                        <ul className="event-resources-list">
 
                                             {event?.resources.map((resource, key) => (
                                                 <li key={key}>

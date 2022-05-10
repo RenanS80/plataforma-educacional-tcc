@@ -58,7 +58,7 @@ function Signup() {
                                 />
                             </div>
 
-                            <button type="submit" className="register-form-btn">Cadastrar-se</button>
+                            <button type="submit" className="register-form-btn">Cadastrar</button>
                         </form>
 
                         <p className="register-link-login">Já tem uma conta?

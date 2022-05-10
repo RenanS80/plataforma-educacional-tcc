@@ -146,8 +146,13 @@
     gap: 100px;
 }
 
-.event-details-info ul {
+.event-resources-list {
     color: var(--gray-4);
+    list-style-type: disc;
+}
+
+.event-resources-list li a {
+    text-decoration: underline;
 }
 
 .event-details-tags {

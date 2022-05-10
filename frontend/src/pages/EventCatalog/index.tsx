@@ -53,7 +53,7 @@ function EventCatalog() {
                     <div className="course-catalog-container">
                         {page?.content.map((event) => (
                             <div key={event.id}>
-                                <Link to="/events/28">
+                                <Link to={`/events/${event.id}`}>
                                     <EventCard event={event} />
                                 </Link>
                             </div>

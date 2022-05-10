@@ -54,7 +54,7 @@ function CourseCatalog() {
 
                         {page?.content.map((course) => (
                             <div key={course.id}>
-                                <Link to="/courses/1">
+                                <Link to={`/courses/${course.id}`}>
                                     <CourseCard course={course} />
                                 </Link>
                             </div>

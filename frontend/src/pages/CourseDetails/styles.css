@@ -126,8 +126,13 @@
     grid-area: info;
 }
 
-.course-details-info ul {
+.course-resources-list {
     color: var(--gray-4);
+    list-style-type: disc;
+}
+
+.course-resources-list li a {
+    text-decoration: underline;
 }
 
 .course-details-tags {

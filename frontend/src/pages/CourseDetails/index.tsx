@@ -11,6 +11,7 @@ import Score from 'components/Score';
 import Footer from 'components/Footer';
 
 import './styles.css';
+import { formatLocalDate } from 'utils/format';
 
 type UrlParams = {
     courseId: string;
@@ -81,13 +82,13 @@ function CourseDetails() {
 
                                 <div>
                                     <h4>Data</h4>
-                                    <p>{course?.registrationDate}</p>
+                                    {course?.registrationDate !== undefined ? <p>{formatLocalDate(course.registrationDate, "dd/MM/yyyy")}</p> : ""}
                                 </div>
 
                                 {course?.resources.length! > 0 &&
                                     <div>
                                         <h4>Recursos Educacionais</h4>
-                                        <ul>
+                                        <ul className="course-resources-list">
 
                                             {course?.resources.map((resource, key) => (
                                                 <li key={key}>

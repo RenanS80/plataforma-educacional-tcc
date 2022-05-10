@@ -11,8 +11,8 @@ export type Event = {
     image: string,
     score: number,
     count: number,
-    startDate: string;
-    endDate: string;
+    startDate: string,
+    endDate: string,
     category: Category,
     tags: Tag[],
     resources: Resource[]

@@ -3,6 +3,7 @@ import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
 import { Event } from 'types/Event';
+import { formatLocalDate } from 'utils/format';
 
 type Props = {
     event: Event;
@@ -22,7 +23,7 @@ function EventCard({ event } : Props) {
 
             <div className="event-start-date">
                 <FontAwesomeIcon icon={faCalendarDays} className="calendar-icon" />
-                <p>{event.startDate}</p>
+                <p>{formatLocalDate(event.startDate, 'dd/MM/yyyy')}</p>
             </div>
         </div>
     );
