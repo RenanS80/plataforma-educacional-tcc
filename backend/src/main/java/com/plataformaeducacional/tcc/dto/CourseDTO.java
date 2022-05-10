@@ -3,6 +3,8 @@ package com.plataformaeducacional.tcc.dto;
 import java.time.LocalDate;
 import java.util.Set;
 
+import javax.validation.constraints.PastOrPresent;
+
 import com.plataformaeducacional.tcc.entities.Course;
 import com.plataformaeducacional.tcc.entities.Resource;
 import com.plataformaeducacional.tcc.entities.Tag;
@@ -10,6 +12,7 @@ import com.plataformaeducacional.tcc.entities.Tag;
 public class CourseDTO extends CollectionDTO {
 	private static final long serialVersionUID = 1L;
 	
+	@PastOrPresent(message = "A data de registro não pode ser futura")
 	private LocalDate registrationDate;
 	
 	public CourseDTO() {

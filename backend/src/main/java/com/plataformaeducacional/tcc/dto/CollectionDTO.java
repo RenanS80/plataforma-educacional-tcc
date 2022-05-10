@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.plataformaeducacional.tcc.entities.Collection;
 import com.plataformaeducacional.tcc.entities.Resource;
 import com.plataformaeducacional.tcc.entities.Tag;
@@ -12,9 +15,18 @@ public class CollectionDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	protected Long id;
+	
+	@Size(min = 5, max = 70, message = "Deve ter entre 5 e 70 caracteres")
+	@NotBlank(message = "Campo obrigatório")
 	protected String title;
+	
+	@NotBlank(message = "Campo obrigatório")
 	protected String description;
+	
+	@NotBlank(message = "Campo obrigatório")
 	protected String link;
+	
+	@NotBlank(message = "Campo obrigatório")
 	protected String platform;
 	protected String image;
 	protected Double score;

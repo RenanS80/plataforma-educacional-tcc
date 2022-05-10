@@ -2,6 +2,8 @@ package com.plataformaeducacional.tcc.controllers;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,7 +44,7 @@ public class UserController {
 	
 	// Insere um novo usuário
 	@PostMapping
-	public ResponseEntity<UserDTO> insert(@RequestBody UserInsertDTO dto){
+	public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO dto){
 		UserDTO newDto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				  .buildAndExpand(newDto.getId()).toUri();
@@ -51,9 +53,9 @@ public class UserController {
 	
 	// Atualiza um usuário
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO dto){
-		UserDTO newDto = service.update(id, dto);
-		return ResponseEntity.ok().body(newDto);
+	public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid @RequestBody UserDTO dto){
+		dto = service.update(id, dto);
+		return ResponseEntity.ok().body(dto);
 	}
 	
 	// Deleta um usuário

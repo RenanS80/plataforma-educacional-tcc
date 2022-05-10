@@ -2,6 +2,8 @@ package com.plataformaeducacional.tcc.controllers;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -47,7 +49,7 @@ public class CourseController {
 			
 	// Insere um novo curso
 	@PostMapping
-	public ResponseEntity<CourseDTO> insert(@RequestBody CourseDTO dto){
+	public ResponseEntity<CourseDTO> insert(@Valid @RequestBody CourseDTO dto){
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
@@ -55,7 +57,7 @@ public class CourseController {
 	
 	// Atualiza um curso
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<CourseDTO> update(@PathVariable Long id, @RequestBody CourseDTO dto){
+	public ResponseEntity<CourseDTO> update(@PathVariable Long id, @Valid @RequestBody CourseDTO dto){
 		CourseDTO newDto = service.update(id, dto);
 		return ResponseEntity.ok().body(newDto);
 	}
