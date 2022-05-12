@@ -20,6 +20,7 @@ public class CollectionDTO implements Serializable {
 	@NotBlank(message = "Campo obrigatório")
 	protected String title;
 	
+	@Size(min = 5, max = 800, message = "Deve ter entre 5 e 800 caracteres")
 	@NotBlank(message = "Campo obrigatório")
 	protected String description;
 	

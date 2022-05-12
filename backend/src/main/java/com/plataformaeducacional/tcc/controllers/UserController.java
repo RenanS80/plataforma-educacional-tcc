@@ -20,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.plataformaeducacional.tcc.dto.UserDTO;
 import com.plataformaeducacional.tcc.dto.UserInsertDTO;
+import com.plataformaeducacional.tcc.dto.UserUpdateDTO;
 import com.plataformaeducacional.tcc.services.UserService;
 
 @RestController
@@ -53,9 +54,9 @@ public class UserController {
 	
 	// Atualiza um usuário
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid @RequestBody UserDTO dto){
-		dto = service.update(id, dto);
-		return ResponseEntity.ok().body(dto);
+	public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDTO dto){
+		UserDTO newDto = service.update(id, dto);
+		return ResponseEntity.ok().body(newDto);
 	}
 	
 	// Deleta um usuário

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,8 @@ public abstract class Collection implements Serializable {
 	private Long id;
 	
 	private String title;
+	
+	@Column(length = 800)
 	private String description;
 	private String link;
 	private String platform;

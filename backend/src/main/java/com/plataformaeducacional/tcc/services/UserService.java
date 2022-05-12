@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.plataformaeducacional.tcc.dto.RoleDTO;
 import com.plataformaeducacional.tcc.dto.UserDTO;
 import com.plataformaeducacional.tcc.dto.UserInsertDTO;
+import com.plataformaeducacional.tcc.dto.UserUpdateDTO;
 import com.plataformaeducacional.tcc.entities.Role;
 import com.plataformaeducacional.tcc.entities.User;
 import com.plataformaeducacional.tcc.repositories.RoleRepository;
@@ -63,7 +64,7 @@ public class UserService {
 	}
 	
 	@Transactional
-	public UserDTO update(Long id, UserDTO dto) {
+	public UserDTO update(Long id, UserUpdateDTO dto) {
 		try {
 			User entity = repository.getOne(id);
 			copyDtoToEntity(dto, entity);
