@@ -42,7 +42,7 @@ public class ResourceService {
 	@Transactional(readOnly = true)
 	public ResourceDTO findById(Long id){
 		Optional<Resource> obj = repository.findById(id);
-		Resource entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
+		Resource entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrada"));
 		return new ResourceDTO(entity, entity.getTags());
 	}
 	
@@ -63,7 +63,7 @@ public class ResourceService {
 			return new ResourceDTO(entity);
 		}
 		catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id não encontrado " +id);
+			throw new EntityNotFoundException("Id não encontrado " +id);
 		}
 	}
 	
@@ -72,7 +72,7 @@ public class ResourceService {
 			repository.deleteById(id);
 		}
 		catch(EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("Id não encontrado " +id);
+			throw new EntityNotFoundException("Id não encontrado " +id);
 		}
 		catch(DataIntegrityViolationException e) {
 			throw new DatabaseException("Violação de integridade");

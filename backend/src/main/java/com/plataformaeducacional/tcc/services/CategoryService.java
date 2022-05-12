@@ -2,8 +2,6 @@ package com.plataformaeducacional.tcc.services;
 
 import java.util.Optional;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.plataformaeducacional.tcc.dto.CategoryDTO;
 import com.plataformaeducacional.tcc.entities.Category;
 import com.plataformaeducacional.tcc.repositories.CategoryRepository;
+import com.plataformaeducacional.tcc.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class CategoryService {
@@ -32,7 +31,7 @@ public class CategoryService {
 	@Transactional(readOnly = true)
 	public CategoryDTO findById(Long id){
 		Optional<Category> obj = repository.findById(id);
-		Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
+		Category entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrada"));
 		return new CategoryDTO(entity);
 	}
 }

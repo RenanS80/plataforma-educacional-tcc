@@ -53,7 +53,7 @@ public class CourseService {
 	@Transactional(readOnly = true)
 	public CourseDTO findById(Long id){
 		Optional<Course> obj = repository.findById(id);
-		Course entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
+		Course entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrada"));
 		return new CourseDTO(entity, entity.getTags(), entity.getResources());
 	}
 	
@@ -84,7 +84,7 @@ public class CourseService {
 			return new CourseDTO(entity);
 		}
 		catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id não encontrado " +id);
+			throw new EntityNotFoundException("Id não encontrado " +id);
 		}
 	}
 	
@@ -93,7 +93,7 @@ public class CourseService {
 			repository.deleteById(id);
 		}
 		catch(EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("Id não encontrado " +id);
+			throw new EntityNotFoundException("Id não encontrado " +id);
 		}
 		catch(DataIntegrityViolationException e) {
 			throw new DatabaseException("Violação de integridade");

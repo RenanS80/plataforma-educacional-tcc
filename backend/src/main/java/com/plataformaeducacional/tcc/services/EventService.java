@@ -53,7 +53,7 @@ public class EventService {
 	@Transactional(readOnly = true)
 	public EventDTO findById(Long id){
 		Optional<Event> obj = repository.findById(id);
-		Event entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
+		Event entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrada"));
 		return new EventDTO(entity, entity.getTags(), entity.getResources());
 	}
 	
@@ -84,7 +84,7 @@ public class EventService {
 			return new EventDTO(entity);
 		}
 		catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id não encontrado " +id);
+			throw new EntityNotFoundException("Id não encontrado " +id);
 		}
 	}
 	
@@ -93,7 +93,7 @@ public class EventService {
 			repository.deleteById(id);
 		}
 		catch(EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("Id não encontrado " +id);
+			throw new EntityNotFoundException("Id não encontrado " +id);
 		}
 		catch(DataIntegrityViolationException e) {
 			throw new DatabaseException("Violação de integridade");

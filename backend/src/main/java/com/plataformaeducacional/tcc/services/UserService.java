@@ -47,7 +47,7 @@ public class UserService {
 	@Transactional(readOnly = true)
 	public UserDTO findById(Long id){
 		Optional<User> obj = repository.findById(id);
-		User entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
+		User entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrada"));
 		return new UserDTO(entity);
 	}
 	
@@ -71,7 +71,7 @@ public class UserService {
 			return new UserDTO(entity);
 		}
 		catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id não encontrado " +id);
+			throw new EntityNotFoundException("Id não encontrado " +id);
 		}
 	}
 	
@@ -80,7 +80,7 @@ public class UserService {
 			repository.deleteById(id);
 		}
 		catch(EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("Id não encontrado " +id);
+			throw new EntityNotFoundException("Id não encontrado " +id);
 		}
 		catch(DataIntegrityViolationException e) {
 			throw new DatabaseException("Violação de integridade");
