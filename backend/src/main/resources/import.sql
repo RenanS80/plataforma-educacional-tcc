@@ -4,7 +4,11 @@ INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Maria', 'A
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
 INSERT INTO tb_role (authority) VALUES ('ROLE_STUDENT');
-INSERT INTO tb_role (authority) VALUES ('ROLE_INSTRUCTOR');
+
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 2);
 
 INSERT INTO tb_resource (title, description, link, registration_date) VALUES ('Caelum Estruturação de Páginas Usando HTML e CSS', 'Apostila que visa ensinar de uma maneira elegante, mostrando apenas o que é necessário e quando é necessário, no momento certo, poupando o leitor de assuntos que não costumam ser de seu interesse em determinadas fases do aprendizado', 'https://www.caelum.com.br/apostila/apostila-html-css-javascript.pdf', '2022-01-01');
 INSERT INTO tb_resource (title, description, link, registration_date) VALUES ('Playlist de aulas HTML5 e CSS3', 'A playlist de HTML5 e CSS3 vai ensinar a criar sites usando a linguagem de marcação hipertexto (HTML) e  folhas de estilo em cascata (CSS), todas em suas versões mais recentes. Neste curso, o Professor Gustavo Guanabara criou um conjunto de vídeos, exercícios e desafios como forma de fixar os conhecimento aprendido', 'https://www.youtube.com/watch?v=Ejkb_YpuHWs&list=PLHz_AreHm4dkZ9-atkcmcBaMZdmLHft8n', '2021-10-05');
@@ -237,13 +241,6 @@ INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (2, 1);
 INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (2, 2);
 INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (3, 24);
 INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (4, 39);
-
-INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 1);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 2);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 3);
 
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 1, 4.0, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 3, 4.0, 1);
