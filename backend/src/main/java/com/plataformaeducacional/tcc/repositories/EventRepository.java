@@ -5,10 +5,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.plataformaeducacional.tcc.entities.Category;
+import com.plataformaeducacional.tcc.entities.Course;
 import com.plataformaeducacional.tcc.entities.Event;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
 	
-	@Query(value = "select *, 0 AS clazz_ from tb_event e join tb_collection c on e.id = c.id where c.category_id = ?", nativeQuery = true)
-	Page<Event> findAllEventsByCategoryId(Pageable pageable, Long id);
+	@Query("SELECT obj FROM Event obj WHERE "
+			+ "(:category IS NULL OR :category = obj.category) AND "
+			+ "(LOWER(obj.title) LIKE LOWER(CONCAT('%',:title,'%')))")
+	Page<Event> find(Category category, String title, Pageable pageable);
 }

@@ -42,8 +42,9 @@ public class EventService {
 	private ResourceRepository resourceRepository;
 	
 	@Transactional(readOnly = true)
-	public Page<EventDTO> findAll(Pageable pageable){
-		Page<Event> result = repository.findAll(pageable);
+	public Page<EventDTO> findAll(Long categoryId, String title, Pageable pageable){
+		Category category = (categoryId == 0) ? null : categoryRepository.getOne(categoryId) ;
+		Page<Event> result = repository.find(category, title, pageable);
 		
 		// Converte Event para EventDTO
 		Page<EventDTO> page = result.map(x -> new EventDTO(x));
@@ -56,16 +57,7 @@ public class EventService {
 		Event entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrada"));
 		return new EventDTO(entity, entity.getTags(), entity.getResources());
 	}
-	
-	@Transactional(readOnly = true)
-	public Page<EventDTO> findAllEventsByCategoryId(Pageable pageable, Long id){
-		Page<Event> result = repository.findAllEventsByCategoryId(pageable, id);
 		
-		// Converte Event para EventDTO
-		Page<EventDTO> page = result.map(x -> new EventDTO(x));
-		return page;
-	}
-	
 	@Transactional
 	public EventDTO insert(EventDTO dto) {
 		Event entity = new Event();

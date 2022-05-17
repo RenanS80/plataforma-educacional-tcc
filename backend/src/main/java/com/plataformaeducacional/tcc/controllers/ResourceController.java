@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.plataformaeducacional.tcc.dto.ResourceDTO;
-import com.plataformaeducacional.tcc.dto.UserDTO;
-import com.plataformaeducacional.tcc.dto.UserInsertDTO;
 import com.plataformaeducacional.tcc.services.ResourceService;
 
 @RestController
@@ -28,10 +27,12 @@ public class ResourceController {
 	@Autowired
 	private ResourceService service;
 	
-	// Lista todos os recursos paginados
+	// Lista todos os recursos paginados de acordo com o seu nome (opcional)
 	@GetMapping
-	public Page<ResourceDTO> findAll(Pageable pageable){
-		return service.findAll(pageable);
+	public Page<ResourceDTO> findAll(
+			@RequestParam(value = "title", defaultValue = "") String title,
+			Pageable pageable){
+		return service.findAll(title.trim(), pageable);
 	}
 	
 	// Recupera recurso por id com a lista das respectivas tags

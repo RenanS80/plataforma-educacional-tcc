@@ -42,8 +42,9 @@ public class CourseService {
 	private ResourceRepository resourceRepository;
 	
 	@Transactional(readOnly = true)
-	public Page<CourseDTO> findAll(Pageable pageable){
-		Page<Course> result = repository.findAll(pageable);
+	public Page<CourseDTO> findAll(Long categoryId, String title, Pageable pageable){
+		Category category = (categoryId == 0) ? null : categoryRepository.getOne(categoryId) ;
+		Page<Course> result = repository.find(category, title, pageable);
 		
 		// Converte Course para CourseDTO
 		Page<CourseDTO> page = result.map(x -> new CourseDTO(x));
@@ -56,16 +57,7 @@ public class CourseService {
 		Course entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrada"));
 		return new CourseDTO(entity, entity.getTags(), entity.getResources());
 	}
-	
-	@Transactional(readOnly = true)
-	public Page<CourseDTO> findAllCoursesByCategoryId(Pageable pageable, Long id){
-		Page<Course> result = repository.findAllCoursesByCategoryId(pageable, id);
-		
-		// Converte Course para CourseDTO
-		Page<CourseDTO> page = result.map(x -> new CourseDTO(x));
-		return page;
-	}
-				
+					
 	@Transactional
 	public CourseDTO insert(CourseDTO dto) {
 		Course entity = new Course();

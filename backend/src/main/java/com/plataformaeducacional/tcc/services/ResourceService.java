@@ -31,10 +31,10 @@ public class ResourceService {
 	private TagRepository tagRepository;
 		
 	@Transactional(readOnly = true)
-	public Page<ResourceDTO> findAll(Pageable pageable){
-		Page<Resource> result = repository.findAll(pageable);
+	public Page<ResourceDTO> findAll(String title, Pageable pageable){
+		Page<Resource> result = repository.find(title, pageable);
 		
-		// Converte Resource para ResourceDTO
+		// Converte Course para CourseDTO
 		Page<ResourceDTO> page = result.map(x -> new ResourceDTO(x));
 		return page;
 	}

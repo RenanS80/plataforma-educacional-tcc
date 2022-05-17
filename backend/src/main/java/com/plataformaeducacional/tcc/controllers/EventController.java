@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -30,10 +31,13 @@ public class EventController {
 	@Autowired
 	private EventService service;
 	
-	// Lista todos os eventos paginados
+	// Lista todos os eventos paginados de acordo com sua respectiva categoria (opcional) e o seu nome (opcional)
 	@GetMapping
-	public Page<EventDTO> findAll(Pageable pageable){
-		return service.findAll(pageable);
+	public Page<EventDTO> findAll(
+			@RequestParam(value = "categoryId", defaultValue = "0") Long categoryId,
+			@RequestParam(value = "title", defaultValue = "") String title,
+			Pageable pageable){
+		return service.findAll(categoryId, title.trim(), pageable);
 	}
 	
 	// Recupera evento por id com a lista dos respectivos recursos e tags
@@ -42,13 +46,7 @@ public class EventController {
 		EventDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
-	
-	// Recupera todos os eventos paginados de uma categoria
-	@GetMapping(value = "/category")
-	public Page<EventDTO> findAllEventsByCategoryId(Pageable pageable, Long id){
-		return service.findAllEventsByCategoryId(pageable, id);
-	}
-	
+		
 	// Insere um novo evento
 	@PostMapping
 	public ResponseEntity<EventDTO> insert(@Valid @RequestBody EventDTO dto){

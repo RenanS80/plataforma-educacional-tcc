@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -28,25 +29,22 @@ public class CourseController {
 	@Autowired
 	private CourseService service;
 	
-	// Lista todos os cursos paginados
+	// Lista todos os cursos paginados de acordo com sua respectiva categoria (opcional) e o seu nome (opcional)
 	@GetMapping
-	public Page<CourseDTO> findAll(Pageable pageable){
-		return service.findAll(pageable);
+	public Page<CourseDTO> findAll(
+			@RequestParam(value = "categoryId", defaultValue = "0") Long categoryId,
+			@RequestParam(value = "title", defaultValue = "") String title,
+			Pageable pageable){
+		return service.findAll(categoryId, title.trim(), pageable);
 	}
 	
-	// Recupera curso por id com a lista dos respectivos recursos e tags
+	// Recupera curso por id
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CourseDTO> findById(@PathVariable Long id){
 		CourseDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
-	
-	// Recupera todos os cursos paginados de uma categoria
-	@GetMapping(value = "/category")
-	public Page<CourseDTO> findAllCoursesByCategoryId(Pageable pageable, Long id){
-		return service.findAllCoursesByCategoryId(pageable, id);
-	}
-			
+				
 	// Insere um novo curso
 	@PostMapping
 	public ResponseEntity<CourseDTO> insert(@Valid @RequestBody CourseDTO dto){
