@@ -8,10 +8,11 @@ import ResourceCatalog from "pages/ResourceCatalog";
 import Student from "pages/Student";
 import CourseDetails from "pages/CourseDetails";
 import EventDetails from "pages/EventDetails";
-import Login from "pages/Login";
-import Signup from "pages/Signup";
+
 
 import './App.css'
+import Login from "pages/Student/Auth/Login";
+import Signup from "pages/Student/Auth/Signup";
 
 function App() {
   return (
@@ -31,13 +32,14 @@ function App() {
           <Route path="profile" element={<h1>Meu Perfil</h1>} />
           <Route path="courses" element={<h1>Meus Cursos</h1>} />
           <Route path="events" element={<h1>Meus Eventos</h1>} />
+
         </Route>
 
         <Route path="/courses/:courseId" element={<CourseDetails />} />
         <Route path="/events/:eventId" element={<EventDetails />} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+          <Route path="/student/auth/login" element={<Login />} />
+          <Route path="/student/auth/signup" element={<Signup />} />
 
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>

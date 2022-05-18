@@ -4,7 +4,7 @@ import './styles.css';
 
 function RegisterButton() {
     return (
-        <NavLink to="/signup" role="button" className="btn-register">Cadastre-se</NavLink>
+        <NavLink to="/student/auth/signup" role="button" className="btn-register">Cadastre-se</NavLink>
     );
 }
 

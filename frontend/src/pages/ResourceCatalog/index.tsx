@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faEye } from '@fortawesome/free-solid-svg-icons';
 
 import { SpringPage } from 'types/Vendor/spring';
 import { Resource } from 'types/Resource';
-import { AxiosParams } from 'types/Vendor/axios';
 import { BASE_URL } from 'utils/requests';
 import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';
@@ -23,9 +22,10 @@ function ResourceCatalog() {
     }, [])
 
     const getResources = (pageNumber: number) => {
-        const params: AxiosParams = {
+        const params: AxiosRequestConfig = {
             method: 'GET',
-            url: `${BASE_URL}/resources`,
+            url: "/resources",
+            baseURL: BASE_URL,
             params: {
                 page: pageNumber,
                 size: 8

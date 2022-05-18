@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 import HeroImg from 'assets/img/vector-study.svg';
 
 import { SpringPage } from 'types/Vendor/spring';
 import { Course } from 'types/Course';
 import { Category } from 'types/Category';
-import { AxiosParams } from 'types/Vendor/axios';
 import { BASE_URL } from 'utils/requests';
 import RegisterButton from 'components/RegisterButton';
 import MainCategoryCard from 'components/MainCategoryCard';
@@ -23,9 +22,10 @@ function Home() {
 
     useEffect(() => {
 
-        const params: AxiosParams = {
+        const params: AxiosRequestConfig = {
             method: 'GET',
-            url: `${BASE_URL}/courses`,
+            url: "/courses",
+            baseURL: BASE_URL,
             params: {
                 page: 0,
                 size: 8,
@@ -41,9 +41,10 @@ function Home() {
 
     useEffect(() => {
 
-        const params: AxiosParams = {
+        const params: AxiosRequestConfig = {
             method: 'GET',
-            url: `${BASE_URL}/categories`,
+            url: "/categories",
+            baseURL: BASE_URL,
             params: {
                 page: 0,
                 size: 8

@@ -62,7 +62,7 @@ function Signup() {
                         </form>
 
                         <p className="register-link-login">Já tem uma conta?
-                            <Link to="/login">Login</Link>
+                            <Link to="/student/auth/login">Login</Link>
                         </p>
                     </div>
                 </div>

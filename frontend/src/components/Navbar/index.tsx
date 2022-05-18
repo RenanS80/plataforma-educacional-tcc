@@ -46,7 +46,7 @@ function Navbar() {
                     </ul>
                     
                     <div className="group-buttons">
-                        <NavLink to="/login" role="button" className="btn-login">Login</NavLink>
+                        <NavLink to="/student/auth/login" role="button" className="btn-login">Login</NavLink>
                         <RegisterButton />
                     </div>
                 </div>

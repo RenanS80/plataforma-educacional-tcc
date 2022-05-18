@@ -1,15 +1,26 @@
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+
 import { ReactComponent as LoginImage } from 'assets/img/login-vector.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
-
 import './styles.css';
-import { Link } from 'react-router-dom';
+
+type FormData = {
+    username: string;
+    password: string;
+}
 
 function Login() {
 
+    const { register, handleSubmit } = useForm<FormData>();
+
+    const onSubmit = (formData : FormData) => {
+        console.log(formData);
+    }
+
     return (
-        
         <main className="main-login">
             <div className="login-image-container">
                 <div className="login-image-box">
@@ -24,21 +35,23 @@ function Login() {
                         <h3>Faça login na sua conta</h3>
                     </div>
 
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="login-form-email">
                             <FontAwesomeIcon icon={faEnvelope} className="email-login-icon" />
                             <input
                                 type="email"
-                                className=""
+                                {...register("username")}
+                                name="username"
                                 placeholder="E-mail"
                             />
                         </div>
-                        
+
                         <div className="login-form-password">
                             <FontAwesomeIcon icon={faLock} className="password-login-icon" />
                             <input
                                 type="password"
-                                className=""
+                                {...register("password")}
+                                name="password"
                                 placeholder="Senha"
                             />
                         </div>
@@ -48,7 +61,7 @@ function Login() {
                     </form>
 
                     <p className="login-link-register">Não tem uma conta?
-                        <Link to="/signup">Cadastre-se</Link>
+                        <Link to="/student/auth/signup">Cadastre-se</Link>
                     </p>
                 </div>
             </div>

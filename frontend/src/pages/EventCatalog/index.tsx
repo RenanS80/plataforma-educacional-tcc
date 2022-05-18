@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 import { Event } from 'types/Event';
-import { AxiosParams } from 'types/Vendor/axios';
 import { SpringPage } from 'types/Vendor/spring';
 import { BASE_URL } from 'utils/requests';
 import CourseFilter from 'components/CourseFilter';
@@ -22,9 +21,10 @@ function EventCatalog() {
     }, [])
 
     const getEvents = (pageNumber: number) => {
-        const params: AxiosParams = {
+        const params: AxiosRequestConfig = {
             method: 'GET',
-            url: `${BASE_URL}/events`,
+            url: "/events",
+            baseURL: BASE_URL,
             params: {
                 page: pageNumber,
                 size: 12
