@@ -1,16 +1,17 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Home from 'pages/Home';
-import CourseCatalog from 'pages/CourseCatalog';
-import EventCatalog from 'pages/EventCatalog';
-import ResourceCatalog from 'pages/ResourceCatalog';
-import CourseDetails from 'pages/CourseDetails';
-import EventDetails from 'pages/EventDetails';
-import Login from 'pages/Login';
-import Signup from 'pages/Signup';
+import Navbar from "components/Navbar";
+import Home from "pages/Home";
+import CourseCatalog from "pages/CourseCatalog";
+import EventCatalog from "pages/EventCatalog";
+import ResourceCatalog from "pages/ResourceCatalog";
+import Student from "pages/Student";
+import CourseDetails from "pages/CourseDetails";
+import EventDetails from "pages/EventDetails";
+import Login from "pages/Login";
+import Signup from "pages/Signup";
 
-import './App.css';
-import Navbar from 'components/Navbar';
+import './App.css'
 
 function App() {
   return (
@@ -25,11 +26,20 @@ function App() {
         <Route path="/events" element={<EventCatalog />} />
         <Route path="/resources" element={<ResourceCatalog />} />
 
+        <Route path="/student" element={<Student />}>
+          <Route path="dashboard" element={<h1>Dashboard</h1>} />
+          <Route path="profile" element={<h1>Meu Perfil</h1>} />
+          <Route path="courses" element={<h1>Meus Cursos</h1>} />
+          <Route path="events" element={<h1>Meus Eventos</h1>} />
+        </Route>
+
         <Route path="/courses/:courseId" element={<CourseDetails />} />
         <Route path="/events/:eventId" element={<EventDetails />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
 
     </BrowserRouter>

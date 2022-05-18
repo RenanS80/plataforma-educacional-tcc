@@ -3,6 +3,7 @@ import Logo from 'assets/img/logo.png';
 import 'bootstrap/js/src/collapse.js';
 import RegisterButton from 'components/RegisterButton';
 import { NavLink } from 'react-router-dom';
+
 import './styles.css';
 
 function Navbar() {
@@ -38,6 +39,9 @@ function Navbar() {
                         </li>
                         <li>
                             <NavLink to="/resources" className={({ isActive }) => isActive ? "active" : ""}>Recursos</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/student/dashboard" className={({ isActive }) => isActive ? "active" : ""}>Estudante</NavLink>
                         </li>
                     </ul>
                     
