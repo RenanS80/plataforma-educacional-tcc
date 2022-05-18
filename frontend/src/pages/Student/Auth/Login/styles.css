@@ -41,7 +41,8 @@
 }
 
 .login-form-container form {
-    margin-top: 60px;
+    margin-top: 40px;
+
 }
 
 .login-form-container input {
@@ -53,6 +54,7 @@
     border-radius: 5px;
     font-size: 17px;
     line-height: 30px;
+    color: var(--black);
 }
 
 .login-form-container input:focus {
@@ -63,7 +65,7 @@
 .login-form-password {
     width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
     position: relative;
     margin-bottom: 20px;

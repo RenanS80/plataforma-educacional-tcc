@@ -43,6 +43,7 @@
     border-radius: 5px;
     font-size: 17px;
     line-height: 30px;
+    color: var(--black);
 }
 
 .register-form-container input:focus {

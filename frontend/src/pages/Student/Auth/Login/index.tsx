@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
+import { requestBackEndLogin } from 'utils/requests';
+import { useState } from 'react';
 
 type FormData = {
     username: string;
@@ -14,10 +16,20 @@ type FormData = {
 
 function Login() {
 
-    const { register, handleSubmit } = useForm<FormData>();
+    const [hasError, setHasError] = useState(false);
 
-    const onSubmit = (formData : FormData) => {
-        console.log(formData);
+    const { register, handleSubmit, formState: {errors} } = useForm<FormData>();
+
+    const onSubmit = (formData: FormData) => {
+        requestBackEndLogin(formData)
+            .then(response => {
+                setHasError(false);
+                console.log('SUCESSO', response);
+            })
+            .catch(error => {
+                setHasError(true);
+                console.log('ERRO', error);
+            })
     }
 
     return (
@@ -33,6 +45,12 @@ function Login() {
                     <div className="login-form-title">
                         <p>Bem-vindo de volta</p>
                         <h3>Faça login na sua conta</h3>
+
+                        {hasError && (
+                            <div className="alert alert-danger mt-3" role="alert">
+                                Usuário ou senha inválidos
+                            </div>
+                        )}
                     </div>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -40,20 +58,30 @@ function Login() {
                             <FontAwesomeIcon icon={faEnvelope} className="email-login-icon" />
                             <input
                                 type="email"
-                                {...register("username")}
+                                {...register("username", {
+                                    required: "Campo obrigatório",
+                                    pattern: {
+                                        value: /^[A-Z0-9 ._%+-]+@[A-Z0-9 .-]+\.[A-Z]{2,}$/i,
+                                        message: "Formato de e-mail inválido"
+                                    }
+                                })}
                                 name="username"
                                 placeholder="E-mail"
                             />
+                            <div className="invalid-feedback d-block">{errors.username?.message}</div>
                         </div>
 
                         <div className="login-form-password">
                             <FontAwesomeIcon icon={faLock} className="password-login-icon" />
                             <input
                                 type="password"
-                                {...register("password")}
+                                {...register("password", {
+                                    required: "Campo obrigatório"
+                                })}
                                 name="password"
                                 placeholder="Senha"
                             />
+                            <div className="invalid-feedback d-block">{errors.password?.message}</div>
                         </div>
 
                         <p className="recover-password">Esqueci minha senha</p>
