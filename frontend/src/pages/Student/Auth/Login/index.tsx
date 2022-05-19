@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
-import { requestBackEndLogin } from 'utils/requests';
+import { getAuthData, requestBackEndLogin, saveAuthData } from 'utils/requests';
 import { useState } from 'react';
 
 type FormData = {
@@ -23,6 +23,9 @@ function Login() {
     const onSubmit = (formData: FormData) => {
         requestBackEndLogin(formData)
             .then(response => {
+                saveAuthData(response.data);
+                const token = getAuthData().access_token;
+                console.log('TOKEN GERADO: ' +token);
                 setHasError(false);
                 console.log('SUCESSO', response);
             })
@@ -66,6 +69,7 @@ function Login() {
                                     }
                                 })}
                                 name="username"
+                                className={`form-control ${errors.username ? 'is-invalid' : ''}`}
                                 placeholder="E-mail"
                             />
                             <div className="invalid-feedback d-block">{errors.username?.message}</div>
@@ -79,6 +83,7 @@ function Login() {
                                     required: "Campo obrigatório"
                                 })}
                                 name="password"
+                                className={`form-control ${errors.password ? 'is-invalid' : ''}`}
                                 placeholder="Senha"
                             />
                             <div className="invalid-feedback d-block">{errors.password?.message}</div>

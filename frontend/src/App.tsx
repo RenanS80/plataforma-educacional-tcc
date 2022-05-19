@@ -13,6 +13,7 @@ import EventDetails from "pages/EventDetails";
 import './App.css'
 import Login from "pages/Student/Auth/Login";
 import Signup from "pages/Student/Auth/Signup";
+import Users from "pages/Student/User";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <Route path="/resources" element={<ResourceCatalog />} />
 
         <Route path="/student" element={<Student />}>
-          <Route path="dashboard" element={<h1>Dashboard</h1>} />
+          <Route path="dashboard" element={<Users />} />
           <Route path="profile" element={<h1>Meu Perfil</h1>} />
           <Route path="courses" element={<h1>Meus Cursos</h1>} />
           <Route path="events" element={<h1>Meus Eventos</h1>} />

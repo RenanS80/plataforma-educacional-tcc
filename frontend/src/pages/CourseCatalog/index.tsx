@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig } from 'axios';
 
 import { Course } from 'types/Course';
 import { SpringPage } from 'types/Vendor/spring';
-import { BASE_URL } from 'utils/requests';
+import { requestBackend } from 'utils/requests';
 import CourseFilter from 'components/CourseFilter';
 import CourseCard from 'components/CourseCard';
 import Pagination from 'components/Pagination';
@@ -24,13 +24,12 @@ function CourseCatalog() {
         const params: AxiosRequestConfig = {
             method: 'GET',
             url: "/courses",
-            baseURL: BASE_URL,
             params: {
                 page: pageNumber,
                 size: 12
             }
         }
-        axios(params)
+        requestBackend(params)
             .then(response => {
                 setPage(response.data);
             })
