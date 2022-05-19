@@ -29,19 +29,19 @@ function Navbar() {
                 <div id="learn-navbar" className="collapse navbar-collapse nav-items">
                     <ul className="navbar-nav main-menu">
                         <li>
-                            <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>Home</NavLink>
+                            <NavLink to="/" exact activeClassName="active">Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/courses" className={({ isActive }) => isActive ? "active" : ""}>Cursos</NavLink>
+                            <NavLink to="/courses" activeClassName="active">Cursos</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/events" className={({ isActive }) => isActive ? "active" : ""}>Eventos</NavLink>
+                            <NavLink to="/events" activeClassName="active">Eventos</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/resources" className={({ isActive }) => isActive ? "active" : ""}>Recursos</NavLink>
+                            <NavLink to="/resources" activeClassName="active">Recursos</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/student/dashboard" className={({ isActive }) => isActive ? "active" : ""}>Estudante</NavLink>
+                            <NavLink to="/student" activeClassName="active">Estudante</NavLink>
                         </li>
                     </ul>
                     

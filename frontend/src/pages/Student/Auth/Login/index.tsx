@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { ReactComponent as LoginImage } from 'assets/img/login-vector.svg';
@@ -18,6 +18,8 @@ function Login() {
 
     const [hasError, setHasError] = useState(false);
 
+    const history = useHistory();
+
     const { register, handleSubmit, formState: {errors} } = useForm<FormData>();
 
     const onSubmit = (formData: FormData) => {
@@ -28,6 +30,7 @@ function Login() {
                 console.log('TOKEN GERADO: ' +token);
                 setHasError(false);
                 console.log('SUCESSO', response);
+                history.push('/student/dashboard');
             })
             .catch(error => {
                 setHasError(true);

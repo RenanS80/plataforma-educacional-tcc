@@ -7,7 +7,7 @@ import HeroImg from 'assets/img/vector-study.svg';
 import { SpringPage } from 'types/Vendor/spring';
 import { Course } from 'types/Course';
 import { Category } from 'types/Category';
-import { BASE_URL } from 'utils/requests';
+import { BASE_URL, isAuthenticated } from 'utils/requests';
 import RegisterButton from 'components/RegisterButton';
 import MainCategoryCard from 'components/MainCategoryCard';
 import CourseCard from 'components/CourseCard';
@@ -62,6 +62,7 @@ function Home() {
         <>
             <section className="hero-bg">
                 <div className="container hero">
+                    <h1>{isAuthenticated() ? 'AUTENTICADO' : 'NÃO AUTENTICADO'}</h1>
                     <div className="hero-title">
                         <h1>Estude o que quiser e desenvolva as suas skills</h1>
                         <p>Encontre uma variedade de cursos, eventos e materiais que combinam com a sua stack. <br />
