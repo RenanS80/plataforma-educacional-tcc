@@ -116,3 +116,18 @@ export const isAuthenticated = () : boolean => {
     const tokenData = getTokenData();
     return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
 }
+
+// Função que informa se o usuário possui algum dos roles passados
+export const hasAnyRoles = (roles: Role[]) : boolean => {
+    if(roles.length === 0) {
+        return true;
+    }
+
+    const tokenData = getTokenData();
+
+    if(tokenData !== undefined) {
+        return roles.some(role => tokenData.authorities.includes(role));
+    }
+
+    return false;
+}

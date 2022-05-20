@@ -1,21 +1,28 @@
-import { Link, useHistory } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-
+import { AuthContext } from 'AuthContext';
+import { getTokenData, isAuthenticated, requestBackEndLogin, saveAuthData } from 'utils/requests';
 import { ReactComponent as LoginImage } from 'assets/img/login-vector.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
-import { getTokenData, isAuthenticated, requestBackEndLogin, saveAuthData } from 'utils/requests';
-import { useContext, useState } from 'react';
-import { AuthContext } from 'AuthContext';
 
 type FormData = {
     username: string;
     password: string;
 }
 
+type LocationState = {
+    from: string;
+}
+
 function Login() {
+
+    const location = useLocation<LocationState>();
+
+    const { from } = location.state || { from: { pathname: '/student' } }
 
     const { setAuthContextData } = useContext(AuthContext);
 
@@ -34,7 +41,7 @@ function Login() {
                     authenticated: isAuthenticated(),
                     tokenData: getTokenData()
                 })
-                history.push('/student');
+                history.replace(from);
             })
             .catch(error => {
                 setHasError(true);

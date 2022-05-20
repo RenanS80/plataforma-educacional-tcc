@@ -4,6 +4,7 @@ import { ReactComponent as DashboardIcon } from 'assets/img/dashboard.svg';
 
 import './styles.css';
 import { NavLink } from 'react-router-dom';
+import { hasAnyRoles } from 'utils/requests';
 
 function Navbar() {
     return (
@@ -33,12 +34,16 @@ function Navbar() {
                         <p>Meus Eventos</p>
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink to="/student/users" className="student-nav-item" activeClassName="active">
-                        <FontAwesomeIcon icon={faUsers} className="event-icon navbar-icon" />
-                        <p>Usuários</p>
-                    </NavLink>
-                </li>
+
+                {hasAnyRoles(['ROLE_ADMIN']) &&
+                    <li>
+                        <NavLink to="/student/users" className="student-nav-item" activeClassName="active">
+                            <FontAwesomeIcon icon={faUsers} className="event-icon navbar-icon" />
+                            <p>Usuários</p>
+                        </NavLink>
+                    </li>
+                }
+
             </ul>
         </nav>
     );
