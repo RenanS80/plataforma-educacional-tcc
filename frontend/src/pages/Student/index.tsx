@@ -23,7 +23,7 @@ function Student() {
                     <PrivateRoute path="/student/events">
                         <h1>Meus Eventos</h1>
                     </PrivateRoute>
-                    <PrivateRoute path="/student/users">
+                    <PrivateRoute path="/student/users" roles={['ROLE_ADMIN']}>
                         <Users />
                     </PrivateRoute>
                 </Switch>

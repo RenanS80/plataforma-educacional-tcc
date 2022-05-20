@@ -1,10 +1,11 @@
+import { NavLink } from 'react-router-dom';
+import { hasAnyRoles } from 'utils/auth';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap, faUser, faTv, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { ReactComponent as DashboardIcon } from 'assets/img/dashboard.svg';
 
 import './styles.css';
-import { NavLink } from 'react-router-dom';
-import { hasAnyRoles } from 'utils/requests';
 
 function Navbar() {
     return (

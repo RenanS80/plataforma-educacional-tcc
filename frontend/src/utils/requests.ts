@@ -1,29 +1,12 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 import history from './history';
-import jwtDecode from 'jwt-decode';
+import { getAuthData } from './storage';
+
 
 type LoginData = {
     username: string;
     password: string;
-}
-
-type LoginResponse = {
-    access_token: string,
-    token_type: string,
-    expires_in: number,
-    scope: string,
-    userFirstName: string,
-    userId: number,
-    jti: string
-}
-
-type Role = 'ROLE_STUDENT' | 'ROLE_ADMIN';
-
-export type TokenData = {
-    exp: number,
-    user_name: string,
-    authorities: Role[];
 }
 
 // URL do backend
@@ -68,22 +51,6 @@ export const requestBackend = (config: AxiosRequestConfig) => {
     return axios({ ...config, baseURL: BASE_URL, headers });
 }
 
-// Função para salvar os dados da resposta da autenticação no LocalStorage
-export const saveAuthData = (loginResponse: LoginResponse) => {
-    localStorage.setItem('authData', JSON.stringify(loginResponse));
-}
-
-// Função para pegar os dados do token do LocalStorage
-export const getAuthData = () => {
-    const srt = localStorage.getItem('authData') ?? "{}";
-    return JSON.parse(srt) as LoginResponse;
-}
-
-export const removeAuthData = () => {
-    localStorage.removeItem('authData');
-}
-
-
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
     return config;
@@ -95,39 +62,10 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
-    if(error.response.status === 401 || error.response.status === 403) {
+    if (error.response.status === 401) {
         history.push('/student/auth')
     }
     return Promise.reject(error);
 });
 
-// Função para decodificar o token
-export const getTokenData = () : TokenData | undefined => {   
-    try {
-        return jwtDecode(getAuthData().access_token) as TokenData;
-    }
-    catch(error) {
-        return undefined;
-    }
-}
 
-// Função para verificar se o usuário está autenticado
-export const isAuthenticated = () : boolean => {
-    const tokenData = getTokenData();
-    return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
-}
-
-// Função que informa se o usuário possui algum dos roles passados
-export const hasAnyRoles = (roles: Role[]) : boolean => {
-    if(roles.length === 0) {
-        return true;
-    }
-
-    const tokenData = getTokenData();
-
-    if(tokenData !== undefined) {
-        return roles.some(role => tokenData.authorities.includes(role));
-    }
-
-    return false;
-}

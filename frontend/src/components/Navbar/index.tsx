@@ -1,17 +1,17 @@
-import Logo from 'assets/img/logo.png';
-
 import 'bootstrap/js/src/collapse.js';
-import RegisterButton from 'components/RegisterButton';
 import { useContext, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { getTokenData, isAuthenticated, removeAuthData } from 'utils/requests';
+import { AuthContext } from 'AuthContext';
+import history from 'utils/history';
+import { getTokenData, isAuthenticated } from 'utils/auth';
+import { removeAuthData } from 'utils/storage';
+import RegisterButton from 'components/RegisterButton';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import Logo from 'assets/img/logo.png';
 
 import './styles.css';
-import history from 'utils/history';
-import { AuthContext } from 'AuthContext';
 
 function Navbar() {
 
@@ -87,7 +87,7 @@ function Navbar() {
                                 <FontAwesomeIcon icon={faArrowRightFromBracket} className="navbar-logout-icon" />
                             </div>
                         ) :
-                            <div>
+                            <div className="teste">
                                 <NavLink to="/student/auth/login" role="button" className="btn-login">Login</NavLink>
                                 <RegisterButton />
                             </div>

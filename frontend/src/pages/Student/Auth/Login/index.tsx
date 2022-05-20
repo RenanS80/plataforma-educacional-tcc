@@ -2,12 +2,16 @@ import { useContext, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from 'AuthContext';
-import { getTokenData, isAuthenticated, requestBackEndLogin, saveAuthData } from 'utils/requests';
+import { requestBackEndLogin } from 'utils/requests';
+import { saveAuthData } from 'utils/storage';
+import { getTokenData, isAuthenticated } from 'utils/auth';
+
 import { ReactComponent as LoginImage } from 'assets/img/login-vector.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
+
 
 type FormData = {
     username: string;
