@@ -20,7 +20,7 @@ type LoginResponse = {
 
 type Role = 'ROLE_STUDENT' | 'ROLE_ADMIN';
 
-type TokenData = {
+export type TokenData = {
     exp: number,
     user_name: string,
     authorities: Role[];
@@ -79,6 +79,10 @@ export const getAuthData = () => {
     return JSON.parse(srt) as LoginResponse;
 }
 
+export const removeAuthData = () => {
+    localStorage.removeItem('authData');
+}
+
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
@@ -110,6 +114,5 @@ export const getTokenData = () : TokenData | undefined => {
 // Função para verificar se o usuário está autenticado
 export const isAuthenticated = () : boolean => {
     const tokenData = getTokenData();
-
     return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
 }

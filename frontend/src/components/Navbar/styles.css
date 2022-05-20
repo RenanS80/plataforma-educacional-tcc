@@ -88,6 +88,24 @@
     border-color: rgba(98, 85, 164, 1) !important;
 }
 
+.navbar-logout-container {
+    color: var(--black);
+    cursor: pointer;
+    transition: all .4s ease;
+}
+
+.navbar-logout-container:hover,
+.navbar-logout-container:hover .navbar-logout:hover{
+    color: rgb(214, 28, 28);
+}
+
+.navbar-logout {
+    text-decoration: none;
+    color: var(--black);
+    padding: 10px;
+    transition: all .4s ease;
+}
+
 
 /* Media Queries */
 @media (max-width: 1200px){

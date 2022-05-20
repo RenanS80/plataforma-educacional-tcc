@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
-import { getAuthData, requestBackEndLogin, saveAuthData } from 'utils/requests';
-import { useState } from 'react';
+import { getTokenData, isAuthenticated, requestBackEndLogin, saveAuthData } from 'utils/requests';
+import { useContext, useState } from 'react';
+import { AuthContext } from 'AuthContext';
 
 type FormData = {
     username: string;
@@ -15,6 +16,8 @@ type FormData = {
 }
 
 function Login() {
+
+    const { setAuthContextData } = useContext(AuthContext);
 
     const [hasError, setHasError] = useState(false);
 
@@ -26,11 +29,12 @@ function Login() {
         requestBackEndLogin(formData)
             .then(response => {
                 saveAuthData(response.data);
-                const token = getAuthData().access_token;
-                console.log('TOKEN GERADO: ' +token);
                 setHasError(false);
-                console.log('SUCESSO', response);
-                history.push('/student/dashboard');
+                setAuthContextData({
+                    authenticated: isAuthenticated(),
+                    tokenData: getTokenData()
+                })
+                history.push('/student');
             })
             .catch(error => {
                 setHasError(true);
