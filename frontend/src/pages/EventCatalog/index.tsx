@@ -1,40 +1,61 @@
-import { useEffect, useState } from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { AxiosRequestConfig } from 'axios';
 
 import { Event } from 'types/Event';
 import { SpringPage } from 'types/Vendor/spring';
-import { BASE_URL } from 'utils/requests';
-import CourseFilter from 'components/CourseFilter';
+import { requestBackend } from 'utils/requests';
 import EventCard from 'components/EventCard';
 import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';
 
 import './styles.css';
 import { Link } from 'react-router-dom';
+import EventFilter, { EventFilterData } from 'components/EventFilter';
+
+type ControlComponentData = {
+    activePage: number;
+    filterData: EventFilterData;
+}
+
 
 function EventCatalog() {
 
     const [page, setPage] = useState<SpringPage<Event>>();
 
-    useEffect(() => {
-        getEvents(0);
-    }, [])
+    const [controlComponentData, setControlComponentData] = useState<ControlComponentData>({
+        activePage: 0,
+        filterData: {title: "", category: null}
+    });
 
-    const getEvents = (pageNumber: number) => {
-        const params: AxiosRequestConfig = {
+    const handlePageChange = (pageNumber: number) => {
+        setControlComponentData({ activePage: pageNumber, filterData: controlComponentData.filterData })
+    }
+
+    const handleSubmitFilter = (data: EventFilterData) => {
+        setControlComponentData({ activePage: 0, filterData: data })
+    }
+    
+
+    const getEvents = useCallback(() => {
+        const config: AxiosRequestConfig = {
             method: 'GET',
             url: "/events",
-            baseURL: BASE_URL,
             params: {
-                page: pageNumber,
-                size: 12
+                page: controlComponentData.activePage,
+                size: 12,
+                title: controlComponentData.filterData.title,
+                categoryId: controlComponentData.filterData.category?.id
             }
         }
-        axios(params)
-            .then(response => {
-                setPage(response.data);
-            })
-    }
+
+        requestBackend(config).then((response) => {
+            setPage(response.data);
+        })
+    }, [controlComponentData])
+
+    useEffect(() => {
+        getEvents();
+    }, [getEvents])
 
     return (
         <>
@@ -46,7 +67,7 @@ function EventCatalog() {
                     </div>
 
                     <div className="search-filter">
-                        {/* <CourseFilter /> */}
+                        <EventFilter onSubmitFilter={handleSubmitFilter} /> 
                     </div>
 
 
@@ -62,9 +83,10 @@ function EventCatalog() {
 
                     <div className="course-pagination-container">
                         <Pagination
+                            forcePage={page?.number}
                             pageCount={(page) ? page.totalPages : 0}
                             range={3}
-                            onChange={getEvents}
+                            onChange={handlePageChange}
                         />
                     </div>
                 </div>

@@ -9,29 +9,29 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
 
-export type CourseFilterData = {
+export type EventFilterData = {
     title: string,
     category: Category | null;
 }
 
 type Props = {
-    onSubmitFilter: (data: CourseFilterData) => void;
+    onSubmitFilter: (data: EventFilterData) => void;
 }
 
-function CourseFilter({ onSubmitFilter } : Props) {
+function EventFilter({ onSubmitFilter } : Props) {
 
-    const { register, handleSubmit, setValue, getValues, control } = useForm<CourseFilterData>();
+    const { register, handleSubmit, setValue, getValues, control } = useForm<EventFilterData>();
 
     const [selectCategories, setSelectCategories] = useState<Category[]>([]);
 
-    const onSubmit = (formData: CourseFilterData) => {
+    const onSubmit = (formData: EventFilterData) => {
         onSubmitFilter(formData);
     }
 
     const handleChangeCategory = (value: Category) => {
         setValue('category', value);
 
-        const obj: CourseFilterData = {
+        const obj: EventFilterData = {
             title: getValues('title'),
             category: getValues('category')
         }
@@ -52,23 +52,23 @@ function CourseFilter({ onSubmitFilter } : Props) {
     }, [])
 
     return (
-        <div className="base-card course-filter-container">
-            <form onSubmit={handleSubmit(onSubmit)} className="course-filter-form">
-                <div className="course-filter-name-container">
+        <div className="base-card event-filter-container">
+            <form onSubmit={handleSubmit(onSubmit)} className="event-filter-form">
+                <div className="event-filter-name-container">
                     <input
                         {...register('title')}
                         type="text"
                         className="form-control"
-                        placeholder="Pesquisar curso"
+                        placeholder="Pesquisar evento"
                         name="title"
                     />
-                    <button className="course-filter-button">
+                    <button className="event-filter-button">
                         <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
                     </button>
                 </div>
 
-                <div className="course-filter-bottom-container">
-                    <div className="course-filter-category-container">
+                <div className="event-filter-bottom-container">
+                    <div className="event-filter-category-container">
                         <Controller
                             name="category"
                             control={control}
@@ -76,7 +76,7 @@ function CourseFilter({ onSubmitFilter } : Props) {
                                 <Select
                                     {...field}
                                     options={selectCategories}
-                                    classNamePrefix="course-filter-select"
+                                    classNamePrefix="event-filter-select"
                                     isClearable
                                     getOptionLabel={(category: Category) => category.name}
                                     getOptionValue={(category: Category) => String(category.id)}
@@ -93,4 +93,4 @@ function CourseFilter({ onSubmitFilter } : Props) {
     );
 }
 
-export default CourseFilter;
+export default EventFilter;

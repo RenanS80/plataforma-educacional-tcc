@@ -1,41 +1,60 @@
-import { useEffect, useState } from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faEye } from '@fortawesome/free-solid-svg-icons';
-
-import { SpringPage } from 'types/Vendor/spring';
-import { Resource } from 'types/Resource';
-import { BASE_URL } from 'utils/requests';
+import { useCallback, useEffect, useState } from 'react';
+import { AxiosRequestConfig } from 'axios';
 import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';
+import ResourceFilter, { ResourceFilterData } from 'components/ResourceFilter';
+import { SpringPage } from 'types/Vendor/spring';
+import { Resource } from 'types/Resource';
+import { requestBackend } from 'utils/requests';
+import { formatLocalDate } from 'utils/format';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
-import { formatLocalDate } from 'utils/format';
+
+type ControlComponentData = {
+    activePage: number;
+    filterData: ResourceFilterData;
+}
 
 function ResourceCatalog() {
 
-
     const [page, setPage] = useState<SpringPage<Resource>>();
 
-    useEffect(() => {
-        getResources(0);
-    }, [])
+    const [controlComponentData, setControlComponentData] = useState<ControlComponentData>({
+        activePage: 0,
+        filterData: { title: "" }
+    });
 
-    const getResources = (pageNumber: number) => {
-        const params: AxiosRequestConfig = {
+    const handlePageChange = (pageNumber: number) => {
+        setControlComponentData({ activePage: pageNumber, filterData: controlComponentData.filterData })
+    }
+
+    const handleSubmitFilter = (data: ResourceFilterData) => {
+        setControlComponentData({ activePage: 0, filterData: data })
+    }
+
+
+    const getResources = useCallback(() => {
+        const config: AxiosRequestConfig = {
             method: 'GET',
             url: "/resources",
-            baseURL: BASE_URL,
             params: {
-                page: pageNumber,
-                size: 8
+                page: controlComponentData.activePage,
+                size: 8,
+                title: controlComponentData.filterData.title,
             }
         }
-        axios(params)
-            .then(response => {
-                setPage(response.data);
-            })
-    }
+
+        requestBackend(config).then((response) => {
+            setPage(response.data);
+        })
+    }, [controlComponentData])
+
+    useEffect(() => {
+        getResources();
+    }, [getResources])
 
     return (
         <>
@@ -48,19 +67,7 @@ function ResourceCatalog() {
 
                     <div className="resource-catalog-table">
                         <div className="resource-table-container">
-                            <div className="resource-table-search">
-                                <form action="">
-                                    <div className="form-input">
-                                        <span className="icon">
-                                            <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
-                                        </span>
-                                        <input
-                                            type="text"
-                                            placeholder="Pesquisar recursos"
-                                        />
-                                    </div>
-                                </form>
-                            </div>
+                            <ResourceFilter onSubmitFilter={handleSubmitFilter} />
 
                             <div className="resource-table">
                                 <table className="table">
@@ -99,9 +106,10 @@ function ResourceCatalog() {
 
                     <div className="resource-pagination-container">
                         <Pagination
+                            forcePage={page?.number}
                             pageCount={(page) ? page.totalPages : 0}
                             range={3}
-                            onChange={getResources}
+                            onChange={handlePageChange}
                         />
                     </div>
                 </div>

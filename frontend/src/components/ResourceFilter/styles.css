@@ -1,0 +1,89 @@
+.resource-form input {
+    width: 100%;
+    display: block;
+    padding: 5px 10px 5px 50px;
+    border: 2px solid #EEE;
+    border-radius: 5px;
+    color: var(--gray-4);
+    outline: 0;
+    font-size: 17px;
+    line-height: 30px;
+}
+
+.resource-form input:focus {
+    border-color: #80BDFF;
+    box-shadow: 0 0 0 0.2rem rgba(128, 189, 255, 0.25);
+}
+
+.resource-form {
+    display: flex;
+    align-items: center;
+}
+
+.resource-form-input-container {
+    width: 330px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.icon {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    margin-left: 20px;
+    color: var(--gray-4);
+    font-size: 20px;
+}
+
+.resource-filter-button {
+    border: unset;
+    background-color: unset;
+}
+
+.btn-resource-clear-filter {
+    text-transform: uppercase;
+    padding: 11px 20px;
+    background-color: transparent;
+    border: 1px solid var(--gray-4);
+    color: var(--gray-4);
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: -0.015em;
+    transition: all .4s ease;
+}
+
+.btn-resource-clear-filter:hover {
+    background-color: var(--white);
+}
+
+/* .btn-resource-clear-filter-word {
+    display: none;
+} */
+
+/* Media Queries */
+@media (max-width: 576px) {
+    .resource-form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-resource-clear-filter {
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 364px) {
+    .resource-form-input-container {
+        width: 100%;
+    }
+}
