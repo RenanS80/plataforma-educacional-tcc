@@ -1,39 +1,61 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
 
 import { Course } from 'types/Course';
 import { SpringPage } from 'types/Vendor/spring';
 import { requestBackend } from 'utils/requests';
-import CourseFilter from 'components/CourseFilter';
+import CourseFilter, { CourseFilterData } from 'components/CourseFilter';
 import CourseCard from 'components/CourseCard';
 import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';
 
 import './styles.css';
 
+type ControlComponentData = {
+    activePage: number;
+    filterData: CourseFilterData;
+}
+
 function CourseCatalog() {
 
     const [page, setPage] = useState<SpringPage<Course>>();
 
-    useEffect(() => {
-        getCourses(0);
-    }, [])
+    const [controlComponentData, setControlComponentData] = useState<ControlComponentData>({
+        activePage: 0,
+        filterData: {title: "", category: null}
+    });
 
-    const getCourses = (pageNumber: number) => {
-        const params: AxiosRequestConfig = {
+    const handlePageChange = (pageNumber: number) => {
+        setControlComponentData({ activePage: pageNumber, filterData: controlComponentData.filterData })
+    }
+
+    const handleSubmitFilter = (data: CourseFilterData) => {
+        setControlComponentData({ activePage: 0, filterData: data })
+    }
+    
+
+    const getCourses = useCallback(() => {
+        const config: AxiosRequestConfig = {
             method: 'GET',
             url: "/courses",
             params: {
-                page: pageNumber,
-                size: 12
+                page: controlComponentData.activePage,
+                size: 12,
+                title: controlComponentData.filterData.title,
+                categoryId: controlComponentData.filterData.category?.id
             }
         }
-        requestBackend(params)
-            .then(response => {
-                setPage(response.data);
-            })
-    }
+
+        requestBackend(config).then((response) => {
+            setPage(response.data);
+        })
+    }, [controlComponentData])
+
+    useEffect(() => {
+        getCourses();
+    }, [getCourses])
+
 
     return (
         <>
@@ -45,7 +67,7 @@ function CourseCatalog() {
                     </div>
 
                     <div className="search-filter">
-                        <CourseFilter />
+                        <CourseFilter onSubmitFilter={handleSubmitFilter} />
                     </div>
 
 
@@ -63,9 +85,10 @@ function CourseCatalog() {
 
                     <div className="course-pagination-container">
                         <Pagination
+                            forcePage={page?.number}
                             pageCount={(page) ? page.totalPages : 0}
                             range={3}
-                            onChange={getCourses}
+                            onChange={handlePageChange}
                         />
                     </div>
                 </div>

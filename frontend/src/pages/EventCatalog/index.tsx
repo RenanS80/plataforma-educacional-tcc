@@ -46,7 +46,7 @@ function EventCatalog() {
                     </div>
 
                     <div className="search-filter">
-                        <CourseFilter />
+                        {/* <CourseFilter /> */}
                     </div>
 
 

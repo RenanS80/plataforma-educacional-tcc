@@ -44,7 +44,7 @@ export const requestBackEndLogin = (loginData: LoginData) => {
 export const requestBackend = (config: AxiosRequestConfig) => {
     const headers = config.withCredentials ? {
         ...config.headers,
-        Authorization: "BEARER " + getAuthData().access_token
+        Authorization: "Bearer " + getAuthData().access_token
     }
         : config.headers;
 

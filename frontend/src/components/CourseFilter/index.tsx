@@ -8,16 +8,40 @@ import Select from 'react-select';
 import { useEffect, useState } from 'react';
 import { requestBackend } from 'utils/requests';
 
-type CourseFilterData = {
-    name: string,
-    category: Category;
+export type CourseFilterData = {
+    title: string,
+    category: Category | null;
 }
 
-function CourseFilter() {
+type Props = {
+    onSubmitFilter: (data: CourseFilterData) => void;
+}
 
-    const { register, handleSubmit, control } = useForm<CourseFilterData>();
+function CourseFilter({ onSubmitFilter } : Props) {
+
+    const { register, handleSubmit, setValue, getValues, control } = useForm<CourseFilterData>();
 
     const [selectCategories, setSelectCategories] = useState<Category[]>([]);
+
+    const onSubmit = (formData: CourseFilterData) => {
+        onSubmitFilter(formData);
+    }
+
+    const handleChangeCategory = (value: Category) => {
+        setValue('category', value);
+
+        const obj: CourseFilterData = {
+            title: getValues('title'),
+            category: getValues('category')
+        }
+
+        onSubmitFilter(obj);
+    }
+
+    const handleFormClear = () => {
+        setValue('title', '');
+        setValue('category', null);
+    }
 
     useEffect(() => {
         requestBackend({ url: `/categories` })
@@ -26,49 +50,46 @@ function CourseFilter() {
             })
     }, [])
 
-            const onSubmit = (formData: CourseFilterData) => {
-                console.log('ENVIOU', formData)
-            }
-
-            return (
-                <div className="base-card course-filter-container">
-                    <form onSubmit={handleSubmit(onSubmit)} className="course-filter-form">
-                        <div className="course-filter-name-container">
-                            <input
-                                {...register('name')}
-                                type="text"
-                                className="form-control"
-                                placeholder="Pesquisar curso"
-                                name="name"
-                            />
-                            <button className="course-filter-button">
-                                <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
-                            </button>
-                        </div>
-
-                        <div className="course-filter-bottom-container">
-                            <div className="course-filter-category-container">
-                                <Controller
-                                    name="category"
-                                    control={control}
-                                    render={({ field }) => (
-                                        <Select
-                                            {...field}
-                                            options={selectCategories}
-                                            classNamePrefix="course-filter-select"
-                                            isClearable
-                                            getOptionLabel={(category: Category) => category.name}
-                                            getOptionValue={(category: Category) => String(category.id)}
-                                            placeholder="Categoria"
-                                        />
-                                    )}
-                                />
-                            </div>
-                            <button className="btn-clear-filter">Limpar<span className="btn-clear-filter-word"> Filtro</span></button>
-                        </div>
-                    </form>
+    return (
+        <div className="base-card course-filter-container">
+            <form onSubmit={handleSubmit(onSubmit)} className="course-filter-form">
+                <div className="course-filter-name-container">
+                    <input
+                        {...register('title')}
+                        type="text"
+                        className="form-control"
+                        placeholder="Pesquisar curso"
+                        name="title"
+                    />
+                    <button className="course-filter-button">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
+                    </button>
                 </div>
-            );
-        }
+
+                <div className="course-filter-bottom-container">
+                    <div className="course-filter-category-container">
+                        <Controller
+                            name="category"
+                            control={control}
+                            render={({ field }) => (
+                                <Select
+                                    {...field}
+                                    options={selectCategories}
+                                    classNamePrefix="course-filter-select"
+                                    isClearable
+                                    getOptionLabel={(category: Category) => category.name}
+                                    getOptionValue={(category: Category) => String(category.id)}
+                                    placeholder="Categoria"
+                                    onChange={value => handleChangeCategory(value as Category)}
+                                />
+                            )}
+                        />
+                    </div>
+                    <button onClick={handleFormClear} className="btn-clear-filter">Limpar<span className="btn-clear-filter-word"> Filtro</span></button>
+                </div>
+            </form>
+        </div>
+    );
+}
 
 export default CourseFilter;
