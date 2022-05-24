@@ -1,5 +1,6 @@
 package com.plataformaeducacional.tcc.services;
 
+import java.time.Instant;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -61,7 +62,7 @@ public class CourseService {
 	@Transactional
 	public CourseDTO insert(CourseDTO dto) {
 		Course entity = new Course();
-		copyDtoToEntity(dto, entity);
+		copyDtoToEntityInsert(dto, entity);
 
 		entity = repository.save(entity);
 		return new CourseDTO(entity);
@@ -102,6 +103,39 @@ public class CourseService {
 		Category cat = categoryRepository.getOne(dto.getCategory().getId());
 		entity.setCategory(cat); 
 		entity.setRegistrationDate(dto.getRegistrationDate());
+				
+		entity.getTags().clear();
+		for(TagDTO tagDto : dto.getTags()){
+			Tag tag = tagRepository.getOne(tagDto.getId());
+			entity.getTags().add(tag);
+		}
+		
+		entity.getResources().clear();
+		for(ResourceDTO resourceDto : dto.getResources()){
+			Resource resource = resourceRepository.getOne(resourceDto.getId());
+			entity.getResources().add(resource);
+		}
+		
+		// Seta a quantidade de avaliações para 0 porque o curso acabou de ser inserido
+		if(dto.getCount() == null) {
+			entity.setCount(0);
+		}
+		
+		// Seta a nova média de avaliações para 0 porque o curso acabou de ser inserido
+		if(dto.getScore() == null) {
+			entity.setScore(0.0);
+		}
+	}
+	
+	private void copyDtoToEntityInsert(CourseDTO dto, Course entity) {
+		entity.setTitle(dto.getTitle());
+		entity.setDescription(dto.getDescription());
+		entity.setLink(dto.getLink());
+		entity.setPlatform(dto.getPlatform());
+		entity.setImage(dto.getImage());
+		Category cat = categoryRepository.getOne(dto.getCategory().getId());
+		entity.setCategory(cat); 
+		entity.setRegistrationDate(Instant.now());
 				
 		entity.getTags().clear();
 		for(TagDTO tagDto : dto.getTags()){
