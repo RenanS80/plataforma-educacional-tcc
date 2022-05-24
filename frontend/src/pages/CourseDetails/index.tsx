@@ -65,7 +65,12 @@ function CourseDetails() {
 
                                 <div className="course-details-link">
                                     <h4>Link</h4>
-                                    <a href={course?.link.startsWith('www') ? 'https://'.concat(course?.link as string)  : course?.link} target="_blank" rel="noreferrer">Clique aqui</a>
+                                    <a
+                                        href={course?.link.startsWith('www') || !course?.link.startsWith('http') || !course?.link.startsWith('https') ?
+                                            'https://'.concat(course?.link as string) : course?.link}
+                                        target="_blank" rel="noreferrer">
+                                        Clique aqui
+                                    </a>
                                 </div>
                             </div>
 

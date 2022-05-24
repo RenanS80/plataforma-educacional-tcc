@@ -1,5 +1,6 @@
 package com.plataformaeducacional.tcc.services;
 
+import java.time.Instant;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -49,7 +50,7 @@ public class ResourceService {
 	@Transactional
 	public ResourceDTO insert(ResourceDTO dto) {
 		Resource entity = new Resource();
-		copyDtoToEntity(dto, entity);
+		copyDtoToEntityInsert(dto, entity);
 		entity = repository.save(entity);
 		return new ResourceDTO(entity);
 	}
@@ -84,6 +85,19 @@ public class ResourceService {
 		entity.setDescription(dto.getDescription());
 		entity.setLink(dto.getLink());
 		entity.setRegistrationDate(dto.getRegistrationDate());
+		
+		entity.getTags().clear();
+		for(TagDTO tagDto : dto.getTags()){
+			Tag tag = tagRepository.getOne(tagDto.getId());
+			entity.getTags().add(tag);
+		}
+	}
+	
+	private void copyDtoToEntityInsert(ResourceDTO dto, Resource entity) {
+		entity.setTitle(dto.getTitle());
+		entity.setDescription(dto.getDescription());
+		entity.setLink(dto.getLink());
+		entity.setRegistrationDate(Instant.now());
 		
 		entity.getTags().clear();
 		for(TagDTO tagDto : dto.getTags()){

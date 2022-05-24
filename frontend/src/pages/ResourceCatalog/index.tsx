@@ -89,7 +89,12 @@ function ResourceCatalog() {
                                                 <td>{resource.title}</td>
                                                 <td>{formatLocalDate(resource.registrationDate, "dd/MM/yyyy")}</td>
                                                 <td>
-                                                    <a href={resource.link} target="_blank" rel="noreferrer">Clique aqui</a>
+                                                    <a 
+                                                        href={resource?.link.startsWith('www') || !resource?.link.startsWith('http') || !resource?.link.startsWith('https') ?
+                                                            'https://'.concat(resource?.link as string) : resource?.link} 
+                                                        target="_blank" rel="noreferrer">
+                                                            Clique aqui
+                                                    </a>
                                                 </td>
 
                                                 <td>

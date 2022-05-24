@@ -61,7 +61,12 @@ function EventDetails() {
 
                                 <div className="event-details-link">
                                     <h4>Link</h4>
-                                    <a href={event?.link} target="_blank" rel="noreferrer">Clique aqui</a>
+                                    <a
+                                        href={event?.link.startsWith('www') || !event?.link.startsWith('http') || !event?.link.startsWith('https') ?
+                                            'https://'.concat(event?.link as string) : event?.link}
+                                        target="_blank" rel="noreferrer">
+                                        Clique aqui
+                                    </a>
                                 </div>
                             </div>
 

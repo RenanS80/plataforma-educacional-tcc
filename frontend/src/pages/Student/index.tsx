@@ -2,8 +2,10 @@ import PrivateRoute from 'components/PrivateRoute';
 import { Switch } from 'react-router-dom';
 import Courses from './Courses';
 import Dashboard from './Dashboard';
+import Events from './Events';
 import Navbar from './Navbar';
 import Profile from './Profile';
+import Resources from './Resources';
 import './styles.css';
 import Users from './Users';
 
@@ -23,8 +25,11 @@ function Student() {
                     <PrivateRoute path="/student/courses/:courseId">
                         <Courses />
                     </PrivateRoute>
-                    <PrivateRoute path="/student/events">
-                        <h1>Meus Eventos</h1>
+                    <PrivateRoute path="/student/events/:eventId">
+                        <Events />
+                    </PrivateRoute>
+                    <PrivateRoute path="/student/resources/:resourceId">
+                        <Resources />
                     </PrivateRoute>
                     <PrivateRoute path="/student/users" roles={['ROLE_ADMIN']}>
                         <Users />

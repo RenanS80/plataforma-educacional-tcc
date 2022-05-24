@@ -1,7 +1,7 @@
 package com.plataformaeducacional.tcc.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +34,7 @@ public class Resource implements Serializable {
 	private String link;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private LocalDate registrationDate;
+	private Instant registrationDate;
 	
 	@ManyToMany
 	@JoinTable(name = "tb_resource_tag",
@@ -46,7 +46,7 @@ public class Resource implements Serializable {
 	public Resource() {
 	}
 
-	public Resource(Long id, String title, String description, String link, LocalDate registrationDate) {
+	public Resource(Long id, String title, String description, String link, Instant registrationDate) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -86,11 +86,11 @@ public class Resource implements Serializable {
 		this.link = link;
 	}
 
-	public LocalDate getRegistrationDate() {
+	public Instant getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(LocalDate registrationDate) {
+	public void setRegistrationDate(Instant registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 

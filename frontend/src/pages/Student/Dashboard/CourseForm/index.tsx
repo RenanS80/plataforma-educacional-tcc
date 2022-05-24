@@ -121,7 +121,7 @@ function CourseForm() {
                                     className={`form-control ${errors.platform ? 'is-invalid' : ''}`}
                                     placeholder="Plataforma"
                                 />
-                                <div className="invalid-feedback d-block">{errors.title?.message}</div>
+                                <div className="invalid-feedback d-block">{errors.platform?.message}</div>
                             </div>
 
                             <div className="margin-bottom-30">
@@ -134,7 +134,7 @@ function CourseForm() {
                                     className={`form-control ${errors.link ? 'is-invalid' : ''}`}
                                     placeholder="Link"
                                 />
-                                <div className="invalid-feedback d-block">{errors.title?.message}</div>
+                                <div className="invalid-feedback d-block">{errors.link?.message}</div>
                             </div>
 
                             <div className="margin-bottom-30">
@@ -161,7 +161,6 @@ function CourseForm() {
                             <div className="margin-bottom-30">
                                 <Controller
                                     name="resources"
-                                    rules={{ required: true }}
                                     control={control}
                                     render={({ field }) => (
                                         <Select {...field}
@@ -204,7 +203,7 @@ function CourseForm() {
                                     placeholder="Descrição"
                                     rows={10}
                                 />
-                                <div className="invalid-feedback d-block">{errors.title?.message}</div>
+                                <div className="invalid-feedback d-block">{errors.description?.message}</div>
                             </div>
                         </div>
                     </div>
