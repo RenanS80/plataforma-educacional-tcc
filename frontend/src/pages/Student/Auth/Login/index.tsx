@@ -13,7 +13,7 @@ import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import './styles.css';
 
 
-type FormData = {
+type CredentialsDTO = {
     username: string;
     password: string;
 }
@@ -34,9 +34,9 @@ function Login() {
 
     const history = useHistory();
 
-    const { register, handleSubmit, formState: {errors} } = useForm<FormData>();
+    const { register, handleSubmit, formState: {errors} } = useForm<CredentialsDTO>();
 
-    const onSubmit = (formData: FormData) => {
+    const onSubmit = (formData: CredentialsDTO) => {
         requestBackEndLogin(formData)
             .then(response => {
                 saveAuthData(response.data);

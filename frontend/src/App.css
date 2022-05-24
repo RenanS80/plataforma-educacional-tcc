@@ -21,6 +21,7 @@
     --gray-4: #9E9E9E; /* usei */
     --gray-5: #C4C4C4;
     --gray-6: #E1E1E1; /* usei */
+    --red: #D9534F; /* usei */
 }
 
 *,
@@ -68,4 +69,13 @@ h5 {
     font-size: 19px;
     font-weight: 500;
     letter-spacing: -0.025em;
+}
+
+.base-btn {
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    border-radius: 8px;
+    padding: 14px 20px;
+    transition: all .5s ease;
 }

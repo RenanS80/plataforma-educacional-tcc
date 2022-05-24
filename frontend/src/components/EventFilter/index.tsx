@@ -45,7 +45,7 @@ function EventFilter({ onSubmitFilter } : Props) {
     }
 
     useEffect(() => {
-        requestBackend({ url: `/categories` })
+        requestBackend({ url: `/categories?sort=name` })
             .then((response) => {
                 setSelectCategories(response.data.content);
             })

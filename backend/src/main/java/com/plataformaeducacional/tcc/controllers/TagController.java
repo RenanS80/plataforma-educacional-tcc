@@ -1,8 +1,8 @@
 package com.plataformaeducacional.tcc.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +19,10 @@ public class TagController {
 	@Autowired
 	private TagService service;
 	
-	// Lista todas as tags 
+	// Lista todos as tags paginadas
 	@GetMapping
-	public ResponseEntity<List<TagDTO>> findAll(){
-		List<TagDTO> list = service.findAll();
-		return ResponseEntity.ok(list);
+	public Page<TagDTO> findAll(Pageable pageable){
+		return service.findAll(pageable);
 	}
 	
 	// Recupera tag por id

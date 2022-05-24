@@ -55,6 +55,7 @@
     font-size: 17px;
     line-height: 30px;
     color: var(--black);
+    box-shadow: none !important;
 }
 
 .login-form-container input:focus {
@@ -95,7 +96,7 @@
     margin-top: 30px;
     padding: 16px 0px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-weight: 700;
     line-height: 19px;
     background: var(--purple);

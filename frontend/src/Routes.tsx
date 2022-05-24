@@ -64,30 +64,6 @@ function Routes() {
                 <Route path="/student">
                     <Student />
                 </Route>
-
-
-
-                {/* <Route path="/" element={<Home />} />
-
-        <Route path="/courses" element={<CourseCatalog />} />
-        <Route path="/events" element={<EventCatalog />} />
-        <Route path="/resources" element={<ResourceCatalog />} />
-
-        <Route path="/student" element={<Student />}>
-          <Route path="dashboard" element={<Users />} />
-          <Route path="profile" element={<h1>Meu Perfil</h1>} />
-          <Route path="courses" element={<h1>Meus Cursos</h1>} />
-          <Route path="events" element={<h1>Meus Eventos</h1>} />
-
-        </Route>
-
-        <Route path="/courses/:courseId" element={<CourseDetails />} />
-        <Route path="/events/:eventId" element={<EventDetails />} />
-
-          <Route path="/student/auth/login" element={<Login />} />
-          <Route path="/student/auth/signup" element={<Signup />} />
-
-        <Route path="*" element={<h1>Not Found</h1>} /> */}
             </Switch>
 
         </Router>

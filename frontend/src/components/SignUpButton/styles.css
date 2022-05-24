@@ -1,0 +1,9 @@
+.btn-register {
+    background: var(--purple);
+    color: var(--white);
+}
+
+.btn-register:hover {
+    color: var(--white);
+    opacity: .92;
+}

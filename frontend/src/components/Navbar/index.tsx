@@ -5,7 +5,7 @@ import { AuthContext } from 'AuthContext';
 import history from 'utils/history';
 import { getTokenData, isAuthenticated } from 'utils/auth';
 import { removeAuthData } from 'utils/storage';
-import RegisterButton from 'components/RegisterButton';
+import SignUpButton from 'components/SignUpButton';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -88,8 +88,8 @@ function Navbar() {
                             </div>
                         ) :
                             <div className="teste">
-                                <NavLink to="/student/auth/login" role="button" className="btn-login">Login</NavLink>
-                                <RegisterButton />
+                                <NavLink to="/student/auth/login" role="button" className="base-btn btn-login">Login</NavLink>
+                                <SignUpButton />
                             </div>
                         }
 

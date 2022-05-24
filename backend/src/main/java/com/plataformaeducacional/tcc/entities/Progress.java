@@ -16,28 +16,33 @@ public class Progress implements Serializable {
 	private Double score;
 	private CollectionStatus status;
 	
-	
 	public Progress() {
 	}
+		
+	public Progress(User user, Collection collection, Double score, CollectionStatus status) {
+		super();
+		id.setUser(user);
+		id.setCollection(collection);
+		this.score = score;
+		this.status = status;
+	}
 	
-	// Associa uma Collection a um Score
+	public User getUser() {
+		return id.getUser();
+	}
+	
+	public void setUser(User user) {
+		id.setUser(user);
+	}
+	
+	public Collection getCollection() {
+		return id.getCollection();
+	}
+	
 	public void setCollection(Collection collection) {
 		id.setCollection(collection);
 	}
 	
-	// Associa um User a um Score
-	public void setUser(User user) {
-		id.setUser(user);
-	}
-
-	public ProgressPK getId() {
-		return id;
-	}
-
-	public void setId(ProgressPK id) {
-		this.id = id;
-	}
-
 	public Double getScore() {
 		return score;
 	}

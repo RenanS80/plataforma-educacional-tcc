@@ -1,15 +1,3 @@
-INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Renan', 'Soares', 'renan@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
-INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Lucas', 'Lopes', 'lucas@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
-INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Maria', 'Andrade', 'maria@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
-
-INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
-INSERT INTO tb_role (authority) VALUES ('ROLE_STUDENT');
-
-INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 2);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 2);
-
 INSERT INTO tb_resource (title, description, link, registration_date) VALUES ('Caelum Estruturação de Páginas Usando HTML e CSS', 'Apostila que visa ensinar de uma maneira elegante, mostrando apenas o que é necessário e quando é necessário, no momento certo, poupando o leitor de assuntos que não costumam ser de seu interesse em determinadas fases do aprendizado', 'https://www.caelum.com.br/apostila/apostila-html-css-javascript.pdf', '2022-01-01');
 INSERT INTO tb_resource (title, description, link, registration_date) VALUES ('Playlist de aulas HTML5 e CSS3', 'A playlist de HTML5 e CSS3 vai ensinar a criar sites usando a linguagem de marcação hipertexto (HTML) e  folhas de estilo em cascata (CSS), todas em suas versões mais recentes. Neste curso, o Professor Gustavo Guanabara criou um conjunto de vídeos, exercícios e desafios como forma de fixar os conhecimento aprendido', 'https://www.youtube.com/watch?v=Ejkb_YpuHWs&list=PLHz_AreHm4dkZ9-atkcmcBaMZdmLHft8n', '2021-10-05');
 INSERT INTO tb_resource (title, description, link, registration_date) VALUES ('Ebook Python Eficiente', 'Com o eBook Python Eficiente você será capaz de programar em Python com mais qualidade e também mais agilidade – e o melhor ele é gratuito', 'https://www.horadecodar.com.br/ebook-python-eficiente-gratuito/', '2021-01-11');
@@ -127,7 +115,7 @@ INSERT INTO tb_tag (name) VALUES ('Tailwind');
 INSERT INTO tb_tag (name) VALUES ('Materialize CSS'); 
 
 INSERT INTO tb_tag (name) VALUES ('Javascript');
-INSERT INTO tb_tag (name) VALUES ('jQuery'); 
+INSERT INTO tb_tag (name) VALUES ('JQuery'); 
 INSERT INTO tb_tag (name) VALUES ('Typescript'); 
 INSERT INTO tb_tag (name) VALUES ('React'); 
 INSERT INTO tb_tag (name) VALUES ('Vue.js'); 
@@ -179,6 +167,17 @@ INSERT INTO tb_tag (name) VALUES ('Postman');
 INSERT INTO tb_tag (name) VALUES ('HTTP');
 INSERT INTO tb_tag (name) VALUES ('SCRUM');
 
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Renan', 'Soares', 'renan@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Lucas', 'Lopes', 'lucas@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Maria', 'Andrade', 'maria@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+
+INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
+INSERT INTO tb_role (authority) VALUES ('ROLE_STUDENT');
+
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 2);
 
 INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (1, 1);
 INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (1, 2);
@@ -242,17 +241,17 @@ INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (2, 2);
 INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (3, 24);
 INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (4, 39);
 
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 1, 4.0, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 1, null, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 3, 4.0, 1);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 9, 5.0, 0);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 2, 3.0, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 9, null, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 2, null, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 3, 2.0, 1);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 9, 4.0, 1);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 5, 4.0, 0);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 8, 4.0, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 5, null, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 8, null, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 7, 5.0, 1);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 6, 3.0, 0);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 4, 4.0, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 6, null, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 4, null, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 3, 4.0, 1);
 
 

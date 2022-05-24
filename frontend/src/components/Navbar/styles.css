@@ -62,16 +62,10 @@
 }
 
 .btn-login {
-    padding: 17px 30px;
     margin-right: 50px;
-    text-decoration: none;
-    font-weight: 500;
-    letter-spacing: 0.02em;
     color: var(--black);
-    background: transparent;
+    background-color: transparent;
     border: 1px solid transparent;
-    border-radius: 10px;
-    transition: all .4s ease;
 }
 
 .btn-login:hover {
@@ -96,7 +90,7 @@
 
 .navbar-logout-container:hover,
 .navbar-logout-container:hover .navbar-logout:hover{
-    color: rgb(214, 28, 28);
+    color: var(--red);
 }
 
 .navbar-logout {

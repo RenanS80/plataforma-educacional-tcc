@@ -19,7 +19,6 @@ public class ProgressPK implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	
 	public ProgressPK() {
 	}
 
@@ -37,5 +36,36 @@ public class ProgressPK implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((collection == null) ? 0 : collection.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProgressPK other = (ProgressPK) obj;
+		if (collection == null) {
+			if (other.collection != null)
+				return false;
+		} else if (!collection.equals(other.collection))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
 	}
 }

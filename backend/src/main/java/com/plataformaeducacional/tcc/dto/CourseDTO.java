@@ -1,5 +1,6 @@
 package com.plataformaeducacional.tcc.dto;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -13,13 +14,13 @@ public class CourseDTO extends CollectionDTO {
 	private static final long serialVersionUID = 1L;
 	
 	@PastOrPresent(message = "A data de registro não pode ser futura")
-	private LocalDate registrationDate;
+	private Instant registrationDate;
 	
 	public CourseDTO() {
 	}
 	
 	public CourseDTO(Long id, String title, String description, String link, String platform, String image,
-			Double score, Integer count, CategoryDTO category, LocalDate registrationDate) {
+			Double score, Integer count, CategoryDTO category, Instant registrationDate) {
 		super(id, title, description, link, platform, image, score, count, category);
 		this.registrationDate = registrationDate;
 	}
@@ -45,11 +46,11 @@ public class CourseDTO extends CollectionDTO {
 		resources.forEach(x -> this.resources.add(new ResourceDTO(x)));
 	}
 
-	public LocalDate getRegistrationDate() {
+	public Instant getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(LocalDate registrationDate) {
+	public void setRegistrationDate(Instant registrationDate) {
 		this.registrationDate = registrationDate;
 	}	
 }

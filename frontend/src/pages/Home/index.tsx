@@ -8,8 +8,8 @@ import { SpringPage } from 'types/Vendor/spring';
 import { Course } from 'types/Course';
 import { Category } from 'types/Category';
 import { BASE_URL } from 'utils/requests';
-import RegisterButton from 'components/RegisterButton';
 import MainCategoryCard from 'components/MainCategoryCard';
+import SignUpButton from 'components/SignUpButton';
 import CourseCard from 'components/CourseCard';
 import Footer from 'components/Footer';
 
@@ -40,7 +40,6 @@ function Home() {
     }, [])
 
     useEffect(() => {
-
         const params: AxiosRequestConfig = {
             method: 'GET',
             url: "/categories",
@@ -65,9 +64,9 @@ function Home() {
                     <div className="hero-title">
                         <h1>Estude o que quiser e desenvolva as suas skills</h1>
                         <p>Encontre uma variedade de cursos, eventos e materiais que combinam com a sua stack. <br />
-                            Cadastre-se na plataforma para uma experiência completa.
+                            Cadastre-se na plataforma para registrar novos conteúdos e enriquecer a comunidade tech.
                         </p>
-                        <RegisterButton />
+                        <SignUpButton />
                     </div>
 
                     <div className="hero-img">
