@@ -42,7 +42,6 @@
 
 .login-form-container form {
     margin-top: 40px;
-
 }
 
 .login-form-container input {
@@ -93,7 +92,7 @@
 
 .login-form-btn {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 10px;
     padding: 16px 0px;
     border: none;
     border-radius: 8px;

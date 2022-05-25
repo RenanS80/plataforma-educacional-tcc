@@ -44,6 +44,7 @@
     font-size: 17px;
     line-height: 30px;
     color: var(--black);
+    box-shadow: none !important;
 }
 
 .register-form-container input:focus {
@@ -57,6 +58,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     position: relative;
     margin-bottom: 20px;

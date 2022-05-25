@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import com.plataformaeducacional.tcc.entities.Role;
 import com.plataformaeducacional.tcc.entities.User;
 
 public class UserDTO implements Serializable {
@@ -28,11 +29,12 @@ public class UserDTO implements Serializable {
 	public UserDTO() {
 	}
 	
-	public UserDTO(Long id, String firstName, String lastName, String email) {
+	public UserDTO(Long id, String firstName, String lastName, String email, Set<RoleDTO> roles) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.roles = roles;
 	}
 	
 	// Para facilitar a cópia dos objetos do User para o DTO
@@ -78,5 +80,9 @@ public class UserDTO implements Serializable {
 
 	public Set<RoleDTO> getRoles() {
 		return roles;
+	}
+
+	public void setRoles(Set<RoleDTO> roles) {
+		this.roles = roles;
 	}
 }

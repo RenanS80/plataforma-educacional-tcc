@@ -58,7 +58,7 @@ function EventForm() {
 
         requestBackend(config)
             .then(response => {
-                toast.success('Evento cadastrado com sucesso');
+                toast.success('Evento cadastrado com sucesso. Visite o catálogo de eventos para visualizá-lo');
                 history.push('/student/dashboard');
             })
             .catch(() => {

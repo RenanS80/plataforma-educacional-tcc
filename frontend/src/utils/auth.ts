@@ -4,6 +4,8 @@ import { getAuthData } from './storage';
 
 export type Role = 'ROLE_STUDENT' | 'ROLE_ADMIN';
 
+export const defaultRole = [{ id: 2, name: 'ROLE_STUDENT' }]
+
 export type TokenData = {
     exp: number,
     user_name: string,

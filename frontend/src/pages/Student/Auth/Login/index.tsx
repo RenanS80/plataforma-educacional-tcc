@@ -107,7 +107,6 @@ function Login() {
                             <div className="invalid-feedback d-block">{errors.password?.message}</div>
                         </div>
 
-                        <p className="recover-password">Esqueci minha senha</p>
                         <button type="submit" className="login-form-btn">Entrar</button>
                     </form>
 

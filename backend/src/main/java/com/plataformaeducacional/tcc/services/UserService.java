@@ -62,7 +62,7 @@ public class UserService implements UserDetailsService {
 	@Transactional
 	public UserDTO insert(UserInsertDTO dto) {
 		User entity = new User();
-		copyDtoToEntity(dto, entity);
+		copyDtoToEntityInsert(dto, entity);
 		
 		// Criptografa a senha com o BCrypt para ser salva no banco de dados
 		entity.setPassword(passwordEncoder.encode(dto.getPassword()));
@@ -100,6 +100,18 @@ public class UserService implements UserDetailsService {
 		entity.setLastName(dto.getLastName());
 		entity.setEmail(dto.getEmail());
 		
+		entity.getRoles().clear();
+		for(RoleDTO roleDto : dto.getRoles()){
+			Role role = roleRepository.getOne(roleDto.getId());
+			entity.getRoles().add(role);
+		}
+	}
+	
+	private void copyDtoToEntityInsert(UserDTO dto, User entity) {
+		entity.setFirstName(dto.getFirstName());
+		entity.setLastName(dto.getLastName());
+		entity.setEmail(dto.getEmail());
+				
 		entity.getRoles().clear();
 		for(RoleDTO roleDto : dto.getRoles()){
 			Role role = roleRepository.getOne(roleDto.getId());

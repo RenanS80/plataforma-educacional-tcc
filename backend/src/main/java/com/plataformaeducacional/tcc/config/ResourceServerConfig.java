@@ -35,6 +35,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	
 	private static final String[] ADMIN = { "/users/**" };
 	
+	private static final String[] USER = {"/users"};
+	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.tokenStore(tokenStore);
@@ -49,6 +51,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		
 		http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()
+		.antMatchers(HttpMethod.POST, USER).permitAll() //rota liberada pra inserção de usuario
 		.antMatchers(HttpMethod.GET, STUDENT_OR_ADMIN).permitAll()    
 		.antMatchers(STUDENT_OR_ADMIN).hasAnyRole("ADMIN", "STUDENT")
 		.antMatchers(ADMIN).hasRole("ADMIN")

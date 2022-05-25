@@ -57,7 +57,7 @@ function CourseForm() {
 
         requestBackend(config)
             .then(response => {
-                toast.success('Curso cadastrado com sucesso');
+                toast.success('Curso cadastrado com sucesso. Visite o catálogo de cursos para visualizá-lo');
                 history.push('/student/dashboard');
             })
             .catch(() => {

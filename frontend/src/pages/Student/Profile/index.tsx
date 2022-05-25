@@ -22,7 +22,6 @@ function Profile() {
 
     return(
         <div>
-            <p><strong>Nome: </strong></p>
             <p><strong>E-mail: </strong>{authContextData.tokenData?.user_name}</p>
         </div>
     );
