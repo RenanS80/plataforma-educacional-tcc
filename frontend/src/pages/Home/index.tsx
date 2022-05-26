@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios, { AxiosRequestConfig } from 'axios';
 
-import HeroImg from 'assets/img/vector-study.svg';
-
 import { SpringPage } from 'types/Vendor/spring';
 import { Course } from 'types/Course';
 import { Category } from 'types/Category';
@@ -12,13 +10,19 @@ import MainCategoryCard from 'components/MainCategoryCard';
 import SignUpButton from 'components/SignUpButton';
 import CourseCard from 'components/CourseCard';
 import Footer from 'components/Footer';
+import HeroImg from 'assets/img/vector-study.svg';
 
 import './styles.css';
+import CardLoader from 'components/Loaders/CardLoader';
+import CategoryCardLoader from 'components/Loaders/CategoryCardLoader';
 
 function Home() {
 
     const [coursePage, setCoursePage] = useState<SpringPage<Course>>();
     const [categoryPage, setCategoryPage] = useState<SpringPage<Category>>();
+
+    // Hook para manipular os loaders
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
 
@@ -33,9 +37,13 @@ function Home() {
             }
         }
 
+        setIsLoading(true);
         axios(params)
             .then(response => {
                 setCoursePage(response.data);
+            })
+            .finally(() => {
+                setIsLoading(false);
             })
     }, [])
 
@@ -50,9 +58,13 @@ function Home() {
             }
         }
 
+        setIsLoading(true);
         axios(params)
             .then(response => {
                 setCategoryPage(response.data);
+            })
+            .finally(() => {
+                setIsLoading(false);
             })
     }, [])
 
@@ -83,13 +95,12 @@ function Home() {
                     </div>
 
                     <div className="categories-card-container">
-                        {categoryPage?.content.map((category) => (
-                            <div key={category.id}>
-                                <Link to="#">
+                        {isLoading ? <CategoryCardLoader /> : (
+                            categoryPage?.content.map((category) => (
+                                <div key={category.id}>
                                     <MainCategoryCard category={category} />
-                                </Link>
-                            </div>
-                        ))}
+                                </div>
+                            )))}
                     </div>
                 </div>
             </main>
@@ -102,13 +113,16 @@ function Home() {
                     </div>
 
                     <div className="popular-courses-container">
-                        {coursePage?.content.map((course) => (
-                            <div key={course.id}>
-                                <Link to={`/courses/${course.id}`}>
-                                    <CourseCard course={course} />
-                                </Link>
-                            </div>
-                        ))}
+
+                        {isLoading ? <CardLoader /> : (
+                            coursePage?.content.map((course) => (
+                                <div key={course.id}>
+                                    <Link to={`/courses/${course.id}`}>
+                                        <CourseCard course={course} />
+                                    </Link>
+                                </div>
+                            )))}
+
                     </div>
                 </div>
             </section>

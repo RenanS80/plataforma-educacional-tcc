@@ -9,6 +9,7 @@ import CourseFilter, { CourseFilterData } from 'components/CourseFilter';
 import CourseCard from 'components/CourseCard';
 import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';
+import CardLoader from '../../components/Loaders/CardLoader';
 
 import './styles.css';
 
@@ -21,9 +22,12 @@ function CourseCatalog() {
 
     const [page, setPage] = useState<SpringPage<Course>>();
 
+    // Hook para manipular os loaders
+    const [isLoading, setIsLoading] = useState(false);
+
     const [controlComponentData, setControlComponentData] = useState<ControlComponentData>({
         activePage: 0,
-        filterData: {title: "", category: null}
+        filterData: { title: "", category: null }
     });
 
     const handlePageChange = (pageNumber: number) => {
@@ -33,9 +37,9 @@ function CourseCatalog() {
     const handleSubmitFilter = (data: CourseFilterData) => {
         setControlComponentData({ activePage: 0, filterData: data })
     }
-    
 
     const getCourses = useCallback(() => {
+        setIsLoading(true);
         const config: AxiosRequestConfig = {
             method: 'GET',
             url: "/courses",
@@ -47,9 +51,13 @@ function CourseCatalog() {
             }
         }
 
-        requestBackend(config).then((response) => {
-            setPage(response.data);
-        })
+        requestBackend(config)
+            .then((response) => {
+                setPage(response.data);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
     }, [controlComponentData])
 
     useEffect(() => {
@@ -73,13 +81,14 @@ function CourseCatalog() {
 
                     <div className="course-catalog-container">
 
-                        {page?.content.map((course) => (
+                        {isLoading ? <CardLoader />  : (
+                            page?.content.map((course) => (
                             <div key={course.id}>
                                 <Link to={`/courses/${course.id}`}>
                                     <CourseCard course={course} />
                                 </Link>
                             </div>
-                        ))}
+                        )))}
 
                     </div>
 

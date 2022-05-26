@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
+import ResourceTableLoader from 'components/Loaders/ResourceTableLoader';
 
 type ControlComponentData = {
     activePage: number;
@@ -27,6 +28,9 @@ function ResourceCatalog() {
         filterData: { title: "" }
     });
 
+    // Hook para manipular os loaders
+    const [isLoading, setIsLoading] = useState(false);
+
     const handlePageChange = (pageNumber: number) => {
         setControlComponentData({ activePage: pageNumber, filterData: controlComponentData.filterData })
     }
@@ -37,6 +41,7 @@ function ResourceCatalog() {
 
 
     const getResources = useCallback(() => {
+        setIsLoading(true);
         const config: AxiosRequestConfig = {
             method: 'GET',
             url: "/resources",
@@ -47,9 +52,13 @@ function ResourceCatalog() {
             }
         }
 
-        requestBackend(config).then((response) => {
-            setPage(response.data);
-        })
+        requestBackend(config)
+            .then((response) => {
+                setPage(response.data);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
     }, [controlComponentData])
 
     useEffect(() => {
@@ -83,17 +92,18 @@ function ResourceCatalog() {
 
                                     <tbody>
 
-                                        {page?.content.map((resource) => (
+                                        {isLoading ? <ResourceTableLoader /> : (
+                                            page?.content.map((resource) => (
                                             <tr key={resource.id}>
                                                 <td>{`#${resource.id}`}</td>
                                                 <td>{resource.title}</td>
                                                 <td>{formatLocalDate(resource.registrationDate, "dd/MM/yyyy")}</td>
                                                 <td>
-                                                    <a 
+                                                    <a
                                                         href={resource?.link.startsWith('www') || !resource?.link.startsWith('http') || !resource?.link.startsWith('https') ?
-                                                            'https://'.concat(resource?.link as string) : resource?.link} 
+                                                            'https://'.concat(resource?.link as string) : resource?.link}
                                                         target="_blank" rel="noreferrer">
-                                                            Clique aqui
+                                                        Clique aqui
                                                     </a>
                                                 </td>
 
@@ -101,7 +111,7 @@ function ResourceCatalog() {
                                                     <FontAwesomeIcon icon={faEye} className="search-icon" />
                                                 </td>
                                             </tr>
-                                        ))}
+                                        )))}
 
                                     </tbody>
                                 </table>

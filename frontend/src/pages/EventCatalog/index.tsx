@@ -11,6 +11,7 @@ import Footer from 'components/Footer';
 import './styles.css';
 import { Link } from 'react-router-dom';
 import EventFilter, { EventFilterData } from 'components/EventFilter';
+import CardLoader from 'components/Loaders/CardLoader';
 
 type ControlComponentData = {
     activePage: number;
@@ -22,9 +23,12 @@ function EventCatalog() {
 
     const [page, setPage] = useState<SpringPage<Event>>();
 
+    // Hook para manipular os loaders
+    const [isLoading, setIsLoading] = useState(false);
+
     const [controlComponentData, setControlComponentData] = useState<ControlComponentData>({
         activePage: 0,
-        filterData: {title: "", category: null}
+        filterData: { title: "", category: null }
     });
 
     const handlePageChange = (pageNumber: number) => {
@@ -34,9 +38,10 @@ function EventCatalog() {
     const handleSubmitFilter = (data: EventFilterData) => {
         setControlComponentData({ activePage: 0, filterData: data })
     }
-    
+
 
     const getEvents = useCallback(() => {
+        setIsLoading(true);
         const config: AxiosRequestConfig = {
             method: 'GET',
             url: "/events",
@@ -48,9 +53,12 @@ function EventCatalog() {
             }
         }
 
-        requestBackend(config).then((response) => {
-            setPage(response.data);
-        })
+        requestBackend(config)
+            .then((response) => {
+                setPage(response.data);
+            }).finally(() => {
+                setIsLoading(false);
+            })
     }, [controlComponentData])
 
     useEffect(() => {
@@ -67,18 +75,21 @@ function EventCatalog() {
                     </div>
 
                     <div className="search-filter">
-                        <EventFilter onSubmitFilter={handleSubmitFilter} /> 
+                        <EventFilter onSubmitFilter={handleSubmitFilter} />
                     </div>
 
 
                     <div className="course-catalog-container">
-                        {page?.content.map((event) => (
-                            <div key={event.id}>
-                                <Link to={`/events/${event.id}`}>
-                                    <EventCard event={event} />
-                                </Link>
-                            </div>
-                        ))}
+
+                        {isLoading ? <CardLoader /> : (
+                            page?.content.map((event) => (
+                                <div key={event.id}>
+                                    <Link to={`/events/${event.id}`}>
+                                        <EventCard event={event} />
+                                    </Link>
+                                </div>
+                            )))}
+                            
                     </div>
 
                     <div className="course-pagination-container">
