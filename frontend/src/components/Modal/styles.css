@@ -1,0 +1,55 @@
+/* Conteúdo atrás do modal */
+.overlay-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+} 
+
+.resource-modal {
+    width: clamp(280px, 100%, 550px);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white-bg);
+    padding: 32px;
+    border-radius: 10px;
+    z-index: 1000;
+
+}
+
+.resource-modal-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.resource-modal-title button {
+    color: var(--gray-4);
+    font-size: 23px;
+}
+
+.resource-modal-content {
+    margin-top: 15px;
+    padding-bottom: 11px;
+}
+
+.resource-modal-content p {
+    font-size: 15px;
+    line-height: 22px;
+    margin-bottom: 30px;
+}
+
+.btn-visit-resource {
+    background: #6255A4;
+    color: var(--white);
+}
+
+.btn-visit-resource:hover {
+    color: var(--white);
+    opacity: .92;
+}

@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
+import ResourceFilter, { ResourceFilterData } from 'components/ResourceFilter';
+import ResourceTableLoader from 'components/Loaders/ResourceTableLoader';
+import Modal from 'components/Modal';
 import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';
-import ResourceFilter, { ResourceFilterData } from 'components/ResourceFilter';
 import { SpringPage } from 'types/Vendor/spring';
 import { Resource } from 'types/Resource';
 import { requestBackend } from 'utils/requests';
@@ -12,12 +14,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
-import ResourceTableLoader from 'components/Loaders/ResourceTableLoader';
 
 type ControlComponentData = {
     activePage: number;
     filterData: ResourceFilterData;
 }
+
 
 function ResourceCatalog() {
 
@@ -31,6 +33,11 @@ function ResourceCatalog() {
     // Hook para manipular os loaders
     const [isLoading, setIsLoading] = useState(false);
 
+    // Hooks para manipulação do modal
+    const [modal, setModal] = useState(false)
+    const [tempData, setTempData] = useState<string[]>([])
+
+
     const handlePageChange = (pageNumber: number) => {
         setControlComponentData({ activePage: pageNumber, filterData: controlComponentData.filterData })
     }
@@ -39,6 +46,13 @@ function ResourceCatalog() {
         setControlComponentData({ activePage: 0, filterData: data })
     }
 
+
+    const getModalData = (description: string, link: string) => {
+        let tempData = [description, link]
+        setTempData(resource => ['1', ...tempData])
+
+        return setModal(true)
+    }
 
     const getResources = useCallback(() => {
         setIsLoading(true);
@@ -93,31 +107,41 @@ function ResourceCatalog() {
                                     <tbody>
 
                                         {isLoading ? <ResourceTableLoader /> : (
-                                            page?.content.map((resource) => (
-                                            <tr key={resource.id}>
-                                                <td>{`#${resource.id}`}</td>
-                                                <td>{resource.title}</td>
-                                                <td>{formatLocalDate(resource.registrationDate, "dd/MM/yyyy")}</td>
-                                                <td>
-                                                    <a
-                                                        href={resource?.link.startsWith('www') || !resource?.link.startsWith('http') || !resource?.link.startsWith('https') ?
-                                                            'https://'.concat(resource?.link as string) : resource?.link}
-                                                        target="_blank" rel="noreferrer">
-                                                        Clique aqui
-                                                    </a>
-                                                </td>
+                                            page?.content.map((resource, key) => (
+                                                <tr key={key}>
+                                                    <td>{`#${resource.id}`}</td>
+                                                    <td>{resource.title}</td>
+                                                    <td>{formatLocalDate(resource.registrationDate, "dd/MM/yyyy")}</td>
+                                                    <td>
+                                                        <a
+                                                            href={resource?.link.startsWith('www') || !resource?.link.startsWith('http') || !resource?.link.startsWith('https') ?
+                                                                'https://'.concat(resource?.link as string) : resource?.link}
+                                                            target="_blank" rel="noreferrer">
+                                                            Clique aqui
+                                                        </a>
+                                                    </td>
 
-                                                <td>
-                                                    <FontAwesomeIcon icon={faEye} className="search-icon" />
-                                                </td>
-                                            </tr>
-                                        )))}
+                                                    <td>
+                                                        <button className="resource-view-description" onClick={() => getModalData(resource.description, resource.link)}>
+                                                            <FontAwesomeIcon icon={faEye} className="search-icon" />
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            )))}
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+
+                    {modal === true ? 
+                        <Modal 
+                            description={tempData[1]} 
+                            link={tempData[2]} 
+                            onClose={() => setModal(false)} 
+                        /> : ''
+                    }
 
                     <div className="resource-pagination-container">
                         <Pagination
