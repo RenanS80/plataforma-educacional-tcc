@@ -9,10 +9,8 @@ type LoginData = {
     password: string;
 }
 
-// URL do backend
 export const BASE_URL = process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
 
-// Dados da aplicação
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'learn';
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'learn123';
 

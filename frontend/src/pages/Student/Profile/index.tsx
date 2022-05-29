@@ -18,6 +18,7 @@ function Profile() {
                 authenticated: false
             })
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [authContextData])
 
     return(

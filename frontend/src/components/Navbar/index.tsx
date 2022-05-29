@@ -29,6 +29,7 @@ function Navbar() {
                 authenticated: false
             })
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [authContextData])
 
     const handleLogoutClick = (event : React.MouseEvent<HTMLAnchorElement>) => {
