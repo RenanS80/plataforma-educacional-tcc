@@ -44,7 +44,7 @@ function EventCatalog() {
         setIsLoading(true);
         const config: AxiosRequestConfig = {
             method: 'GET',
-            url: "/events?sort=startDate,desc",
+            url: "/events?sort=startDate,desc&sort=id",
             params: {
                 page: controlComponentData.activePage,
                 size: 12,

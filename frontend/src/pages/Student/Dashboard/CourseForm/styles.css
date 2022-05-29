@@ -42,15 +42,12 @@
 
 .course-crud-container textarea {
     border-radius: 5px;
+    padding-top: 8px; 
 }
 
 .course-crud-container input[type="text"]::placeholder,
 .course-crud-container textarea::placeholder {
     color: var(--gray-4);
-}
-
-.course-crud-container textarea::placeholder {
-    padding-top: 7px; 
 }
 
 .course-crud-select__control {

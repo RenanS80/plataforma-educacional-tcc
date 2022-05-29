@@ -118,7 +118,7 @@ function EventDetails() {
 
                                                     {event?.resources.map((resource, key) => (
                                                         <li key={key}>
-                                                            <a href={resource.link}>{resource.title}</a>
+                                                            <a href={resource.link} target="_blank" rel="noreferrer">{resource.title}</a>
                                                         </li>
                                                     ))}
 
