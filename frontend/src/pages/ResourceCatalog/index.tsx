@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
-import ResourceFilter, { ResourceFilterData } from 'components/ResourceFilter';
 import ResourceTableLoader from 'components/Loaders/ResourceTableLoader';
+import ResourceFilter, { ResourceFilterData } from 'components/ResourceFilter';
 import Modal from 'components/Modal';
 import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';

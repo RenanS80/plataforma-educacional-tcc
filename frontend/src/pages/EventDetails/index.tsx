@@ -92,7 +92,7 @@ function EventDetails() {
                                     <div className="event-details-info">
                                         <div className="event-details-info-description">
                                             <h4>Descrição do Evento</h4>
-                                            <p>{event?.description}</p>
+                                            <p>{!event?.description.endsWith('.') ? event?.description.concat('.') : event?.description}</p>
                                         </div>
 
                                         <div>

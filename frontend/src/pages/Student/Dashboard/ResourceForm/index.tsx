@@ -39,11 +39,11 @@ function ResourceForm() {
 
         requestBackend(config)
             .then(response => {
-                toast.success('Recurso cadastrado com sucesso');
+                toast.success('Recurso cadastrado com sucesso. Visite o catálogo de recursos para visualizá-lo.');
                 history.push('/student/dashboard');
             })
             .catch(() => {
-                toast.error('Erro ao cadastrar o recurso');
+                toast.error('Erro ao cadastrar o recurso.');
             })
     }
 

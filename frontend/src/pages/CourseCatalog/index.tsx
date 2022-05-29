@@ -42,7 +42,7 @@ function CourseCatalog() {
         setIsLoading(true);
         const config: AxiosRequestConfig = {
             method: 'GET',
-            url: "/courses?sort=score,desc",
+            url: "/courses",
             params: {
                 page: controlComponentData.activePage,
                 size: 12,

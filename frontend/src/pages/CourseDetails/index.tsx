@@ -83,7 +83,9 @@ function CourseDetails() {
                                             <a
                                                 href={course?.link.startsWith('www') || !course?.link.startsWith('http') || !course?.link.startsWith('https') ?
                                                     'https://'.concat(course?.link as string) : course?.link}
-                                                target="_blank" rel="noreferrer">
+                                                target="_blank" 
+                                                rel="noreferrer"
+                                            >
                                                 Clique aqui
                                             </a>
                                         </div>
@@ -96,7 +98,7 @@ function CourseDetails() {
                                     <div className="course-details-info">
                                         <div className="course-details-info-description">
                                             <h4>Descrição do Curso</h4>
-                                            <p>{course?.description}</p>
+                                            <p>{!course?.description.endsWith('.') ? course?.description.concat('.') : course?.description}</p>
                                         </div>
 
                                         <div>

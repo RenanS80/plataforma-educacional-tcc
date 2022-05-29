@@ -51,7 +51,7 @@
     text-transform: uppercase;
     padding: 11px 20px;
     background-color: transparent;
-    border: 1px solid var(--gray-4);
+    border: 1px solid var(--gray-6);
     color: var(--gray-4);
     border-radius: 5px;
     font-weight: 700;
@@ -65,9 +65,6 @@
     background-color: var(--white);
 }
 
-/* .btn-resource-clear-filter-word {
-    display: none;
-} */
 
 /* Media Queries */
 @media (max-width: 576px) {

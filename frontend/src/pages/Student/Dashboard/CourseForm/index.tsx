@@ -37,7 +37,7 @@ function CourseForm() {
     }, [])
 
     useEffect(() => {
-        requestBackend({ url: `/tags?size=55&sort=name` })
+        requestBackend({ url: `/tags?size=57&sort=name` })
             .then((response) => {
                 setSelectTags(response.data.content);
             })
@@ -57,11 +57,11 @@ function CourseForm() {
 
         requestBackend(config)
             .then(response => {
-                toast.success('Curso cadastrado com sucesso. Visite o catálogo de cursos para visualizá-lo');
+                toast.success('Curso cadastrado com sucesso. Visite o catálogo de cursos para visualizá-lo.');
                 history.push('/student/dashboard');
             })
             .catch(() => {
-                toast.error('Erro ao cadastrar o curso');
+                toast.error('Erro ao cadastrar o curso.');
             })
     }
 

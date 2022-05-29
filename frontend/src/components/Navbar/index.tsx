@@ -87,7 +87,7 @@ function Navbar() {
                                 <FontAwesomeIcon icon={faArrowRightFromBracket} className="navbar-logout-icon" />
                             </div>
                         ) :
-                            <div className="teste">
+                            <div className="btn-login-signup-container">
                                 <NavLink to="/student/auth/login" role="button" className="base-btn btn-login">Login</NavLink>
                                 <SignUpButton />
                             </div>

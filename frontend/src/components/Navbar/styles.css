@@ -103,7 +103,8 @@
 /* Media Queries */
 @media (max-width: 1200px){
     .main-menu {
-        margin-left: 70px;
+        margin-left: 40px;
+        gap: 30px;
     }
 
 }
@@ -121,11 +122,16 @@
 }
 
 @media (max-width: 536px) {
-    .teste {
+    .btn-login-signup-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 12px;
+    }
+
+    .nav-items {
+        justify-content: flex-start;
+        gap: 70px;
     }
 
     .btn-login {

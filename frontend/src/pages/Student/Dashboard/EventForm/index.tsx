@@ -38,7 +38,7 @@ function EventForm() {
     }, [])
 
     useEffect(() => {
-        requestBackend({ url: `/tags?size=55&sort=name` })
+        requestBackend({ url: `/tags?size=57&sort=name` })
             .then((response) => {
                 setSelectTags(response.data.content);
             })
@@ -58,11 +58,11 @@ function EventForm() {
 
         requestBackend(config)
             .then(response => {
-                toast.success('Evento cadastrado com sucesso. Visite o catálogo de eventos para visualizá-lo');
+                toast.success('Evento cadastrado com sucesso. Visite o catálogo de eventos para visualizá-lo.');
                 history.push('/student/dashboard');
             })
             .catch(() => {
-                toast.error('Erro ao cadastrar o evento');
+                toast.error('Erro ao cadastrar o evento.');
             })
     }
 

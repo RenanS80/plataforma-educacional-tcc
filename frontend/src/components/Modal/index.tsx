@@ -21,8 +21,17 @@ function Modal({ description, link, onClose }: Props) {
                     </button>
                 </div>
                 <div className="resource-modal-content">
-                    <p>{description}</p>
-                    <a href={link} target="_blank" rel="noreferrer" className="base-btn btn-visit-resource">Visitar</a>
+                    <p>{!description.endsWith('.') ? description.concat('.') : description}</p>
+
+                    <a 
+                        href={link.startsWith('www') || !link.startsWith('http') || !link.startsWith('https') ?
+                            'https://'.concat(link) : link} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="base-btn btn-visit-resource"
+                    >
+                        Visitar
+                    </a>
                 </div>
             </div>
         </>
