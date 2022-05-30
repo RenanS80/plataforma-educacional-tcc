@@ -26,6 +26,7 @@ INSERT INTO tb_category (name, image) VALUES ('DevOps', 'https://ik.imagekit.io/
 INSERT INTO tb_category (name, image) VALUES ('Gestão', 'https://ik.imagekit.io/zqxyh6u3ylz/TCC/Categorias/Gest%C3%A3o_J_9OsLsso.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651610753334');
 INSERT INTO tb_category (name, image) VALUES ('Automação', 'https://ik.imagekit.io/zqxyh6u3ylz/TCC/Categorias/Automa%C3%A7%C3%A3o_UmrBl7noS.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651610752260');
 INSERT INTO tb_category (name, image) VALUES ('IA', 'https://ik.imagekit.io/zqxyh6u3ylz/TCC/Categorias/IA_NRqgeEM_D.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651610753518');
+INSERT INTO tb_category (name, image) VALUES ('Cloud', 'https://ik.imagekit.io/zqxyh6u3ylz/TCC/Categorias/Cloud_ij7GWlIJl.png?ik-sdk-version=javascript-1.4.3&updatedAt=1653923018887');
 
 INSERT INTO tb_collection (category_id, title, description, link, platform, image, score, count) VALUES (3, 'Desenvolvimento Web Completo 2022 - 20 cursos + 20 projetos', 'Domine Web - 20 Cursos - HTML5, CSS3, SASS, Bootstrap, JS, ES6, PHP 7, OO, MySQL, JQuery, MVC, APIs, IONIC e muito mais', 'https://www.udemy.com/course/web-completo/', 'Udemy', 'https://ik.imagekit.io/zqxyh6u3ylz/TCC/Cursos/Full_Stack_3_6J45slMXFv.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651961821641', 4.0, 1);
 INSERT INTO tb_course (id, registration_date) VALUES (1, '2022-02-18');
