@@ -3,6 +3,7 @@ package com.plataformaeducacional.tcc.dto;
 import java.io.Serializable;
 
 import com.plataformaeducacional.tcc.entities.CollectionStatus;
+import com.plataformaeducacional.tcc.entities.Progress;
 
 public class ProgressDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -14,6 +15,23 @@ public class ProgressDTO implements Serializable {
 	
 	public ProgressDTO() {
 	}
+	
+	public ProgressDTO(Long collectionId, Long userId, Double score, CollectionStatus status) {
+		super();
+		this.collectionId = collectionId;
+		this.userId = userId;
+		this.score = score;
+		this.status = status;
+	}
+	
+	public ProgressDTO(Progress entity) {
+		super();
+		collectionId = entity.getCollection().getId();
+		userId = entity.getUser().getId();
+		score = entity.getScore();
+		status = entity.getStatus();
+	}
+
 
 	public Long getCollectionId() {
 		return collectionId;
@@ -46,6 +64,4 @@ public class ProgressDTO implements Serializable {
 	public void setStatus(CollectionStatus status) {
 		this.status = status;
 	}
-	
-	
 }

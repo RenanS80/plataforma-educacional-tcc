@@ -21,8 +21,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.plataformaeducacional.tcc.dto.RoleDTO;
-
 @Entity
 @Table(name = "tb_user")
 public class User implements UserDetails, Serializable {
@@ -160,5 +158,15 @@ public class User implements UserDetails, Serializable {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+	
+	public boolean hasRole(String rolename) {
+		for(Role role : roles) {
+			if(role.getAuthority().equals(rolename)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

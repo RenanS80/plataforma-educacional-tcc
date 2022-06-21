@@ -1,6 +1,8 @@
 package com.plataformaeducacional.tcc.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,12 +20,26 @@ public class ProgressService {
 	
 	@Autowired
 	private CollectionRepository collectionRepository;
-	
+		
 	@Autowired
 	private UserRepository userRepository;
 	
 	@Autowired
 	private ProgressRepository progressRepository;
+	
+	@Autowired
+	private AuthService authService;
+	
+	@Transactional(readOnly = true)
+	public Page<ProgressDTO> collectionsForCurrentUser(Pageable pageable/*, ProgressDTO dto*/){
+		User user = authService.authenticated();
+		System.out.println("USUÁRIO AUTENTICADO - id: " +user.getId()+ "nome: " +user.getFirstName());
+		
+		//Collection collection = collectionRepository.findById(dto.getCollectionId()).get();
+		
+		Page<Progress> page = progressRepository.collectionsForCurrentUser(user/*, collection*/, pageable);
+		return page.map(x -> new ProgressDTO(x));
+	}
 	
 	@Transactional
 	public CollectionDTO saveProgress(ProgressDTO dto) {

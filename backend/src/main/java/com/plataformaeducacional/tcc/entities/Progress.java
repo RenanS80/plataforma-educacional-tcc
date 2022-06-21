@@ -26,7 +26,7 @@ public class Progress implements Serializable {
 		this.score = score;
 		this.status = status;
 	}
-	
+		
 	public User getUser() {
 		return id.getUser();
 	}
