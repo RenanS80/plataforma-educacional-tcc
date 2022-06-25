@@ -11,8 +11,8 @@ import EventDetails from "pages/EventDetails";
 
 
 import './App.css'
-import Login from "pages/Student/Auth/Login";
-import Signup from "pages/Student/Auth/Signup";
+import Login from "pages/Student/pages/Auth/Login";
+import Signup from "pages/Student/pages/Auth/Signup";
 import history from "utils/history";
 
 function Routes() {

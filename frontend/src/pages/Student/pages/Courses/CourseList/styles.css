@@ -1,0 +1,31 @@
+.my-courses-container {
+    max-width: 1290px;
+    padding: 40px 30px;
+}
+
+.my-courses-top {
+    display: flex;
+    align-items: center;
+}
+
+.btn-add-content {
+    background: var(--purple);
+    color: var(--white);
+    border: 0;
+}
+
+.btn-add-content:hover {
+    color: var(--white);
+    opacity: .92;
+}
+
+.my-courses-list {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.my-courses-pagination-container {
+    margin-top: 60px;
+}

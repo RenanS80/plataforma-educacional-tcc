@@ -6,15 +6,17 @@ import { SpringPage } from 'types/Vendor/spring';
 import { Course } from 'types/Course';
 import { Category } from 'types/Category';
 import { BASE_URL } from 'utils/requests';
+
 import MainCategoryCard from 'components/MainCategoryCard';
 import SignUpButton from 'components/SignUpButton';
 import CourseCard from 'components/CourseCard';
 import Footer from 'components/Footer';
-import HeroImg from 'assets/img/vector-study.svg';
-
-import './styles.css';
 import CardLoader from 'components/Loaders/CardLoader';
 import CategoryCardLoader from 'components/Loaders/CategoryCardLoader';
+
+import HeroImg from 'assets/images/vectors/vector-study.svg';
+
+import './styles.css';
 
 function Home() {
 

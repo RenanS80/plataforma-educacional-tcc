@@ -1,0 +1,17 @@
+.course-crud-container label {
+    margin-bottom: 5px;
+    color: var(--gray-4);
+}
+
+.course-crud-container input[type="date"] {
+    color: var(--black);
+}
+
+/* Ícone de calendário personalizado na data */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url('/src/assets/images/icons/calendar.png') no-repeat;
+    border-width: thin;
+}

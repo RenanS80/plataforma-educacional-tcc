@@ -1,20 +1,20 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, } from '@fortawesome/free-solid-svg-icons';
-
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import { Course } from 'types/Course';
 import { BASE_URL } from 'utils/requests';
+import { formatLocalDate } from 'utils/format';
+
 import Score from 'components/Score';
 import Footer from 'components/Footer';
-
-import './styles.css';
-import { formatLocalDate } from 'utils/format';
 import CardDetailsLeftLoader from 'components/Loaders/CardDetailsLoader/CardDetailsLeftLoader';
 import CardDetailsRightLoader from 'components/Loaders/CardDetailsLoader/CardDetailsRightLoader';
 import CardDetailsCenterLoader from 'components/Loaders/CardDetailsLoader/CardDetailsCenterLoader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, } from '@fortawesome/free-solid-svg-icons';
+
+import './styles.css';
 
 type UrlParams = {
     courseId: string;

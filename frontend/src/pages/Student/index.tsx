@@ -1,13 +1,15 @@
 import PrivateRoute from 'components/PrivateRoute';
 import { Switch } from 'react-router-dom';
-import Courses from './Courses';
-import Dashboard from './Dashboard';
-import Events from './Events';
-import Navbar from './Navbar';
-import Profile from './Profile';
-import Resources from './Resources';
+
+import Navbar from './components/Navbar';
+import Dashboard from './pages/Dashboard';
+import Courses from './pages/Courses';
+import Events from './pages/Events';
+import Profile from './pages/Profile';
+import Users from './pages/Users';
+import ResourceForm from './pages/Dashboard/ResourceForm';
+
 import './styles.css';
-import Users from './Users';
 
 function Student() {
     return (
@@ -19,18 +21,23 @@ function Student() {
                     <PrivateRoute path="/student/dashboard">
                         <Dashboard />
                     </PrivateRoute>
+
                     <PrivateRoute path="/student/profile">
                         <Profile />
                     </PrivateRoute>
-                    <PrivateRoute path="/student/courses/:courseId">
+
+                    <PrivateRoute path="/student/courses">
                         <Courses />
                     </PrivateRoute>
-                    <PrivateRoute path="/student/events/:eventId">
+
+                    <PrivateRoute path="/student/events">
                         <Events />
                     </PrivateRoute>
-                    <PrivateRoute path="/student/resources/:resourceId">
-                        <Resources />
+
+                    <PrivateRoute path="/student/resources">
+                        <ResourceForm />
                     </PrivateRoute>
+
                     <PrivateRoute path="/student/users" roles={['ROLE_ADMIN']}>
                         <Users />
                     </PrivateRoute>

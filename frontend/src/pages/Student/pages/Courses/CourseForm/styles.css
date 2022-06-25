@@ -1,0 +1,101 @@
+.course-crud-container {
+    max-width: 1290px;
+    padding: 40px 30px;
+}
+
+.course-crud-form-card {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    border-radius: 20px;
+    background-color: var(--white-bg);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.course-crud-form-title {
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.margin-bottom-30 {
+    margin-bottom: 30px;
+}
+
+.course-crud-inputs-container {
+    margin-bottom: 30px;
+}
+
+.course-crud-inputs-left-container {
+    margin-bottom: 30px;
+}
+
+.course-crud-buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.course-crud-container input.form-control {
+    height: 50px;
+    border-radius: 5px;
+}
+
+.course-crud-container textarea {
+    border-radius: 5px;
+    padding-top: 8px; 
+}
+
+.course-crud-container input[type="text"]::placeholder,
+.course-crud-container textarea::placeholder {
+    color: var(--gray-4);
+}
+
+.course-crud-select__control {
+    height: 50px !important;
+    border-radius: 5px !important;
+}
+
+.course-crud-select__placeholder {
+    color: var(--gray-4) !important;
+}
+
+.course-crud-select__indicator-separator {
+    display: none;
+}
+
+.btn-register-content {
+    background: var(--purple);
+    border: 1px solid var(--purple);
+    color: var(--white);
+}
+
+.btn-cancel-content {
+    background: var(--white-bg);
+    border: 1px solid var(--red);
+    color: var(--red);
+}
+
+.btn-register-content:hover {
+    color: var(--white);
+    opacity: .92;
+}
+
+.btn-cancel-content:hover {
+    background-color: var(--red);
+    color: var(--white-bg);
+}
+
+
+/* Media Queries */
+@media (min-width: 576px) {
+    .course-crud-buttons-container {
+        justify-content: flex-end;
+        gap: 50px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .course-crud-inputs-left-container {
+        margin-left: 0;
+    }
+}

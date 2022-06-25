@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.plataformaeducacional.tcc.dto.CollectionDTO;
 import com.plataformaeducacional.tcc.dto.ProgressDTO;
+import com.plataformaeducacional.tcc.dto.ProgressGetDTO;
 import com.plataformaeducacional.tcc.entities.Collection;
 import com.plataformaeducacional.tcc.entities.Progress;
 import com.plataformaeducacional.tcc.entities.User;
@@ -31,14 +32,19 @@ public class ProgressService {
 	private AuthService authService;
 	
 	@Transactional(readOnly = true)
-	public Page<ProgressDTO> collectionsForCurrentUser(Pageable pageable/*, ProgressDTO dto*/){
+	public Page<ProgressGetDTO> coursesForCurrentUser(Pageable pageable){
 		User user = authService.authenticated();
-		System.out.println("USUÁRIO AUTENTICADO - id: " +user.getId()+ "nome: " +user.getFirstName());
-		
-		//Collection collection = collectionRepository.findById(dto.getCollectionId()).get();
-		
-		Page<Progress> page = progressRepository.collectionsForCurrentUser(user/*, collection*/, pageable);
-		return page.map(x -> new ProgressDTO(x));
+				
+		Page<Progress> page = progressRepository.coursesForCurrentUser(user, pageable);
+		return page.map(x -> new ProgressGetDTO(x));
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<ProgressGetDTO> eventsForCurrentUser(Pageable pageable){
+		User user = authService.authenticated();
+				
+		Page<Progress> page = progressRepository.eventsForCurrentUser(user, pageable);
+		return page.map(x -> new ProgressGetDTO(x));
 	}
 	
 	@Transactional

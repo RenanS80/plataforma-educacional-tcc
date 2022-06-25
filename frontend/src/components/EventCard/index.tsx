@@ -1,9 +1,10 @@
+import { Event } from 'types/Event';
+import { formatLocalDate } from 'utils/format';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 import './styles.css';
-import { Event } from 'types/Event';
-import { formatLocalDate } from 'utils/format';
 
 type Props = {
     event: Event;

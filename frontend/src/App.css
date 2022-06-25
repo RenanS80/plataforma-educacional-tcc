@@ -32,6 +32,11 @@ body, html {
     color: var(--black);
 }
 
+body {
+    min-height: 100%;
+    position: relative;
+}
+
 h1 {
     font-weight: 700;
     font-size: 42px;

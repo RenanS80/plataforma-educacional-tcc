@@ -1,0 +1,173 @@
+import { AxiosRequestConfig } from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Progress } from 'types/Progress';
+import { SpringPage } from 'types/Vendor/spring';
+import { requestBackend } from 'utils/requests';
+import CourseCard from '../../components/CourseCard';
+import EventCard from '../../components/EventCard';
+
+import './styles.css';
+
+type ControlComponentData = {
+    activePage: number;
+}
+
+function Dashboard() {
+
+    const [page, setPage] = useState<SpringPage<Progress>>();
+    const [eventPage, setEventPage] = useState<SpringPage<Progress>>();
+
+    const [controlComponentData, setControlComponentData] = useState<ControlComponentData>({
+        activePage: 0
+    });
+
+    const getLogedCourses = useCallback(() => {
+
+        const config: AxiosRequestConfig = {
+            method: 'GET',
+            url: "/progress/courses",
+            withCredentials: true,
+            params: {
+                page: controlComponentData.activePage,
+                size: 3
+            }
+        }
+
+        requestBackend(config)
+            .then((response) => {
+                setPage(response.data);
+            })
+    }, [controlComponentData])
+
+    useEffect(() => {
+        getLogedCourses();
+    }, [getLogedCourses])
+
+
+    const getLogedEvents = useCallback(() => {
+
+        const config: AxiosRequestConfig = {
+            method: 'GET',
+            url: "/progress/events",
+            withCredentials: true,
+            params: {
+                page: controlComponentData.activePage,
+                size: 3
+            }
+        }
+
+        requestBackend(config)
+            .then((response) => {
+                setEventPage(response.data);
+            })
+    }, [controlComponentData])
+
+    useEffect(() => {
+        getLogedEvents();
+    }, [getLogedEvents])
+
+    return (
+        <>
+            {/*             <div className="add-content-button-container">
+                <Link to="/student/courses/create">
+                    <button className="base-btn btn-add-content">Adicionar Curso</button>
+                </Link>
+                <Link to="/student/events/create">
+                    <button className="base-btn btn-add-content">Adicionar Evento</button>
+                </Link>
+                <Link to="/student/resources/create">
+                    <button className="base-btn btn-add-content">Adicionar Recurso</button>
+                </Link>
+            </div> */}
+
+            <main className="container-dashboard">
+                <div className="container">
+                    <div className="dashboard-greeting">
+                        <p>Olá, Renan! ✋</p>
+                        <p>Vamos aprender algo novo hoje?</p>
+                    </div>
+
+                    {page?.content.length! < 1 ?
+                        <header className="dashboard-steps-container">
+                            <div className="dashboard-steps-content">
+                                <h2>
+                                    Siga as etapas
+                                </h2>
+
+                                <ul className="steps-items">
+                                    <li>
+                                        <span className="steps-number">1</span>
+                                        Visite o catálogo de cursos ou eventos na barra de navegação.
+                                    </li>
+                                    <li>
+                                        <span className="steps-number">2</span>
+                                        Clique no curso ou evento desejado.
+                                    </li>
+                                    <li>
+                                        <span className="steps-number">3</span>
+                                        Depois clique em <strong>"INSCREVER-SE"</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </header>
+                        :
+
+                        <>
+                            <section className="dashboard-my-collections">
+                                <div className="dashboard-collections-title">
+                                    <h4>Meus cursos</h4>
+                                    <Link to="/student/courses">
+                                        <p>Ver todos</p>
+                                    </Link>
+                                </div>
+
+                                <div className="dashboard-collections-container">
+                                    {page?.content.map((course) => (
+                                        <div key={course.collection.id}>
+                                            <CourseCard
+                                                image={course.collection.image}
+                                                title={course.collection.title}
+                                                category={course.collection.category.name}
+                                                platform={course.collection.platform}
+                                                status={course.status}
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+
+                            <section className="dashboard-my-collections dashboard-my-events">
+                                <div className="dashboard-collections-title">
+                                    <h4>Meus eventos</h4>
+                                    <Link to="/student/events">
+                                        <p>Ver todos</p>
+                                    </Link>
+                                </div>
+
+                                <div className="dashboard-collections-container">
+                                    {eventPage?.content.map((event) => (
+                                        <div key={event.collection.id}>
+                                            <EventCard
+                                                image={event.collection.image}
+                                                title={event.collection.title}
+                                                category={event.collection.category.name}
+                                                platform={event.collection.platform}
+                                            /*startDate={event.collection.startDate}
+                                            endDate={event.collection.endDate} */
+                                            />
+
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        </>
+                    }
+                    
+                </div>
+            </main>
+        </>
+    );
+}
+
+export default Dashboard;

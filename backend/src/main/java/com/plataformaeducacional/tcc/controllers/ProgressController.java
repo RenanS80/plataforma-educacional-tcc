@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.plataformaeducacional.tcc.dto.CollectionDTO;
 import com.plataformaeducacional.tcc.dto.ProgressDTO;
+import com.plataformaeducacional.tcc.dto.ProgressGetDTO;
 import com.plataformaeducacional.tcc.services.ProgressService;
 
 @RestController
@@ -21,9 +22,17 @@ public class ProgressController {
 	@Autowired
 	private ProgressService service;
 	
-	@GetMapping
-	public ResponseEntity<Page<ProgressDTO>> collectionsForCurrentUser(Pageable pageable){
-		Page<ProgressDTO> page = service.collectionsForCurrentUser(pageable);
+	// Cursos paginados do usuário logado
+	@GetMapping(value = "/courses")
+	public ResponseEntity<Page<ProgressGetDTO>> coursesForCurrentUser(Pageable pageable){
+		Page<ProgressGetDTO> page = service.coursesForCurrentUser(pageable);
+		return ResponseEntity.ok().body(page);
+	}
+	
+	// Eventos paginados do usuário logado
+	@GetMapping(value = "/events")
+	public ResponseEntity<Page<ProgressGetDTO>> eventsForCurrentUser(Pageable pageable){
+		Page<ProgressGetDTO> page = service.eventsForCurrentUser(pageable);
 		return ResponseEntity.ok().body(page);
 	}
 	

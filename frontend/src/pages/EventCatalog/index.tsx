@@ -1,23 +1,23 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AxiosRequestConfig } from 'axios';
 
 import { Event } from 'types/Event';
 import { SpringPage } from 'types/Vendor/spring';
 import { requestBackend } from 'utils/requests';
+
 import EventCard from 'components/EventCard';
+import EventFilter, { EventFilterData } from 'components/EventFilter';
 import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';
+import CardLoader from 'components/Loaders/CardLoader';
 
 import './styles.css';
-import { Link } from 'react-router-dom';
-import EventFilter, { EventFilterData } from 'components/EventFilter';
-import CardLoader from 'components/Loaders/CardLoader';
 
 type ControlComponentData = {
     activePage: number;
     filterData: EventFilterData;
 }
-
 
 function EventCatalog() {
 

@@ -1,7 +1,9 @@
-import './styles.css';
 import { MouseEventHandler } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+
+import './styles.css';
 
 type Props = {
     description: string,

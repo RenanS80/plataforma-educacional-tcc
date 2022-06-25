@@ -44,7 +44,7 @@ public class CourseService {
 	
 	@Transactional(readOnly = true)
 	public Page<CourseDTO> findAll(Long categoryId, String title, Pageable pageable){
-		Category category = (categoryId == 0) ? null : categoryRepository.getOne(categoryId) ;
+		Category category = (categoryId == 0) ? null : categoryRepository.getOne(categoryId);
 		Page<Course> result = repository.find(category, title, pageable);
 		
 		// Converte Course para CourseDTO

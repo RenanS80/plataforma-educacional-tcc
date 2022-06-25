@@ -1,4 +1,5 @@
 import Stars from 'components/Stars';
+
 import './styles.css';
 
 type Props = {

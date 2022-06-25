@@ -2,14 +2,16 @@ import 'bootstrap/js/src/collapse.js';
 import { useContext, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from 'AuthContext';
+
 import history from 'utils/history';
 import { getTokenData, isAuthenticated } from 'utils/auth';
 import { removeAuthData } from 'utils/storage';
+
 import SignUpButton from 'components/SignUpButton';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import Logo from 'assets/img/logo.png';
+import Logo from 'assets/images/vectors/logo.png';
 
 import './styles.css';
 
