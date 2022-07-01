@@ -2,12 +2,11 @@ import PrivateRoute from 'components/PrivateRoute';
 import { Switch } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
+import ResourceForm from './components/ResourceForm';
 import Dashboard from './pages/Dashboard';
 import Courses from './pages/Courses';
 import Events from './pages/Events';
-import Profile from './pages/Profile';
 import Users from './pages/Users';
-import ResourceForm from './pages/Dashboard/ResourceForm';
 
 import './styles.css';
 
@@ -20,10 +19,6 @@ function Student() {
                 <Switch>
                     <PrivateRoute path="/student/dashboard">
                         <Dashboard />
-                    </PrivateRoute>
-
-                    <PrivateRoute path="/student/profile">
-                        <Profile />
                     </PrivateRoute>
 
                     <PrivateRoute path="/student/courses">

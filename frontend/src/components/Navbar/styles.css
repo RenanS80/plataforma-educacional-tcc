@@ -89,7 +89,7 @@
 }
 
 .navbar-logout-container:hover,
-.navbar-logout-container:hover .navbar-logout:hover{
+.navbar-logout-container:hover a {
     color: var(--red);
 }
 

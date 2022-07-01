@@ -29,3 +29,22 @@
 .my-courses-pagination-container {
     margin-top: 60px;
 }
+
+@media (max-width: 768px) {
+    .my-courses-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 636px) {
+    .my-courses-top {
+        justify-content: center;
+    }
+
+    .my-courses-list {
+        align-items: center;
+        justify-content: center;
+    }
+}

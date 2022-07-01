@@ -1,0 +1,81 @@
+.progress-form-container {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.progress-form {
+    width: calc(100% - 20px);
+}
+
+.progress-form-group {
+    margin-bottom: 20px;
+}
+
+.progress-form-group label {
+    font-size: 14px !important;
+    color: var(--gray-4);
+}
+
+.progress-form-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.progress-form-card-image {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+.progress-card-bottom-container {
+    background-color: var(--white-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 10px 20px 10px;
+    border-radius: 0 0 8px 8px;
+}
+
+.progress-card-bottom-container h5 {
+    color: var(--black);
+    text-align: center;
+    margin: 15px 0 30px 0;
+}
+
+.progress-btn {
+    width: 170px;
+    height: 45px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.015em;
+    transition: all .4s ease;
+    border: none;
+}
+
+.progress-btn:hover {
+    color: var(--white);
+}
+
+.btn-save {
+    background-color: var(--purple);
+    color: var(--white);
+}
+
+.btn-save:hover {
+    opacity: 0.9;
+}
+
+.btn-cancel {
+    background-color: var(--white-bg);
+    border: 1px solid var(--red);
+    color: var(--red);
+}
+
+.btn-cancel:hover {
+    background-color: var(--red);
+}
+
+.progress-form-input__indicator-separator {
+    display: none;
+}

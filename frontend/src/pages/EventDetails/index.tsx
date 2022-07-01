@@ -1,16 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useForm } from 'react-hook-form';
+import axios, { AxiosRequestConfig } from 'axios';
+import { AuthContext } from 'AuthContext';
+import { toast } from 'react-toastify';
 
-import { BASE_URL } from 'utils/requests';
+import { BASE_URL, requestBackend } from 'utils/requests';
 import { Event } from 'types/Event';
 import { formatLocalDate } from 'utils/format';
+import { getTokenData, isAuthenticated } from 'utils/auth';
+import { getAuthData } from 'utils/storage';
 
 import Score from 'components/Score';
 import Footer from 'components/Footer';
 import CardDetailsCenterLoader from 'components/Loaders/CardDetailsLoader/CardDetailsCenterLoader';
 import CardDetailsLeftLoader from 'components/Loaders/CardDetailsLoader/CardDetailsLeftLoader';
 import CardDetailsRightLoader from 'components/Loaders/CardDetailsLoader/CardDetailsRightLoader';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,8 +32,27 @@ function EventDetails() {
 
     const [event, setEvent] = useState<Event>();
 
+    const { handleSubmit } = useForm();
+
     // Hook para manipular os loaders
     const [isLoading, setIsLoading] = useState(false);
+
+    const { authContextData, setAuthContextData } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (isAuthenticated()) {
+            setAuthContextData({
+                authenticated: isAuthenticated(),
+                tokenData: getTokenData()
+            })
+        }
+        else {
+            setAuthContextData({
+                authenticated: false
+            })
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [authContextData])
 
     useEffect(() => {
         setIsLoading(true);
@@ -39,6 +64,31 @@ function EventDetails() {
                 setIsLoading(false);
             })
     }, [eventId])
+
+    // Requisição para se inscrever no curso
+    const onSubmit = () => {
+        const authData = getAuthData();
+
+        const config: AxiosRequestConfig = {
+            method: 'POST',
+            url: "/progress",
+            baseURL: BASE_URL,
+            data: {
+                collectionId: eventId,
+                userId: authData.userId
+            },
+            withCredentials: true           // precisa estar autenticado para fazer essa requisição
+        }
+
+        requestBackend(config)
+            .then(response => {
+                toast.success('Inscrição realizada com sucesso. Visite "Meus Eventos" na área de Estudante para visualizá-lo');
+            })
+            .catch(() => {
+                toast.error('Erro ao se inscrever no evento');
+            })
+    }
+
 
     return (
         <>
@@ -133,10 +183,19 @@ function EventDetails() {
                                             {event?.tags.map((tag, key) => (
                                                 <p key={key} className="event-details-tags">{`#${tag.name.replace(/\s+/g, '')}`}</p>   /* Remover os espaços em branco da tag */
                                             ))}
-
                                         </div>
                                     </div>
                                 </>
+                            }
+
+                            {authContextData.authenticated ? (
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                    <div>
+                                        <button className="base-btn subscribe-btn">Inscrever-se</button>
+                                    </div>
+                                </form>
+                            ) :
+                                ''
                             }
 
                         </div>

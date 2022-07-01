@@ -9,9 +9,7 @@ type Props = {
 }
 
 function Score({ score, count, origin }: Props) {
-
     return (
-
         <div className={origin === 'catalog' ? 'catalog-score-info' : 'details-score-info'}>
             <p className="score">{score > 0 ? score.toFixed(1) : '-'}</p>  
             <div className={origin === 'catalog' ? 'asasa' : 'asa'} >

@@ -17,7 +17,6 @@ public class ProgressDTO implements Serializable {
 	}
 	
 	public ProgressDTO(Long collectionId, Long userId, Double score, CollectionStatus status) {
-		super();
 		this.collectionId = collectionId;
 		this.userId = userId;
 		this.score = score;
@@ -25,13 +24,11 @@ public class ProgressDTO implements Serializable {
 	}
 	
 	public ProgressDTO(Progress entity) {
-		super();
 		collectionId = entity.getCollection().getId();
 		userId = entity.getUser().getId();
 		score = entity.getScore();
 		status = entity.getStatus();
 	}
-
 
 	public Long getCollectionId() {
 		return collectionId;

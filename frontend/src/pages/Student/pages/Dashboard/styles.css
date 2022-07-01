@@ -5,7 +5,7 @@
 
 .dashboard-greeting p:first-child {
     font-weight: 500;
-    font-size: 17px;
+    font-size: 19px;
     margin-bottom: 8px;
 }
 
@@ -68,4 +68,37 @@
     letter-spacing: -0.015em;
     color: var(--purple);
     margin-right: 10px;
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .dashboard-collections-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 636px) {
+    .dashboard-collections-container {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dashboard-steps-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .dashboard-steps-content h2 {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 468px) {
+    .steps-items {
+        padding-left: 0;
+        padding: 0 5px;
+    }
 }

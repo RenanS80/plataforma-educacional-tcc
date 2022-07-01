@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom';
+
 import { hasAnyRoles } from 'utils/auth';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGraduationCap, faUser, faTv, faFile, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faGraduationCap, faTv, faFile, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { ReactComponent as DashboardIcon } from 'assets/images/icons/dashboard.svg';
 
 import './styles.css';
@@ -15,12 +16,6 @@ function Navbar() {
                     <NavLink to="/student/dashboard" className="student-nav-item" activeClassName="active">
                         <DashboardIcon className="dashboard-icon navbar-icon active" />
                         <p>Dashboard</p>
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/student/profile" className="student-nav-item" activeClassName="active">
-                        <FontAwesomeIcon icon={faUser} className="profile-icon navbar-icon" />
-                        <p>Meu Perfil</p>
                     </NavLink>
                 </li>
                 <li>

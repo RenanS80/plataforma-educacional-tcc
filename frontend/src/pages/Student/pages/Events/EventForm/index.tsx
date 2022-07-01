@@ -1,7 +1,7 @@
-import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import { useForm, Controller } from 'react-hook-form';
+import { AxiosRequestConfig } from 'axios';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
 
@@ -20,7 +20,9 @@ function EventForm() {
     const { register, handleSubmit, control, formState: { errors } } = useForm<Event>();
 
     const [selectCategories, setSelectCategories] = useState<Category[]>([]);
+
     const [selectResources, setSelectResources] = useState<Resource[]>([]);
+    
     const [selectTags, setSelectTags] = useState<Tag[]>([]);
 
     useEffect(() => {

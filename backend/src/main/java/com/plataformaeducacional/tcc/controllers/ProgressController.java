@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +39,13 @@ public class ProgressController {
 	
 	@PutMapping
 	public CollectionDTO saveProgress(@RequestBody ProgressDTO dto){
-		CollectionDTO CollectionDto = service.saveProgress(dto);
-		return CollectionDto;
+		CollectionDTO collectionDto = service.saveProgress(dto);
+		return collectionDto;
+	}
+	
+	@PostMapping
+	public CollectionDTO subscribeCollection(@RequestBody ProgressDTO dto){
+		CollectionDTO collectionDto = service.subscribeCollection(dto);
+		return collectionDto;
 	}
 }

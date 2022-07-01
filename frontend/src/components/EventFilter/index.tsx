@@ -52,6 +52,7 @@ function EventFilter({ onSubmitFilter } : Props) {
             })
     }, [])
 
+    
     return (
         <div className="base-card event-filter-container">
             <form onSubmit={handleSubmit(onSubmit)} className="event-filter-form">

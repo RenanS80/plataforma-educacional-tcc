@@ -1,23 +1,21 @@
+import { Link } from 'react-router-dom';
+import { CollectionStatus } from 'types/CollectionStatus';
+
 import { ReactComponent as CompleteStatus } from 'assets/images/icons/status-complete.svg';
 import { ReactComponent as InProgressStatus } from 'assets/images/icons/status-inprogress.svg';
 
 import './styles.css';
 
 type Props = {
+    id: number;
     image: string;
     title: string;
     category: string;
     platform: string;
-    status: string;
+    status: CollectionStatus;
 }
 
-function CourseCard({ image, title, category, platform, status }: Props) {
-
-    // Primeira letra do status maiúscula
-    const capitalizeStatus = (status : string) => {
-        const lower = status.toLowerCase();
-        return status.charAt(0).toUpperCase() + lower.slice(1);
-    }
+function CourseCard({id, image, title, category, platform, status }: Props) {
 
     return (
         <div className="course-card-student-container">
@@ -30,14 +28,15 @@ function CourseCard({ image, title, category, platform, status }: Props) {
                     <h5>{title}</h5>
                     <p>{category} | {platform}</p>
                     <div className="course-card-student-status">
-                        {status === 'CURSANDO' ? <InProgressStatus /> : <CompleteStatus /> }
-                        <p>{capitalizeStatus(status)}</p>
+                        {String(status) === "Cursando" ? <InProgressStatus /> : <CompleteStatus />}
+                        <p>{status}</p>
                     </div>
                 </div>
+
                 <div className="course-card-student-button">
-                    <button>
-                        Avaliar
-                    </button>
+                    <Link to={`/student/courses/progress/${id}`}>
+                        <button>Avaliar</button>
+                    </Link>
                 </div>
             </div>
         </div>

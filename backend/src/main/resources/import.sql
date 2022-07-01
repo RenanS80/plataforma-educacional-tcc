@@ -113,7 +113,7 @@ INSERT INTO tb_collection (category_id, title, description, link, platform, imag
 INSERT INTO tb_event (id, start_date, end_date) VALUES (28, '2022-05-09', '2022-05-13');
 
 INSERT INTO tb_collection (category_id, title, description, link, platform, image, score, count) VALUES (3, 'Semana Spring React', 'Evento online com o objetivo de compartilhar o conhecimento necessário para que os alunos conheçam o caminho para se tornarem desenvolvedores profissionais, aptos ao mercado de trabalho', 'https://devsuperior.com.br/evento-sds', 'DevSuperior', 'https://ik.imagekit.io/zqxyh6u3ylz/TCC/Cursos/Devsuperior_7_V8rF6hX.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651009409894', 0.0, 0);
-INSERT INTO tb_event (id, start_date, end_date) VALUES (29, '2022-05-09', '2022-05-15');
+INSERT INTO tb_event (id, start_date, end_date) VALUES (29, '2022-07-11', '2022-07-17');
 
 INSERT INTO tb_collection (category_id, title, description, link, platform, image, score, count) VALUES (11, 'Iniciativa DevOps', 'Conheça um método prático para se tornar um especialista na cultura DevOps e alavancar sua carreira com um perfil bastante disputado e bem pago no mercado de TI. Você vai ter a disposição uma comunidade exclusiva, no Discord, para tirar todas as suas dúvidas sobre o conteúdo do evento e fazer muito networking com outras pessoas que têm o mesmo objetivo que você. Ao final de cada aula é proposto um desafio que, além de consolidar o seu conhecimento, vai deixar todo o aprendizado muito mais divertido e prático.', 'https://iniciativadevops.com.br/', 'Iniciativa DevOps', 'https://ik.imagekit.io/zqxyh6u3ylz/TCC/Eventos/Iniciativa_DevOps_GnJFncvai.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1653781019908', 0.0, 0);
 INSERT INTO tb_event (id, start_date, end_date) VALUES (30, '2022-06-06', '2022-06-12');
@@ -271,25 +271,25 @@ INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (12, 9);
 INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (12, 12);
 INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (13, 49);
 
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 1, null, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 1, 5.0, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 3, 4.0, 1);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 9, null, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 9, 4.5, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 5, 5.0, 1);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 6, null, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 6, 4.5, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 7, 4.0, 1);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 8, null, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 8, 4.5, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 28, 5.0, 1);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 29, 5.0, 1);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 30, 5.0, 1);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (1, 31, 5.0, 1);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 2, null, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 2, 4.0, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 3, 2.0, 1);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 9, 4.0, 1);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 5, null, 0);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 8, null, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (2, 5, 5.0, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 8, 4.5, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 7, 5.0, 1);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 6, null, 0);
-INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 4, null, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 6, 4.5, 0);
+INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 4, 4.5, 0);
 INSERT INTO tb_user_collection_progress (user_id, collection_id, score, status) VALUES (3, 3, 4.0, 1);
 
 INSERT INTO tb_collection_resource (collection_id, resource_id) VALUES (1, 1);

@@ -1,11 +1,14 @@
-import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
+import { AxiosRequestConfig } from 'axios';
+
 import { User } from 'types/User';
 import { SpringPage } from 'types/Vendor/spring';
 import { requestBackend } from 'utils/requests';
 
-const Users = () => {
+function Users() {
+
     const [page, setPage] = useState<SpringPage<User>>();
+
     useEffect(() => {
         const params: AxiosRequestConfig = {
             url: '/users',
@@ -20,6 +23,7 @@ const Users = () => {
         });
     }, []);
 
+    
     return (
         <div>
             {page?.content.map((item) => (

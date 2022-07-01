@@ -1,5 +1,5 @@
-import Score from 'components/Score';
 import { Course } from 'types/Course';
+import Score from 'components/Score';
 
 import './styles.css';
 

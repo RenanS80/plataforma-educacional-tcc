@@ -69,3 +69,73 @@
 .course-card-student-button button:hover {
     background-color: var(--white-light);
 }
+
+@media (max-width: 768px) {
+    .course-card-student-container {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        min-height: auto;
+        width: 240px;
+        gap: 0px;
+    }
+
+    .course-card-student-image {
+        height: 150px;
+    }
+
+    .course-card-student-image,
+    .course-card-student-image img {
+        width: 100%;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 10px;
+    }
+
+    .course-card-student-image img {
+        height: 100%;
+        object-fit: fill;
+    }
+
+    .course-card-student-content {
+        padding: 20px 12px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .course-card-student-button {
+        margin-right: 0;
+        margin-top: 20px;
+    }
+
+    .course-card-student-info > p {
+        display: none;
+    }
+
+    .course-card-student-status {
+        margin-top: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .course-card-student-info h5 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+}
+
+@media (max-width: 636px) {
+    .course-card-student-container {
+       width: 280px;
+    }
+}
+
+@media (max-width: 408px) {
+    .course-card-student-container {
+       width: 220px;
+    }
+}

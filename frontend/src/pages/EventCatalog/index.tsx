@@ -39,7 +39,6 @@ function EventCatalog() {
         setControlComponentData({ activePage: 0, filterData: data })
     }
 
-
     const getEvents = useCallback(() => {
         setIsLoading(true);
         const config: AxiosRequestConfig = {
@@ -65,6 +64,7 @@ function EventCatalog() {
         getEvents();
     }, [getEvents])
 
+
     return (
         <>
             <section className="event-catalog">
@@ -77,7 +77,6 @@ function EventCatalog() {
                     <div className="search-filter">
                         <EventFilter onSubmitFilter={handleSubmitFilter} />
                     </div>
-
 
                     <div className="course-catalog-container">
 

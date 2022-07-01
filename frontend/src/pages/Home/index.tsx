@@ -21,13 +21,13 @@ import './styles.css';
 function Home() {
 
     const [coursePage, setCoursePage] = useState<SpringPage<Course>>();
+
     const [categoryPage, setCategoryPage] = useState<SpringPage<Category>>();
 
     // Hook para manipular os loaders
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-
         const params: AxiosRequestConfig = {
             method: 'GET',
             url: "/courses",

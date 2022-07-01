@@ -52,6 +52,7 @@ function CourseFilter({ onSubmitFilter } : Props) {
             })
     }, [])
 
+    
     return (
         <div className="base-card course-filter-container">
             <form onSubmit={handleSubmit(onSubmit)} className="course-filter-form">

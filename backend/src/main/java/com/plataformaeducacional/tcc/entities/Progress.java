@@ -20,7 +20,6 @@ public class Progress implements Serializable {
 	}
 		
 	public Progress(User user, Collection collection, Double score, CollectionStatus status) {
-		super();
 		id.setUser(user);
 		id.setCollection(collection);
 		this.score = score;

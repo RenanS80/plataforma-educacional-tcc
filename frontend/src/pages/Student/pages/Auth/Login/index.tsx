@@ -26,6 +26,9 @@ function Login() {
 
     const location = useLocation<LocationState>();
 
+    // Hook para manipular os loaders
+    const [isLoading, setIsLoading] = useState(false);
+
     const { from } = location.state || { from: { pathname: '/student' } }
 
     const { setAuthContextData } = useContext(AuthContext);
@@ -34,9 +37,10 @@ function Login() {
 
     const history = useHistory();
 
-    const { register, handleSubmit, formState: {errors} } = useForm<CredentialsDTO>();
+    const { register, handleSubmit, formState: { errors } } = useForm<CredentialsDTO>();
 
     const onSubmit = (formData: CredentialsDTO) => {
+        setIsLoading(true);
         requestBackEndLogin(formData)
             .then(response => {
                 saveAuthData(response.data);
@@ -49,10 +53,13 @@ function Login() {
             })
             .catch(error => {
                 setHasError(true);
-                console.log('ERRO', error);
+            })
+            .finally(() => {
+                setIsLoading(false);
             })
     }
 
+    
     return (
         <main className="main-login">
             <div className="login-image-container">
@@ -107,7 +114,9 @@ function Login() {
                             <div className="invalid-feedback d-block">{errors.password?.message}</div>
                         </div>
 
-                        <button type="submit" className="login-form-btn">Entrar</button>
+                        <button type="submit" className="login-form-btn">
+                            {isLoading && <div className="spin-loader-login"></div>} Entrar
+                        </button>
                     </form>
 
                     <p className="login-link-register">Não tem uma conta?

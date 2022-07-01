@@ -1,16 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import axios, { AxiosRequestConfig } from 'axios';
+import { AuthContext } from 'AuthContext';
 
 import { Course } from 'types/Course';
-import { BASE_URL } from 'utils/requests';
+import { BASE_URL, requestBackend } from 'utils/requests';
 import { formatLocalDate } from 'utils/format';
+import { getTokenData, isAuthenticated } from 'utils/auth';
+import { getAuthData } from 'utils/storage';
 
 import Score from 'components/Score';
 import Footer from 'components/Footer';
 import CardDetailsLeftLoader from 'components/Loaders/CardDetailsLoader/CardDetailsLeftLoader';
 import CardDetailsRightLoader from 'components/Loaders/CardDetailsLoader/CardDetailsRightLoader';
 import CardDetailsCenterLoader from 'components/Loaders/CardDetailsLoader/CardDetailsCenterLoader';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, } from '@fortawesome/free-solid-svg-icons';
 
@@ -24,6 +30,8 @@ function CourseDetails() {
 
     // Hook para pegar o id de cada curso e passá-lo na URL
     const { courseId } = useParams<UrlParams>();
+    
+    const { handleSubmit } = useForm();
 
     // Hook para manipular o estado do curso
     const [course, setCourse] = useState<Course>();
@@ -31,7 +39,24 @@ function CourseDetails() {
     // Hook para manipular os loaders
     const [isLoading, setIsLoading] = useState(false);
 
-    // Hook para amarrar a requisição ao ciclo de vida do componente, executando-o apenas uma vez
+    const { authContextData, setAuthContextData } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (isAuthenticated()) {
+            setAuthContextData({
+                authenticated: isAuthenticated(),
+                tokenData: getTokenData()
+            })
+        }
+        else {
+            setAuthContextData({
+                authenticated: false
+            })
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [authContextData])
+
+    // Requisição para exibir os dados do curso
     useEffect(() => {
         setIsLoading(true);
         axios.get(`${BASE_URL}/courses/${courseId}`)
@@ -42,6 +67,31 @@ function CourseDetails() {
                 setIsLoading(false);
             })
     }, [courseId])
+
+    // Requisição para se inscrever no curso
+    const onSubmit = () => {
+        const authData = getAuthData();
+
+        const config: AxiosRequestConfig = {
+            method: 'POST',
+            url: "/progress",
+            baseURL: BASE_URL,
+            data: {
+                collectionId: courseId,
+                userId: authData.userId
+            },
+            withCredentials: true           // precisa estar autenticado para fazer essa requisição
+        }
+
+        requestBackend(config)
+            .then(response => {
+                toast.success('Inscrição realizada com sucesso. Visite "Meus Cursos" na área de Estudante para visualizá-lo');
+            })
+            .catch(() => {
+                toast.error('Erro ao se inscrever no curso');
+            })
+    }
+
 
     return (
         <>
@@ -83,7 +133,7 @@ function CourseDetails() {
                                             <a
                                                 href={course?.link.startsWith('www') || !course?.link.startsWith('http') || !course?.link.startsWith('https') ?
                                                     'https://'.concat(course?.link as string) : course?.link}
-                                                target="_blank" 
+                                                target="_blank"
                                                 rel="noreferrer"
                                             >
                                                 Clique aqui
@@ -135,14 +185,25 @@ function CourseDetails() {
 
                                         </div>
                                     </div>
-                                </>}
+                                </>
+                            }
+
+                            {authContextData.authenticated ? (
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                    <div>
+                                        <button className="base-btn subscribe-btn">Inscrever-se</button>
+                                    </div>
+                                </form>
+                            ) :
+                                ''
+                            }
+
                         </div>
                     </div>
                 </div>
             </section>
 
             <Footer />
-
         </>
     );
 }

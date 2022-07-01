@@ -10,6 +10,7 @@ import com.plataformaeducacional.tcc.dto.CollectionDTO;
 import com.plataformaeducacional.tcc.dto.ProgressDTO;
 import com.plataformaeducacional.tcc.dto.ProgressGetDTO;
 import com.plataformaeducacional.tcc.entities.Collection;
+import com.plataformaeducacional.tcc.entities.CollectionStatus;
 import com.plataformaeducacional.tcc.entities.Progress;
 import com.plataformaeducacional.tcc.entities.User;
 import com.plataformaeducacional.tcc.repositories.CollectionRepository;
@@ -71,6 +72,22 @@ public class ProgressService {
 		collection.setCount(collection.getProgresses().size());
 		
 		collection = collectionRepository.save(collection);
+		
+		return new CollectionDTO(collection);
+	}
+	
+	@Transactional
+	public CollectionDTO subscribeCollection(ProgressDTO dto) {
+		User user = userRepository.findById(dto.getUserId()).get();
+		Collection collection = collectionRepository.findById(dto.getCollectionId()).get();
+		
+		Progress progress = new Progress();
+		progress.setCollection(collection);
+		progress.setUser(user);
+		progress.setScore(null);
+		progress.setStatus(CollectionStatus.Cursando);
+		
+		progress = progressRepository.saveAndFlush(progress);
 		
 		return new CollectionDTO(collection);
 	}

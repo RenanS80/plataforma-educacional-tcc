@@ -22,9 +22,9 @@ function Modal({ description, link, onClose }: Props) {
                         <FontAwesomeIcon icon={faClose} className="close-resource-modal" onClick={onClose} />
                     </button>
                 </div>
+
                 <div className="resource-modal-content">
                     <p>{!description.endsWith('.') ? description.concat('.') : description}</p>
-
                     <a 
                         href={link.startsWith('www') || !link.startsWith('http') || !link.startsWith('https') ?
                             'https://'.concat(link) : link} 

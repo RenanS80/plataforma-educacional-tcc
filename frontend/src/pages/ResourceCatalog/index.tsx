@@ -11,6 +11,7 @@ import ResourceFilter, { ResourceFilterData } from 'components/ResourceFilter';
 import Modal from 'components/Modal';
 import Pagination from 'components/Pagination';
 import Footer from 'components/Footer';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,7 +21,6 @@ type ControlComponentData = {
     activePage: number;
     filterData: ResourceFilterData;
 }
-
 
 function ResourceCatalog() {
 
@@ -46,7 +46,6 @@ function ResourceCatalog() {
     const handleSubmitFilter = (data: ResourceFilterData) => {
         setControlComponentData({ activePage: 0, filterData: data })
     }
-
 
     const getModalData = (description: string, link: string) => {
         let tempData = [description, link]
@@ -80,6 +79,7 @@ function ResourceCatalog() {
         getResources();
     }, [getResources])
 
+    
     return (
         <>
             <section className="resource-catalog">

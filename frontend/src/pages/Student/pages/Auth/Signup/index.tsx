@@ -18,7 +18,6 @@ function Signup() {
 
     const { register, handleSubmit, formState: { errors } } = useForm<UserInsert>();
 
-
     const onSubmit = (formData: UserInsert) => {
         const data = {
             ...formData,
@@ -33,16 +32,16 @@ function Signup() {
 
         requestBackend(config)
             .then((response) => {
-                toast.success('Usuário cadastrado com sucesso');
+                toast.success('Cadastro realizado com sucesso');
                 history.push('/student/auth/login');
             })
             .catch(() => {
-                toast.error('Erro ao cadastrar o usuário');
+                toast.error('Erro ao realizar cadastro');
             });
     };
 
-    return (
 
+    return (
         <main className="main-register">
             <div className="register-purple-area"></div>
             <div className="register-white-area">
@@ -60,6 +59,10 @@ function Signup() {
                                 <input
                                     {...register('firstName', {
                                         required: 'Campo obrigatório',
+                                        pattern: {
+                                            value: /^[a-zA-Z\s]*$/,
+                                            message: "Informe apenas letras"
+                                        }
                                     })}
                                     type="text"
                                     className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
@@ -74,6 +77,10 @@ function Signup() {
                                 <input
                                     {...register('lastName', {
                                         required: 'Campo obrigatório',
+                                        pattern: {
+                                            value: /^[a-zA-Z\s]*$/,
+                                            message: "Informe apenas letras"
+                                        }
                                     })}
                                     type="text"
                                     className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
@@ -101,7 +108,6 @@ function Signup() {
                                 <div className="invalid-feedback d-block">{errors.email?.message}</div>
                             </div>
 
-
                             <div className="register-form-password">
                                 <FontAwesomeIcon icon={faLock} className="password-register-icon" />
                                 <input
@@ -125,7 +131,6 @@ function Signup() {
                     </div>
                 </div>
             </div>
-
         </main>
     );
 }

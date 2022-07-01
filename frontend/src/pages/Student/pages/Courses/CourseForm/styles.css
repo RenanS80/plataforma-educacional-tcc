@@ -16,6 +16,10 @@
     text-transform: uppercase;
     margin-top: 30px;
     margin-bottom: 30px;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    line-height: 33px;
+    letter-spacing: -0.015em;
 }
 
 .margin-bottom-30 {
@@ -42,7 +46,7 @@
 
 .course-crud-container textarea {
     border-radius: 5px;
-    padding-top: 8px; 
+    padding-top: 8px;
 }
 
 .course-crud-container input[type="text"]::placeholder,

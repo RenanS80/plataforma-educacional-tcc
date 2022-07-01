@@ -44,9 +44,10 @@ function Navbar() {
         history.replace('/');
     }
 
+    
     return (
         <nav className="navbar navbar-expand-lg navbar-light pt-4 pb-4 main-nav">
-            <div className="container">
+            <div className="container nav-container">
                 <NavLink to="/" className="nav-logo-text">
                     <img src={Logo} alt="Learn Logo" />
                 </NavLink>

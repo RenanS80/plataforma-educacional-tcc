@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Roboto:wght@400;500;700&display=swap');
 
 :root {
     --purple: #6255A4; 
@@ -77,4 +77,29 @@ h5 {
     border-radius: 8px;
     padding: 14px 20px;
     transition: all .5s ease;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 32px !important;
+        line-height: 113%;
+    }
+
+    h2 {
+        font-size: 27px !important;
+    }
+
+    h3 {
+        font-size: 21px !important;
+        line-height: 111%;
+    }
+
+    h4 {
+        font-size: 19px !important;
+        line-height: 29px;
+    }
+
+    h5 {
+        font-size: 17px !important;
+    }
 }
