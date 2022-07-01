@@ -121,6 +121,15 @@ INSERT INTO tb_event (id, start_date, end_date) VALUES (30, '2022-06-06', '2022-
 INSERT INTO tb_collection (category_id, title, description, link, platform, image, score, count) VALUES (4, 'Dart Week 2022', 'Nesse evento exclusivo construiremos juntos: Um aplicativo completo, utilizando as tecnologias mais utilizadas por empresas no Brasil, com conceitos de arquitetura, padrões de projetos e um modelo que você pode replicar em seus projetos pessoais, freelancer ou para sua empresa.', 'https://academiadoflutter.com.br/dw_2022_fb_ed2', 'Academia do Flutter', 'https://ik.imagekit.io/zqxyh6u3ylz/TCC/Eventos/dart-week_QZoFbXqvX.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1653781582480', 0.0, 0);
 INSERT INTO tb_event (id, start_date, end_date) VALUES (31, '2022-06-06', '2022-06-12');
 
+INSERT INTO tb_collection (category_id, title, description, link, platform, image, score, count) VALUES (2, 'Imersão Java', 'Em 5 dias você vai sair do zero e desenvolver um projeto em Java para adicionar ao seu portfólio', 'https://www.alura.com.br/imersao-java', 'Alura', 'https://ik.imagekit.io/zqxyh6u3ylz/TCC/Eventos/imersao-java-alura_TM_4AsAOY.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1656712834116', 0.0, 0);
+INSERT INTO tb_event (id, start_date, end_date) VALUES (32, '2022-07-18', '2022-07-22');
+
+INSERT INTO tb_collection (category_id, title, description, link, platform, image, score, count) VALUES (7, 'Descomplicando UX/UI Design', 'Serão 3 aulas bem objetivas, sem enrolação: Conceitos básicos sobre UI Design, Figma e carreira; Processos de um Squad de UX/UI; UI Design no Figma e UX Testing', 'https://deployux.com/descomplicando-ux-ui/', 'Deploy UX', 'https://ik.imagekit.io/zqxyh6u3ylz/TCC/Eventos/deploy-ux_xSb16PbFf.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1656713322557', 0.0, 0);
+INSERT INTO tb_event (id, start_date, end_date) VALUES (33, '2022-07-12', '2022-07-18');
+
+INSERT INTO tb_collection (category_id, title, description, link, platform, image, score, count) VALUES (1, 'Maratona no mundo invertido', 'Aprenda a programar o básico, construa um projeto próprio e ganhe um certificado', 'https://kenzie.com.br/eventos/maratona', 'Kenzie', 'https://ik.imagekit.io/zqxyh6u3ylz/TCC/Eventos/maratona-kenzie_4snAbYfab.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1656713608664', 0.0, 0);
+INSERT INTO tb_event (id, start_date, end_date) VALUES (34, '2022-07-09', '2022-07-09');
+
 INSERT INTO tb_tag (name) VALUES ('HTML');  
 INSERT INTO tb_tag (name) VALUES ('CSS');      
 INSERT INTO tb_tag (name) VALUES ('SASS');  
@@ -253,6 +262,12 @@ INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (29, 17);
 INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (29, 18);
 INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (30, 24);
 INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (31, 27);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (32, 17);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (33, 15);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (33, 16);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (34, 1);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (34, 2);
+INSERT INTO tb_collection_tag (collection_id, tag_id) VALUES (34, 9);
 
 INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (1, 1);
 INSERT INTO tb_resource_tag (resource_id, tag_id) VALUES (1, 2);
@@ -314,3 +329,7 @@ INSERT INTO tb_collection_resource (collection_id, resource_id) VALUES (22, 2);
 INSERT INTO tb_collection_resource (collection_id, resource_id) VALUES (25, 10);
 INSERT INTO tb_collection_resource (collection_id, resource_id) VALUES (26, 9);
 INSERT INTO tb_collection_resource (collection_id, resource_id) VALUES (29, 12);
+INSERT INTO tb_collection_resource (collection_id, resource_id) VALUES (32, 5);
+INSERT INTO tb_collection_resource (collection_id, resource_id) VALUES (33, 6);
+INSERT INTO tb_collection_resource (collection_id, resource_id) VALUES (34, 1);
+INSERT INTO tb_collection_resource (collection_id, resource_id) VALUES (34, 2);
