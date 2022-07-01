@@ -28,6 +28,7 @@ function Dashboard() {
 
     const authData = getAuthData();
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [controlComponentData, setControlComponentData] = useState<ControlComponentData>({
         activePage: 0
     });
