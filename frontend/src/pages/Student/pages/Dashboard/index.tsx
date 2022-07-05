@@ -132,6 +132,7 @@ function Dashboard() {
                                                 id={course.collection.id}
                                                 image={course.collection.image}
                                                 title={course.collection.title}
+                                                link={course.collection.link}
                                                 category={course.collection.category.name}
                                                 platform={course.collection.platform}
                                                 status={course.status}
@@ -157,6 +158,7 @@ function Dashboard() {
                                                 id={event.collection.id}
                                                 image={event.collection.image}
                                                 title={event.collection.title}
+                                                link={event.collection.link}
                                                 category={event.collection.category.name}
                                                 platform={event.collection.platform}
                                                 status={event.status}

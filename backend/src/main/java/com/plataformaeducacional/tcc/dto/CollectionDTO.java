@@ -58,7 +58,7 @@ public class CollectionDTO implements Serializable {
 		id = entity.getId();
 		title = entity.getTitle();
 		description = entity.getDescription();
-		link = entity.getDescription();
+		link = entity.getLink();
 		platform = entity.getPlatform();
 		image = entity.getImage();
 		score = entity.getScore();

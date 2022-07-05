@@ -4,7 +4,7 @@ import { AxiosRequestConfig } from 'axios';
 import { SpringPage } from 'types/Vendor/spring';
 import { Resource } from 'types/Resource';
 import { requestBackend } from 'utils/requests';
-import { formatLocalDate } from 'utils/format';
+import { formatLocalDate, urlConfigure } from 'utils/format';
 
 import ResourceTableLoader from 'components/Loaders/ResourceTableLoader';
 import ResourceFilter, { ResourceFilterData } from 'components/ResourceFilter';
@@ -61,7 +61,7 @@ function ResourceCatalog() {
             url: "/resources",
             params: {
                 page: controlComponentData.activePage,
-                size: 8,
+                size: 10,
                 title: controlComponentData.filterData.title,
             }
         }
@@ -114,10 +114,7 @@ function ResourceCatalog() {
                                                     <td>{resource.title}</td>
                                                     <td>{formatLocalDate(resource.registrationDate, "dd/MM/yyyy")}</td>
                                                     <td>
-                                                        <a
-                                                            href={resource?.link.startsWith('www') || !resource?.link.startsWith('http') || !resource?.link.startsWith('https') ?
-                                                                'https://'.concat(resource?.link as string) : resource?.link}
-                                                            target="_blank" rel="noreferrer">
+                                                        <a href={urlConfigure(resource?.link)} target="_blank" rel="noreferrer">
                                                             Clique aqui
                                                         </a>
                                                     </td>

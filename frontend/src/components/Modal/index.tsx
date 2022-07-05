@@ -1,4 +1,5 @@
 import { MouseEventHandler } from 'react';
+import { descriptionConfigure, urlConfigure } from 'utils/format';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
@@ -24,10 +25,9 @@ function Modal({ description, link, onClose }: Props) {
                 </div>
 
                 <div className="resource-modal-content">
-                    <p>{!description.endsWith('.') ? description.concat('.') : description}</p>
+                    <p>{descriptionConfigure(description)}</p>
                     <a 
-                        href={link.startsWith('www') || !link.startsWith('http') || !link.startsWith('https') ?
-                            'https://'.concat(link) : link} 
+                        href={urlConfigure(link)}
                         target="_blank" 
                         rel="noreferrer" 
                         className="base-btn btn-visit-resource"

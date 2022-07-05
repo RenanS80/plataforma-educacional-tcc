@@ -7,7 +7,7 @@ import { AuthContext } from 'AuthContext';
 
 import { Course } from 'types/Course';
 import { BASE_URL, requestBackend } from 'utils/requests';
-import { formatLocalDate } from 'utils/format';
+import { descriptionConfigure, formatLocalDate, urlConfigure } from 'utils/format';
 import { getTokenData, isAuthenticated } from 'utils/auth';
 import { getAuthData } from 'utils/storage';
 
@@ -130,12 +130,7 @@ function CourseDetails() {
 
                                         <div className="course-details-link">
                                             <h4>Link</h4>
-                                            <a
-                                                href={course?.link.startsWith('www') || !course?.link.startsWith('http') || !course?.link.startsWith('https') ?
-                                                    'https://'.concat(course?.link as string) : course?.link}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                            >
+                                            <a href={urlConfigure(course?.link)} target="_blank" rel="noreferrer">
                                                 Clique aqui
                                             </a>
                                         </div>
@@ -148,7 +143,7 @@ function CourseDetails() {
                                     <div className="course-details-info">
                                         <div className="course-details-info-description">
                                             <h4>Descrição do Curso</h4>
-                                            <p>{!course?.description.endsWith('.') ? course?.description.concat('.') : course?.description}</p>
+                                            <p>{descriptionConfigure(course?.description)}</p>
                                         </div>
 
                                         <div>

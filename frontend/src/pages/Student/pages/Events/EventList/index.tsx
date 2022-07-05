@@ -107,6 +107,7 @@ function EventList() {
                                             id={course.collection.id}
                                             image={course.collection.image}
                                             title={course.collection.title}
+                                            link={course.collection.link}
                                             category={course.collection.category.name}
                                             platform={course.collection.platform}
                                             status={course.status}

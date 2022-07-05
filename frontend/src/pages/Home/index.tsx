@@ -92,7 +92,7 @@ function Home() {
             <main className="main-categories">
                 <div className="container">
                     <div className="categories-title">
-                        <h5>Navegue pelos cursos de cada área</h5>
+                        <h5>Navegue pelos cursos de cada área no catálogo</h5>
                         <h2>Principais categorias</h2>
                     </div>
 

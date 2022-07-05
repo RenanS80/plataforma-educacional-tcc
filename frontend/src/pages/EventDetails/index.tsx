@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 import { BASE_URL, requestBackend } from 'utils/requests';
 import { Event } from 'types/Event';
-import { formatLocalDate } from 'utils/format';
+import { descriptionConfigure, formatLocalDate, urlConfigure } from 'utils/format';
 import { getTokenData, isAuthenticated } from 'utils/auth';
 import { getAuthData } from 'utils/storage';
 
@@ -127,10 +127,7 @@ function EventDetails() {
 
                                         <div className="event-details-link">
                                             <h4>Link</h4>
-                                            <a
-                                                href={event?.link.startsWith('www') || !event?.link.startsWith('http') || !event?.link.startsWith('https') ?
-                                                    'https://'.concat(event?.link as string) : event?.link}
-                                                target="_blank" rel="noreferrer">
+                                            <a href={urlConfigure(event?.link)} target="_blank" rel="noreferrer">
                                                 Clique aqui
                                             </a>
                                         </div>
@@ -143,7 +140,7 @@ function EventDetails() {
                                     <div className="event-details-info">
                                         <div className="event-details-info-description">
                                             <h4>Descrição do Evento</h4>
-                                            <p>{!event?.description.endsWith('.') ? event?.description.concat('.') : event?.description}</p>
+                                            <p>{descriptionConfigure(event?.description)}</p>
                                         </div>
 
                                         <div>
